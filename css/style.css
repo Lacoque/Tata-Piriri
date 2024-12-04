@@ -1,0 +1,246 @@
+/* Hoja de estilo personalizada para el Festival Internacional de Títeres Tatá Pirirí */
+
+
+
+:root{
+    --bordo: #4C2237;
+    --purpura: #7C2263;
+    --purpura-op-70: #7c2262bd;
+    --amarillo: #E47E1D;
+    --amarillo-op-70: #e47d1db9;
+    --marron: #A25629;
+    --gris: #D9D9D9;
+    --marron-oscuro: #311C08;
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('/fonts/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('/fonts/Roboto-Medium.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('/fonts/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('/fonts/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Black';
+    src: url('/fonts/Roboto-Black.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('/fonts/Roboto-Thin.ttf');
+}
+
+body {
+    font-family: 'Roboto-Regular';
+}
+
+h2 {
+    font-size: 2.85rem;
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.65rem;
+}
+
+a {
+    color: var(--gris);
+    background-color: var(--purpura);
+    border: none;
+    border-radius: 5px;
+    padding: .5rem 2rem;
+    transition: all .25s;
+}
+@media (hover:hover) {
+    a:hover {
+        color: var(--purpura);
+        background-color: var(--gris);
+    }
+}
+
+
+#inicio {
+    background: 
+        radial-gradient(circle, var(--amarillo-op-70), var(--bordo)),
+        url('/assets/img/pexels-nadin-sh-78971847-24811707.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajusta la imagen para cubrir el área */
+    background-position: center; /* Centra la imagen */
+    height: 100vh;
+}
+
+#inicio .accion h2 {
+    font-family: 'Roboto-Thin';
+    color: var(--gris);
+    margin: 0;
+}
+#inicio .accion h4 {
+    font-family: 'Roboto-Black';
+    color: var(--gris);
+    margin: 1rem auto 3rem;
+    font-size: 1.15rem;
+}
+
+
+#inicio img{
+    height: 60vh;
+}
+#inicio a {
+    color: var(--gris);
+    font-family: 'Roboto-Medium';
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+@media (hover:hover) {
+    #inicio a:hover {
+        color: var(--purpura);
+    }
+}
+
+.btn-accion {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+a#programacion {
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid var(--purpura); */
+    color: var(--purpura);
+    display: inline-block;
+    padding: .5rem 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--gris);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+a#programacion span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+}
+
+a#programacion span:last-child {
+    color: var(--gris);
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(100%) translateX(-50%);
+    width: 100%;
+    justify-content: center;
+}
+
+a#programacion:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--purpura);
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+}
+
+a#programacion:hover:after {
+    transform-origin: bottom center;
+    transform: skewY(8.3deg) scaleY(4);
+    width: 100%;
+    justify-content: center;
+}
+
+a#programacion:hover span:last-child {
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    width: 100%;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+div#entrada {
+    /* padding: 0rem 0rem 0rem 1rem; */
+    border-radius: 5px; 
+    display: flex;
+    align-items: center;
+    background-color: var(--purpura);
+}
+
+section#inicio div#entrada img {
+    height: 3vh !important;
+    padding: 0rem 1rem;
+}
+
+section#inicio div#entrada a {
+    border-radius: 0px 5px 5px 0px;
+    padding-left: .45rem;
+}
+
+#int {
+    background-color: var(--bordo);
+}
+
+#int h4{
+    font-family: 'Roboto-Light';
+    color: var(--gris);
+    font-size: .95rem;
+}
+
+#int img{
+    height: 10vh;
+}
+
+#info-programacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--purpura);
+    color: var(--gris);
+}
+
+#info-entradas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--marron);
+    color: var(--gris);
+}
+
+#info-sedes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--marron);
+    color: var(--gris);
+}
+
+.card-entrada{
+    height: 40vh;
+    width: 20vw;
+    border-radius: 10px;
+    background-color: var(--amarillo);
+    padding: 2rem;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 2px 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
