@@ -100,7 +100,7 @@ a {
 #inicio a {
     color: var(--gris);
     font-family: 'Roboto-Medium';
-    font-size: 1.4rem;
+    font-size: .95rem;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -209,14 +209,17 @@ section#inicio div#entrada a {
 }
 
 #int img{
-    height: 10vh;
+	height: 10vh;
 }
+
 
 #info-programacion{
     display: flex;
+	gap: 2rem;
+	padding: 5rem 0rem;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+	height: 90vh;
     background-color: var(--purpura);
     color: var(--gris);
 }
@@ -225,19 +228,86 @@ section#inicio div#entrada a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-color: var(--marron);
     color: var(--gris);
 }
 
 #info-sedes{
     display: flex;
+	flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: var(--marron);
+    background-color: var(--purpura);
     color: var(--gris);
+	padding: 5rem 0rem;	
 }
+
+.card-horizontal {
+	background-color: #1f2029;
+	border-radius: 10px;
+	align-items: center;
+	justify-content: space-around;
+	height: 40vh;
+	overflow: hidden;
+}
+
+.card-horizontal img {
+	height: 100%;
+	background-color: var(--gris);
+}
+
+.card-horizontal p {
+	position: relative;
+	font-size: .845rem;
+	margin: 0;
+	/* visibility: hidden; */
+	opacity: 0;
+	bottom: -40px;
+	transition: all 500ms;
+}
+
+.card-horizontal:hover p{
+	transform: translateY(-20px);
+	/* visibility: visible; */
+	opacity: 1;
+}
+
+.card-horizontal h5 {
+	font-family: 'Roboto-Thin';
+	font-size: .75rem;
+	letter-spacing: .03rem;
+}
+
+.card-horizontal h3,
+.card-horizontal h5 {
+	margin: 0;
+}
+
+.card-horizontal div:first-of-type {
+	padding: 1rem 2rem;
+	gap: .5rem;
+}
+
+#info-sedes a:first-of-type {
+    padding: 0rem;
+    border-radius: 10px;
+    text-decoration: none;
+    object-fit: cover;
+    position: relative;
+    transition: all 0.3s;
+}
+
+#info-sedes a:first-of-type .card-horizontal {
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+#info-sedes a:first-of-type:hover .card-horizontal {
+    transform: scale(1.15);
+	color: var(--gris);
+	box-shadow: 0px 0px 20px var(--dark-blue);
+}
+
 
 .card-entrada{
     height: 40vh;
@@ -250,7 +320,7 @@ section#inicio div#entrada a {
 
 
 
-/* Prueba Entradas */
+/* Entradas */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap'); */
 
@@ -266,13 +336,19 @@ section#inicio div#entrada a {
 	background-color: var(--marron);
 	overflow-x: hidden;
 }
-#info-entradas h1{
+#info-entradas h1 {
 	font-family: 'Roboto-Regular';
 	/* font-weight: 700; */
 	color: var(--white-gr);
 	font-size: 36px;
 }
-
+#info-entradas h2 {
+	font-family: 'Roboto-Thin';
+	margin: 0;
+}
+#info-entradas p {
+	margin-bottom: 2rem;
+}
 
 .color-yellow {
 	color: var(--yellow);
@@ -361,9 +437,7 @@ section#inicio div#entrada a {
 	border-radius: 0;
 	z-index: -1;
 	display: block;
-	/* background-color: var(--white-gr); */
 	background-color: var(--amarillo);
-	/* opacity: 0.01; */
 	transition: all 250ms linear;
 }
 .checkbox-ticket:checked + label{
@@ -397,21 +471,20 @@ section#inicio div#entrada a {
 }
 .checkbox-ticket + label .price{
 	font-family: 'Roboto-Lifht', sans-serif;
-	/* font-weight: 900; */
 	font-size: 40px;
 	line-height: 1;
 	text-transform: uppercase;
 	color: var(--marron);
 	display: block;
 	transition: all 250ms linear;
-	/* text-shadow: 1px 2px 4px var(--yellow), 0 0 0 #000, 1px 2px 4px var(--yellow); */
 }
 .checkbox-ticket:checked + label .price,
 .checkbox-ticket:checked + label .duration	{
 	color: #d9d9d9c4;
 }
 .checkbox-ticket + label:hover .price,
-.checkbox-ticket + label:hover .duration{
+.checkbox-ticket + label:hover .duration,
+.checkbox-ticket + label:hover .time {
 	color: #d9d9d9;
 }
 .checkbox-ticket + label .price sup{
@@ -571,7 +644,6 @@ section#inicio div#entrada a {
 .btn:hover{
 	color: var(--purpura);
     background-color: var(--gris);
-	/* box-shadow: 0 6px 20px 0 rgba(255,235,167,0.25); */
 }
 
 .checkbox-ticket:not(:checked) ~ .btn{
@@ -592,6 +664,10 @@ section#inicio div#entrada a {
 	font-size: .85rem;
 }
 
+.entradas-tickets{
+	margin-bottom: 3rem;
+}
+
 .entradas-tickets label img:first-of-type {
 	object-fit: fill;
 	opacity: .3;
@@ -603,16 +679,226 @@ section#inicio div#entrada a {
 	opacity: 1;
 }
 
-/* .entradas-tickets label span {
-	color: #d9d9d97c !important;
-	transition: all .2s;
+#info-entradas .entradas-tickets label{
+	transition: all 0.3s;
+	border: none;
+}
+
+@media (hover:hover) {
+	#info-entradas .entradas-tickets label:hover{
+		transform:scale(1.09)
+	}
 }
 
 
+/* FIN Entradas */
+
+
+
+footer{
+	height: 50vh;
+	padding: 2rem 4rem;
+	background-color: var(--bordo);
+	gap: 10rem;
+}
+footer > div:first-of-type{
+	gap: 2rem;
+}
+
+footer p {
+	font-family: 'Roboto-Light';
+	font-size: .845rem;
+	/* color: var(--gris); */
+	color: #9f597b;
+}
+footer a {
+	font-family: 'Roboto-Regular';
+    font-size: .845rem;
+    /* color: var(--gris); */
+	color: #9f597b;
+	text-decoration: none;
+	background-color: transparent;
+	padding: 0rem;
+	transition: all .3s;
+}
+footer #int img {
+	height: 12vh;
+	opacity: .5;
+}
 @media (hover:hover) {
-	.entradas-tickets label:hover span{
-		color: #d9d9d9 !important;
+	footer a:hover {
+		/* font-family: 'Roboto-Black'; */
+		color: var(--amarillo);
+		background-color: transparent;
 	}
+}
+
+.item-footer {
+	width: 100%;
+}
+.item-footer:nth-child(2) {
+	margin-top: 1em;
+}
+.item-footer p a {
+	line-height: 2.65rem;
+	/* border: 2px solid #d9d9d92c; */
+	border: 1px solid #5f1c3e;
+	background-color: #5f1c3e;
+}
+@media (hover:hover) {
+	.item-footer p a:hover {
+		border: 1px solid var(--amarillo);
+	}
+}
+
+#navegador{
+	align-items: center;
+	position: fixed;
+	top: 20px;
+	
+	height: fit-content;
+	width: fit-content;
+	padding: .5rem 0rem;
+
+	border-radius: 10px;
+	background-color: var(--amarillo-op-70);
+	backdrop-filter: blur(3.5px);
+	z-index: 999;
+}
+
+#navegador ul {
+	height: 5vh;
+	margin: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#navegador ul li {
+	list-style: none;
+	color: var(--gris);
+	height: 100%;
+}
+
+#navegador ul li img {
+	height: 100%;
+	opacity: .55;
+	transition: all 0.3s;
+}
+@media (hover:hover) {
+	#navegador ul li:hover img {
+		opacity: 1;
+	}
+}
+
+#section-navegador {
+	display: flex;
+	justify-content: center;
+}
+
+#section-navegador  #navegador a {
+	font-size: .75rem;
+	background-color: transparent;
+	text-decoration: none;
+	padding: .5rem 1rem;
+}
+
+#quienes-somos{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: var(--amarillo);
+	color: var(--gris);
+}
+
+#sedes{
+    display: flex;
+	gap: 2rem;
+	padding: 5rem 0rem;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--purpura);
+    color: var(--gris);
+}
+#sedes:nth-child(1){
+	width: 80%;
+}
+
+#sedes img {
+	height: 70vh;
+	position: relative;
+}
+
+.sedes-general{
+	display: flex;
+	width: 75vw;
+}
+
+.sedes-info{
+    position: relative;
+    left: 3rem;
+	display: flex;
+	flex-direction: column;
+	
+	gap: 1.25rem;
+	box-sizing: content-box;
+	width: 40%;
+	height: fit-content;
+    
+	padding: 1rem 1.85rem;
+
+	/* border: 1px solid var(--bordo); */
+	border-radius: 10px;
+	background-color: #6d1955;
+}
+.sedes-info h1,
+.sedes-info h4,
+.sedes-info p {
+	margin: 0;
+}
+.sedes-info h1{
+	font-weight: 200;
+	color: var(--amarillo);
+	/* border-bottom: 1px solid var(--amarillo); */
+	padding-bottom: .3rem;
+	margin-bottom: .3rem;
+}
+.sedes-info h4{
+	font-size: .95rem;
+}
+.sedes-info p {
+	font-size: .8rem;
+}
+
+/* .sub-sedes-info{
+	padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+	justify-content: space-between;
 } */
 
-/* FIN Prueba Entradas */
+.sub-sedes-info {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: .25rem;
+	grid-auto-rows: minmax(60px, auto);
+}
+
+#mapa iframe {
+	border: none;
+	filter: grayscale(100%);
+}
+
+#obras {
+	display: flex;
+	gap: 2rem;
+	padding: 5rem 0rem;
+    justify-content: center;
+    align-items: center;
+	height: 90vh;
+    background-color: var(--purpura);
+    color: var(--gris);
+}
