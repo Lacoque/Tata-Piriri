@@ -87,10 +87,16 @@ a {
     margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-#inicio .accion h4 {
+/* #inicio .accion h4 {
     font-family: 'Roboto-Black';
     color: var(--gris);
     margin: 1rem auto 3rem;
+    font-size: 1.15rem;
+} */
+#inicio .accion h2#edicion {
+	font-family: 'Roboto-Black';
+    color: var(--gris);
+    margin: .3rem auto 3rem;
     font-size: 1.15rem;
 }
 
@@ -808,6 +814,8 @@ footer #int img {
 	backdrop-filter: blur(3.5px);
 	z-index: 999;
 	opacity: 1;
+
+	transition: all .3s;
 }
 
 #navegador ul {
