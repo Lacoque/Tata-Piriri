@@ -16,16 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const nav = document.getElementById('navegador')
-    const navTrigger = document.getElementById('nav-trigger')
 
-    // gsap.set(nav, { opacity: 0, yPercent: 0});
-    
     gsap.from (nav, {
         duration: 0.5, 
-        opacity: 1,
+        opacity: 0,
         y: 0,
         scrollTrigger: {
-            // trigger: navTrigger,
             trigger: "#navegador",
             start:"top top",
             end: "bottom bottom",
@@ -37,12 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
     let ticketButton = document.querySelectorAll(".checkbox-ticket");
     ticketButton.forEach(button =>{
         button.onclick = accionButton;
     })
-
 
 
 
