@@ -1,35 +1,23 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Animación de navegador
-    // const nav = document.getElementById('navegador')
     
-    // gsap.fromTo(nav, { visibility: 'hidden' }, { visibility: 'visible', duration: 0.5 });
-    
-    // function handleScroll () {
-    //     if (window.scrollY >= 100){
-    //         gsap.to(nav, { visibility: 'visible', duration: 0.5, opacity: 1, transition: 0.85 });
-    //     } else {
-    //         gsap.to(nav, { visibility: 'hidden', duration: 0.5, opacity: 0, transition: 0.85 });
-    //     }
-    // }
-    // window.addEventListener('scroll', handleScroll);
+    if(window.location.pathname === '/' || window.location.pathname.includes('indexnuevo.html')){
+        const nav = document.getElementById('navegador');
 
-
-    const nav = document.getElementById('navegador')
-
-    gsap.from (nav, {
-        duration: 0.5, 
-        opacity: 0,
-        y: 0,
-        scrollTrigger: {
-            trigger: "#navegador",
-            start:"top top",
-            end: "bottom bottom",
-            scrub: true,
-            toggleActions: "play none none reverse",
-            // markers: true
-        } 
-    })
+        gsap.from (nav, {
+            duration: 0.5, 
+            opacity: 0,
+            y: 0,
+            scrollTrigger: {
+                trigger: "#navegador",
+                start:"top top",
+                end: "bottom bottom",
+                scrub: true,
+                toggleActions: "play none none reverse",
+                // markers: true
+            } 
+        })
+    }
 
 
 
@@ -38,11 +26,24 @@ document.addEventListener("DOMContentLoaded", () => {
         button.onclick = accionButton;
     })
 
+    function accionButton () {
+        const ticketId = this.id;
 
-
-    function accionButton (evento) {
-        // alert("El boton funciona!")
-        open('https://wa.me/543751362949?text=Me%20gustaría%20consultar%20por%20las%20entradas...')
+        let mensaje = "";
+        switch (ticketId){
+            case "ticket-1":
+                mensaje = "Me gustaría consultar por las Entradas Generales";
+                break;
+            case "ticket-2":
+                mensaje ="Me gustaría consultar por Entradas de Jubilados y Estudiantes";
+            break;
+            case "ticket-3":
+                mensaje = "Me gustaría consultar por Entradas con Bono Escolar";
+            break;
+            default:
+                mensaje = "Me gustaría consultar por las Entradas"
+        }
+        open(`https://wa.me/543751362949?text=${encodeURIComponent(mensaje)}`);
     };
 
 })
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2'); // Selecciona TODOS los h2
+const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2, #quienes-somos h2, #otros-festivales h2'); // Selecciona TODOS los h2
 
 h2Elements.forEach(h2 => { // Itera sobre CADA h2
     const textoSplit = new SplitType(h2); // SplitType para CADA h2
