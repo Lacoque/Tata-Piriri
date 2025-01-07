@@ -512,9 +512,10 @@ section#inicio div#entrada a {
 .checkbox-ticket + label:hover .time {
 	color: #d9d9d9;
 }
-.checkbox-ticket + label .price sup{
-	font-size: 26px;
-	line-height: 1;
+.checkbox-ticket + label .price span{
+	font-family: 'Roboto-Regular';
+	/* font-size: 26px; */
+	/* line-height: 1; */
 	letter-spacing: 4px;
 }
 .checkbox-ticket + label .uil {
@@ -813,7 +814,6 @@ footer #int img {
 	background-color: var(--amarillo-op-70);
 	backdrop-filter: blur(3.5px);
 	z-index: 999;
-	opacity: 1;
 
 	transition: all .3s;
 }
@@ -824,12 +824,23 @@ footer #int img {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	padding: 0rem 1rem;
 }
 
 #navegador ul li {
 	list-style: none;
 	color: var(--gris);
 	height: 100%;
+}
+
+#navegador ul > div.nav-redes {
+	display: flex;
+	height: 100%;
+    gap: 1rem;
+    padding: 0rem .5rem;
+}
+#section-navegador #navegador ul > div.nav-redes a {
+	padding: 0;
 }
 
 #navegador ul li img {
@@ -857,11 +868,72 @@ footer #int img {
 
 #quienes-somos{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	/* height: 100vh; */
+	padding: 4rem 0rem;
 	background-color: var(--amarillo);
 	color: var(--gris);
+}
+#quienes-somos h2 {
+	font-family: 'Roboto-Thin';
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+#otros-festivales{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh; */
+	padding: 4rem 0rem 2rem;
+	background-color: var(--bordo);
+	color: var(--gris);
+}
+#otros-festivales h2 {
+	font-family: 'Roboto-Thin';
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.festivales{
+	display: flex;
+	gap: 2rem;
+}
+
+.festivales a {
+	height: 40svh;
+	width: auto;
+	text-decoration: none;
+	align-items: center;
+	justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+	background-image: linear-gradient(0deg, var(--marron-oscuro) 30%, var(--amarillo-op-70) 100%), url('/images/portada-funcion-p2\,.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	transition: all .3s;
+}
+
+.festivales a:nth-of-type(2) img {
+	/* height: 20svh; */
+	width: 30svh;
+	object-fit: contain;
+}
+
+.festivales a p {
+	width: 100%;
+	padding: .2rem 1rem;
+	color: var(--gris);
+	text-align: center;
+	/* background-color: var(--bordo); */
+}
+
+@media (hover:hover) {
+	.festivales a:hover {
+		transform: scale(1.075);
+	}
 }
 
 #sedes{
@@ -1051,12 +1123,98 @@ div article .info-obras p {
 	text-transform: uppercase;
 }
 
-
-/* Pruebas dentro de Obras */
-
-
-/* Fin Pruebas dentro de Obras */
-
-
-
 /* FIN OBRAS */
+
+
+
+
+/* NOSOTROS */
+
+#nosotros-tarjetas {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, auto);
+	padding: 0rem 2rem;
+	margin:  1rem 2rem;
+	gap: 3rem .8rem;
+}
+
+#nosotros-tarjetas > article {
+	background-color: var(--gris);
+	border-radius: 10px;
+	border: 1px solid var(--gris);
+	padding-bottom: 1.5rem;
+	/* padding: 1.5rem 1rem; */
+	color: var(--bordo);
+	text-align: center;
+	transition: all .3s;
+}
+
+#nosotros-tarjetas img {
+	height: 25vh;
+	width: auto;
+	object-fit: cover;
+	border-radius: 6px;
+	position: relative;
+	transition: all .5s;
+	align-items: center;
+}
+@media (hover:hover) {
+	#nosotros-tarjetas article:hover img {
+		transform: scale(1.05);
+		box-shadow: 0px 0px 10px #4b4b4b;
+		transform: translateY(-20px);
+	}
+	#nosotros-tarjetas > article:hover {
+		transform: scale(1.02);
+		box-shadow: 0px 7px 35px var(--marron);
+	}
+}
+
+#nosotros-tarjetas article h5,
+#nosotros-tarjetas article p {
+	margin: 0;
+}
+
+#nosotros-tarjetas article div {
+	display: flex;
+	gap: .7rem;
+	justify-content: center;
+}
+
+#nosotros-tarjetas article div a {
+	padding: 0;
+	background: transparent;
+	color: var(--bordo);
+}
+@media (hover:hover){
+	#nosotros-tarjetas article div a:hover {
+		color: var(--amarillo);
+		background-color: transparent;
+	}
+}
+
+.gente {
+	display: flex;
+	/* flex-direction: column; */
+	width: 40vw;
+	gap: .5rem;
+	align-items: center;
+	justify-content: center;
+	margin: 2rem auto;
+	border: 3px solid var(--gris);
+	border-radius: 10px;
+	transition: all .5s;
+	padding: 1rem;
+}
+
+.gente p {
+	color: var(--gris);
+	margin: 0;
+}
+.gente i {
+	opacity: 1;
+	transition: all .3s;
+}
+
+/* FIN NOSOTROS */
