@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    if(window.location.pathname === '/' || window.location.pathname.includes('indexnuevo.html')){
+    if(window.location.pathname === '/' || window.location.pathname.includes('indexnuevo')){
         const nav = document.getElementById('navegador');
 
         gsap.from (nav, {
