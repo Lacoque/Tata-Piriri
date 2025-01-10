@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2, #quienes-somos h2, #otros-festivales h2'); // Selecciona TODOS los h2
+const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2, #quienes-somos h2, #otros-festivales h2, #form h2'); // Selecciona TODOS los h2
 
 h2Elements.forEach(h2 => { // Itera sobre CADA h2
     const textoSplit = new SplitType(h2); // SplitType para CADA h2
