@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sumate | Festival de Títeres</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
     <link rel="stylesheet" href="/css/css/bootstrap-grid.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -14,10 +14,10 @@
     <section id="section-navegador">
         <nav id="navegador">
             <ul>
-                <li><a href="indexnuevo.html"><img src="/images/iso-solo.svg" alt="tata logo"></a></li>
-                <!-- <li><a href="indexnuevo.html">Inicio</a></li> -->
-                <li><a href="indexnuevo.html#info-programacion">Programación</a></li>
-                <li><a href="indexnuevo.html#info-entradas">Entradas</a></li>
+                <li><a href="index.html"><img src="/images/iso-solo.svg" alt="tata logo"></a></li>
+                <!-- <li><a href="index.html">Inicio</a></li> -->
+                <li><a href="index.html#info-programacion">Programación</a></li>
+                <li><a href="index.html#info-entradas">Entradas</a></li>
                 <li><a href="obras-y-sedes.html#obras">Obras</a></li>
                 <li><a href="obras-y-sedes.html#sedes">Sedes</a></li>
                 <li><a href="nosotros.html">Nosotres</a></li>
@@ -54,7 +54,7 @@
                         <input type="number" name="duracion" placeholder="Duración en minutos" required/>
 
                         <select name="role[]" id="seleccion-publico">
-                            <option value="">Elegí una opción</option>
+                            <option value="">Público recomendado</option>
                             <option value="primera-infancia">Primera infancia</option>
                             <option value="infancia">Infancia</option>
                             <option value="adolescentes">Adolescentes</option>
@@ -68,28 +68,36 @@
                     </label>
                 </p>
                 
-                <p>Adjuntá los archivos</p>
-                <p class="archivos">
-                    <input type="file" id="file" multiple required>
-                    <label for="file">
-                        <i class="fa-solid fa-paperclip"></i>
-                    </label>
-                </p>
+                <!-- <p>Adjuntá los archivos</p> -->
+                <p class="custom-file-container" data-upload-id="file-upload"></p>
                 <p>
                     <label>Si querés comentarnos algo más <textarea name="message"></textarea></label>
                 </p>
+                <div class="d-flex flex-column gap-3 justify-content-center align-items-center div-enviar">
+                    <span>
+                        Vamos a procesar el datos y comunicarnos con el referente lo antes posible.
+                    </span>
+                    <p class="btn-enviar">
+                        <a type="submit" id="btn-transicion">
+                            <span class="text">ENVIAR</span>
+                            <span>¡Gracias por participar!</span>
+                        </a>
+                    </p>
+                </div>
             </div>
-            <p class="btn-enviar"><a type="submit">Enviar</a></p>
             <!-- <p class="btn-enviar"><button type="submit">Enviar</button></p> -->
         </form>
     </section>
+
+
+
 
     <footer class="d-flex justify-content-between">
         <div class="d-flex">
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                        <a class="px-3 py-2" href="#inicio"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
+                        <a class="px-3 py-2" href="#top"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
                     </p>
                 </div>
             </div>
@@ -116,12 +124,13 @@
         </div>
     </footer>
 
-    <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script> -->
+    <!-- <script src="js/custom.js"></script> -->
+    <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/split-type"></script>
-    <!-- <script src="js/gsap.min.js"></script> -->
-    <script src="js/custom.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    
 </body>
 </html>

@@ -242,7 +242,8 @@ section#inicio div#entrada a {
 
 #info-programacion{
     display: flex;
-	gap: 2rem;
+	flex-direction: column;
+	/* gap: 2rem; */
 	padding: 5rem 0rem;
     justify-content: center;
     align-items: center;
@@ -251,6 +252,7 @@ section#inicio div#entrada a {
     color: var(--gris);
 }
 #info-programacion h2{
+	margin: 0;
 	font-family: 'Lato-Thin';
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -751,6 +753,11 @@ section#inicio div#entrada a {
 	}
 }
 
+#info-entradas .entradas-tickets > div p:first-of-type {
+	text-align: center;
+	margin: 0 0 1rem;
+}
+
 
 /* FIN Entradas */
 
@@ -908,10 +915,11 @@ footer #int img {
 	align-items: center;
 	/* height: 100vh; */
 	padding: 4rem 0rem 2rem;
-	background-color: var(--bordo);
+	background-color: var(--marron-oscuro);
 	color: var(--gris);
 }
 #otros-festivales h2 {
+	margin-top: 0;
 	font-family: 'Lato-Thin';
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1344,11 +1352,18 @@ form {
 	width: 100%;
 }
 
-form p.btn-enviar {
+form div#form-contacto p.btn-enviar { 
 	display: flex;
 	justify-content: center;
-	width: auto;
+	width: -webkit-fill-available;
 	margin: auto 2rem;
+	padding: 1rem 0rem;
+}
+
+form p.btn-enviar a[type="submit"] {
+	width: 100%;
+	text-align: center;
+	padding: 1rem 0rem;
 }
 
 form button[type="submit"] {
@@ -1407,5 +1422,137 @@ div#form-contacto p i input[type="file"]::file-selector-button {
 	/* background-color: #000;
 	visibility: hidden; */
 }
+
+#form-contacto .custom-file-container .input-visible,
+#form-contacto .custom-file-container .browse-button {
+	background-color: #c46a17;
+	height: auto !important;
+	transition: all .3s;
+}
+
+#form-contacto .custom-file-container .input-visible{
+	border: none;
+	border-radius: 7px;
+}
+
+#form-contacto .custom-file-container .browse-button {
+	border-left: 2px solid var(--gris);
+	transition: all .3s;
+}
+
+#form-contacto .custom-file-container span.input-visible,
+#form-contacto .custom-file-container .browse-button {
+	font-size: .75rem;
+
+}
+
+@media (hover:hover) {
+	#form-contacto .custom-file-container .input-visible:hover{
+		background-color: var(--gris);
+		/* box-shadow: 0px 6px 6px #0000006c; */
+		color: var(--marron);
+		outline: 1px solid var(--gris);
+		transform: scale(1.05);
+	}
+	#form-contacto .custom-file-container span.browse-button:hover {
+		color: var(--gris);
+	}
+}
+
+#form-contacto .custom-file-container .label-container {
+	display: none;
+}
+
+#form-contacto .custom-file-container .label-container .clear-button {
+	background-color: transparent;
+	color: var(--gris);
+}
+#form-contacto .image-preview{
+	height: 50vh;
+	border-radius: 10px;
+}
+
+#form-contacto .custom-file-container .input-container{
+	width: fit-content;
+}
+
+#form-contacto .custom-file-container .image-preview-item {
+	aspect-ratio: 1 / 1;
+	height: 16vh;
+}
+
+a#btn-transicion {
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid var(--purpura); */
+    color: var(--purpura);
+    display: inline-block;
+    /* padding: .5rem 2rem; */
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--gris);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+a#btn-transicion span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+}
+
+a#btn-transicion span:last-child {
+    color: var(--gris);
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.88, 0, 0.2, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(100%) translateX(-50%);
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+	flex-wrap: wrap;
+}
+
+a#btn-transicion:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--purpura);
+    transform-origin: 0% 50%;
+    /* transform-origin: bottom center; */
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+}
+
+a#btn-transicion:hover:after {
+    transform-origin: 0% 50%;
+    /* transform-origin: bottom center; */
+    transform: skewY(2.3deg) scale(18);
+    width: 100%;
+    justify-content: center;
+}
+
+a#btn-transicion:hover span:last-child {
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    width: 100%;
+    transition: all 600ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.div-enviar {
+	margin-top: 2rem;
+	color: var(--gris);
+}
+
 
 /* FIN FORMUARIO */
