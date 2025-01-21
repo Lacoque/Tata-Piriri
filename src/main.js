@@ -1,11 +1,15 @@
 import '../css/style.css';
 import './style.css'
 import { FileUploadWithPreview } from 'file-upload-with-preview';
-import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
-import '../file-upload-with-preview/dist/style.css';
+import 'file-upload-with-preview/dist/style.css';
+// import 'file-upload-with-preview/dist/style.css';
+// import '/node_modules/file-upload-with-preview/dist/style.css';
+// import '/file-upload-with-preview/dist/file-upload-with-preview.min.css';
+// import '../file-upload-with-preview/dist/style.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const FileUploadWithPreview = module.default;
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
-                        new FileUploadWithPreview('file-upload', {
+                        new upload('file-upload', {
                             multiple: true,
                             text: {
                                 chooseFile: "Seleccioná el archivo",
