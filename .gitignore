@@ -28,3 +28,6 @@ build/
 *.njsproj
 *.sln
 *.sw?
+
+# Pages
+index-vite.html
