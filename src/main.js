@@ -1,7 +1,8 @@
 import '../css/style.css';
 import './style.css'
 import { FileUploadWithPreview } from 'file-upload-with-preview';
-import 'file-upload-with-preview/dist/style.css';
+// import '../file-upload-with-preview/dist/style.css';
+import '../node_modules/file-upload-with-preview/dist/style.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
