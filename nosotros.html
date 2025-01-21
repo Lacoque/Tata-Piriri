@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotres | Festival de Títeres</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
     <link rel="stylesheet" href="/css/css/bootstrap-grid.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -14,10 +14,10 @@
     <section id="section-navegador">
         <nav id="navegador">
             <ul>
-                <li><a href="indexnuevo.html"><img src="/images/iso-solo.svg" alt="tata logo"></a></li>
-                <!-- <li><a href="indexnuevo.html">Inicio</a></li> -->
-                <li><a href="indexnuevo.html#info-programacion">Programación</a></li>
-                <li><a href="indexnuevo.html#info-entradas">Entradas</a></li>
+                <li><a href="index.html"><img src="/images/iso-solo.svg" alt="tata logo"></a></li>
+                <!-- <li><a href="index.html">Inicio</a></li> -->
+                <li><a href="index.html#info-programacion">Programación</a></li>
+                <li><a href="index.html#info-entradas">Entradas</a></li>
                 <li><a href="obras-y-sedes.html#obras">Obras</a></li>
                 <li><a href="obras-y-sedes.html#sedes">Sedes</a></li>
                 <li><a href="nosotros.html">Nosotres</a></li>
@@ -50,6 +50,15 @@
                     <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-envelope"></i></a>
                     <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-facebook"></i></a>
                 </div> -->
+            </article>
+            <article>
+                <img src="assets/img/Perfil-Naomi.png" alt="Perfil de Naomi Holz">
+                <h5>Naomi Holz</h5>
+                <p>Organización</p>
+                <div>
+                    <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="http://" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-facebook"></i></a>
+                </div>
             </article>
             <article>
                 <img src="assets/img/Perfil-Julian.png" alt="Perfil de Alejandro Rouel">
@@ -88,7 +97,7 @@
                 </div> -->
             </article>
             <article>
-                <img src="assets/img/Perfil-Julian.png" alt="Perfil de Nahuel Beck">
+                <img src="assets/img/Perfil-Nahue.jpg" alt="Perfil de Nahuel Beck">
                 <h5>Nahuel Beck</h5>
                 <p>Diseño gráfico</p>
                 <div>
@@ -113,8 +122,14 @@
             </p>
         </div>
     </section>
+
+    <section id="quienes-somos">
+        <h2>Agradecimientos</h2>
+    </section>
+
     <section id="otros-festivales">
-        <h2>Otros Festivales</h2>
+        <p>Podés seguir viendo títeres</p>
+        <h2>Otros Festivales de Misiones</h2>
         <div class="festivales">
             <a href="https://www.instagram.com/tatavera.titeres/" target="_blank" rel="noopener noreferrer">
                 <img src="images/2023-04-tata-vera-300x91.png" alt="Logo de Festival de Títeres Tatá Verá">
@@ -126,16 +141,13 @@
             </a>
         </div>
     </section>
-    <section id="quienes-somos">
-        <h2>Agradecimientos</h2>
-    </section>
 
     <footer class="d-flex justify-content-between">
         <div class="d-flex">
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                        <a class="px-3 py-2" href="#inicio"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
+                    <a class="px-3 py-2" href="form.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
                     </p>
                 </div>
             </div>
@@ -162,12 +174,13 @@
         </div>
     </footer>
 
-    <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script> -->
+    <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/split-type"></script>
-    <!-- <script src="js/gsap.min.js"></script> -->
-    <script src="js/custom.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    
+    <!-- <script src="js/custom.js"></script> -->
 </body>
 </html>
