@@ -1,10 +1,12 @@
 import '../css/style.css';
-import './style.css'
+// import './style.css'
 import { FileUploadWithPreview } from 'file-upload-with-preview';
 import 'file-upload-with-preview/dist/style.css';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
