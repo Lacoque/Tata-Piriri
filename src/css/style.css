@@ -5,7 +5,7 @@ html{
 }
 
 body {
-    font-family: 'Lato-Regular';
+    font-family: 'Lato-Regular' !important;
 	margin: 0;
 }
 
@@ -45,7 +45,8 @@ a {
     --marron-oscuro: #311C08;
 }
 
-@font-face {
+/* ROBOTO FUENTE */
+/* @font-face {
     font-family: 'Roboto-Regular';
     src: url('/fonts/Roboto-Regular.ttf');
 }
@@ -68,33 +69,33 @@ a {
 @font-face {
     font-family: 'Roboto-Thin';
     src: url('/fonts/Roboto-Thin.ttf');
-}
+} */
 /* LATO FUENTE */
 @font-face {
 	font-family: 'Lato-Light';
-	src: url('/fonts/Lato-Light.ttf');
+	src: url('/assets/fonts/Lato-Light.ttf');
 }
 @font-face {
 	font-family: 'Lato-Thin';
-	src: url('/fonts/Lato-Thin.ttf');
+	src: url('/assets/fonts/Lato-Thin.ttf');
 }
 @font-face {
 	font-family: 'Lato-Regular';
-	src: url('/fonts/Lato-Regular.ttf');
+	src: url('/assets/fonts/Lato-Regular.ttf');
 }
 @font-face {
 	font-family: 'Lato-Bold';
-	src: url('/fonts/Lato-Bold.ttf');
+	src: url('/assets/fonts/Lato-Bold.ttf');
 }
 @font-face {
 	font-family: 'Lato-Black';
-	src: url('/fonts/Lato-Black.ttf');
+	src: url('/assets/fonts/Lato-Black.ttf');
 }
 
 #inicio {
     background: 
         radial-gradient(circle, var(--amarillo-op-70), var(--bordo)),
-        url('/images/portada-funcion-p2\,.jpg');
+        url('assets/img/portada-funcion-p2,.jpg');
     background-repeat: no-repeat;
     background-size: cover; /* Ajusta la imagen para cubrir el área */
     background-position: center; /* Centra la imagen */
@@ -102,7 +103,7 @@ a {
 }
 
 #inicio .accion h2 {
-    font-family: 'Lato-Thin';
+    font-family: 'Lato-Light';
     color: var(--gris);
     margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -215,6 +216,10 @@ div#entrada {
     background-color: var(--purpura);
 }
 
+section#inicio div#entrada i {
+	color: var(--gris);
+}
+
 section#inicio div#entrada img {
     height: 3vh !important;
     padding: 0rem 1rem;
@@ -253,7 +258,7 @@ section#inicio div#entrada a {
 }
 #info-programacion h2{
 	margin: 0;
-	font-family: 'Lato-Thin';
+	font-family: 'Lato-Light';
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -278,6 +283,7 @@ section#inicio div#entrada a {
 }
 
 .card-horizontal {
+	color: var(--gris);
 	background-color: #1f2029;
 	border-radius: 10px;
 	align-items: center;
@@ -308,8 +314,8 @@ section#inicio div#entrada a {
 }
 
 .card-horizontal h5 {
-	font-family: 'Lato-Thin';
-	font-size: .75rem;
+	font-family: 'Lato-Light';
+	font-size: .85rem;
 	letter-spacing: .03rem;
 }
 
@@ -383,7 +389,7 @@ section#inicio div#entrada a {
 	font-size: 36px;
 }
 #info-entradas h2 {
-	font-family: 'Lato-Thin';
+	font-family: 'Lato-Light';
 	margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -888,9 +894,15 @@ footer #int img {
 
 #section-navegador  #navegador a {
 	font-size: .75rem;
+	color: var(--gris);
 	background-color: transparent;
 	text-decoration: none;
 	padding: .5rem 1rem;
+}
+@media (hover:hover) {
+	#section-navegador #navegador a:hover {
+		color: var(--purpura);
+	}
 }
 
 #quienes-somos{
@@ -904,7 +916,8 @@ footer #int img {
 	color: var(--gris);
 }
 #quienes-somos h2 {
-	font-family: 'Lato-Thin';
+	font-family: 'Lato-Light';
+	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -937,7 +950,7 @@ footer #int img {
 	justify-content: space-between;
     display: flex;
     flex-direction: column;
-	background-image: linear-gradient(0deg, var(--marron-oscuro) 30%, var(--amarillo-op-70) 100%), url('/images/portada-funcion-p2\,.jpg');
+	background-image: linear-gradient(0deg, var(--marron-oscuro) 30%, var(--amarillo-op-70) 100%), url('/assets/img/portada-funcion-p2,.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -1067,7 +1080,8 @@ footer #int img {
 }
 
 #obras h2 {
-	font-family: 'Lato-Thin';
+	font-family: 'Lato-Light';
+	margin: 1.5rem auto;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -1136,6 +1150,7 @@ footer #int img {
 .info-obras p {
 	padding-top: 1rem;
 	overflow: auto;
+	font-size: smaller;
 }
 
 div article .info-obras h4,
@@ -1145,7 +1160,8 @@ div article .info-obras p {
 	color: var(--bordo);
 }
 #obras div article h6:first-of-type{
-	font-family: 'Lato-Light';
+	font-family: 'Lato-Bold';
+	font-size: .75rem;
 }
 #obras div article h6{
 	text-transform: uppercase;
@@ -1261,7 +1277,11 @@ div article .info-obras p {
 	color: var(--bordo);
 }
 #form h2 {
-	font-family: 'Lato-Thin';
+	text-align: start;
+	width: 100%;
+	font-family: 'Lato-Bold';
+	font-size: 1.65rem;
+	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -1302,9 +1322,9 @@ div#form-contacto p label textarea,
 div#form-contacto p label select {
 	font-family: 'Lato-Regular';
 	font-size: .75rem;
-	height: 5svh;
+	height: auto;
+	/* height: 5svh; */
 	padding: .5rem;
-	/* color: var(--marron-oscuro); */
 	color: var(--gris);
 	border: none;
 	background-color: #c46a17;
