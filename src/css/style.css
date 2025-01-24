@@ -95,7 +95,7 @@ a {
 #inicio {
     background: 
         radial-gradient(circle, var(--amarillo-op-70), var(--bordo)),
-        url('assets/img/portada-funcion-p2,.jpg');
+        url('assets/img/portada-funcion-p2.jpg');
     background-repeat: no-repeat;
     background-size: cover; /* Ajusta la imagen para cubrir el área */
     background-position: center; /* Centra la imagen */
@@ -950,7 +950,7 @@ footer #int img {
 	justify-content: space-between;
     display: flex;
     flex-direction: column;
-	background-image: linear-gradient(0deg, var(--marron-oscuro) 30%, var(--amarillo-op-70) 100%), url('/assets/img/portada-funcion-p2,.jpg');
+	background-image: linear-gradient(0deg, var(--marron-oscuro) 30%, var(--amarillo-op-70) 100%), url('/assets/img/portada-funcion-p2.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
