@@ -34,7 +34,7 @@
     
             <div id="form-contacto">
                 <h2>¡Sumate al festi!</h2>
-                <form name="contact" method="POST" data-netlify="true" enctype="multiciart/form-data">
+                <form name="contact" method="POST" data-netlify="true" enctype="multiciart/form-data" action="#">
                     <input type="hidden" name="form-name" value="contact">
                 <p>
                     Referentes
@@ -72,6 +72,7 @@
                 
                 <!-- <p>Adjuntá los archivos</p> -->
                 <p class="custom-file-container" data-upload-id="file-upload"></p>
+                <input type="file" id="archivo" name="archivo" multiple required />
                 <p>
                     <label>Si querés comentarnos algo más <textarea name="message"></textarea></label>
                 </p>
