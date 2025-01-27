@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Adjuntar archivos desde file-upload-with-preview al FormData
         upload.cachedFileArray.forEach((file) => {
-            formData.append("archivo[]", file); // Mismo nombre que el campo de entrada
+            formData.append("", file); // Mismo nombre que el campo de entrada
         });
     
         // Enviar el formulario con fetch
