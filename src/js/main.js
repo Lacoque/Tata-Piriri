@@ -171,8 +171,8 @@ document.querySelector("form[name='contact']").addEventListener("submit", functi
     const formData = new FormData(this);
 
     // Agregar los archivos seleccionados al FormData
-    upload.cachedFileArray.forEach((file, index) => {
-        formData.append(`archivo_${index + 1}`, file);
+    upload.cachedFileArray.forEach((file ) => {
+        formData.append(file-upload, file);
     });
 
     // Enviar los datos del formulario mediante fetch

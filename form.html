@@ -71,7 +71,10 @@
                 </p>
                 
                 <!-- <p>Adjuntá los archivos</p> -->
-                <p class="custom-file-container" data-upload-id="file-upload"></p>
+                <p  type="file" class="custom-file-container" data-upload-id="file-upload" multiple
+                required>
+                    
+                </p>
                 <!-- Input oculto para Netlify -->
                 <input type="hidden" id="hidden-file-input" name="archivo[]" />
          <p>
@@ -138,7 +141,7 @@
     <!-- <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script> -->
     <script src="https://unpkg.com/split-type"></script>
     <script type="module" src="./src/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/file-upload-with-preview@5.0.2/dist/file-upload-with-preview.min.js"></script>
+
     
 </body>
 </html>
