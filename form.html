@@ -72,14 +72,8 @@
                 
                 <!-- <p>Adjuntá los archivos</p> -->
                 <p class="custom-file-container" data-upload-id="file-upload"></p>
-             <!-- <input 
-          type="file" 
-          id="archivo" 
-          name="archivo[]" 
-          multiple 
-          required 
-          accept=".jpg, .png, .pdf, .docx, .xlsx" 
-       este es una etiqueta que funciona pero no ideal en cuanto css- -->
+                <!-- Input oculto para Netlify -->
+                <input type="hidden" id="hidden-file-input" name="archivo[]" />
          <p>
                     <label>Si querés comentarnos algo más <textarea name="message"></textarea></label>
                 </p>
