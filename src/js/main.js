@@ -163,34 +163,35 @@ document.addEventListener("DOMContentLoaded", () => {
     upload.emulateInputSelection(); // to open image browser
     upload.resetPreviewPanel();
   
-// Manejo del envío del formulario
-document.querySelector("form[name='contact']").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evitar el envío automático
-
-    const formData = new FormData(this); // Crear FormData del formulario
-
-    // Agregar los archivos seleccionados al FormData
-    upload.cachedFileArray.forEach((file) => {
-        formData.append("archivo[]", file);
-    });
-
-    // Enviar los datos usando fetch
-    fetch("/", {
-        method: "POST",
-        body: formData,
-    })
-        .then((response) => {
-            if (response.ok) {
-                alert("Formulario enviado exitosamente.");
-                window.location.reload(); // Opcional: Recargar la página
-            } else {
-                alert("Error al enviar el formulario.");
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-            alert("Error al enviar el formulario.");
+    // Manejar el envío del formulario
+    document.querySelector("form[name='contact']").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevenir envío por defecto
+    
+        const form = event.target;
+        const formData = new FormData(form); // Crear FormData a partir del formulario
+    
+        // Adjuntar archivos desde file-upload-with-preview al FormData
+        upload.cachedFileArray.forEach((file) => {
+            formData.append("archivo[]", file); // Mismo nombre que el campo de entrada
         });
-});
+    
+        // Enviar el formulario con fetch
+        fetch("/", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    alert("Formulario enviado con éxito.");
+                    window.location.reload(); // Opcional: Recargar la página
+                } else {
+                    alert("Hubo un problema al enviar el formulario.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Hubo un error al enviar el formulario.");
+            });
+    });
 
 })
