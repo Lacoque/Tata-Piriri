@@ -71,8 +71,12 @@
                 </p>
                 
                 <!-- <p>Adjuntá los archivos</p> -->
-                <p  type="file" class="custom-file-container" data-upload-id="file-upload" multiple
-                required>
+                <p class="custom-file-container" data-upload-id="file-upload">
+                    <label class="custom-file-container__custom-file">
+                        <span class="custom-file-container__custom-file__custom-file__input">
+                            <input type="file" name="archivo[]" class="custom-file-container__custom-file__custom-file__input__input" multiple required/>
+                            <span class="custom-file-container__custom-file__custom-file__input__button">Subir Archivos</span>
+                    </label>
                     
                 </p>
                 <!-- Input oculto para Netlify -->
