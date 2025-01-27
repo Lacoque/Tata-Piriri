@@ -159,8 +159,40 @@ document.addEventListener("DOMContentLoaded", () => {
         accept: ".jpg, .jpeg, .png",
         baseImage: imgBgFile,
     });
-    upload.cachedFileArray;
-    upload.emulateInputSelection(); // to open image browser
-    upload.resetPreviewPanel();
+    // upload.cachedFileArray;
+    // upload.emulateInputSelection(); // to open image browser
+    // upload.resetPreviewPanel();
+    // Escuchar el evento 'submit' del formulario
+document.querySelector("form[name='contact']").addEventListener("submit", function (event) {
+    // Evitar el comportamiento por defecto del formulario
+    event.preventDefault();
+
+    // Crear un objeto FormData para enviar los archivos y datos del formulario
+    const formData = new FormData(this);
+
+    // Agregar los archivos seleccionados al FormData
+    upload.cachedFileArray.forEach((file, index) => {
+        formData.append(`archivo_${index + 1}`, file);
+    });
+
+    // Enviar los datos del formulario mediante fetch
+    fetch("/", {
+        method: "POST",
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Formulario enviado exitosamente.");
+                // Recargar la página (opcional)
+                window.location.reload();
+            } else {
+                alert("Error al enviar el formulario. Intenta de nuevo.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error al enviar el formulario:", error);
+            alert("Error al enviar el formulario. Intenta de nuevo.");
+        });
+});
 
 })
