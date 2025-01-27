@@ -159,23 +159,22 @@ document.addEventListener("DOMContentLoaded", () => {
         accept: ".jpg, .jpeg, .png",
         baseImage: imgBgFile,
     });
-    // upload.cachedFileArray;
-    // upload.emulateInputSelection(); // to open image browser
-    // upload.resetPreviewPanel();
-    // Escuchar el evento 'submit' del formulario
+    upload.cachedFileArray;
+    upload.emulateInputSelection(); // to open image browser
+    upload.resetPreviewPanel();
+  
+// Manejo del envío del formulario
 document.querySelector("form[name='contact']").addEventListener("submit", function (event) {
-    // Evitar el comportamiento por defecto del formulario
-    event.preventDefault();
+    event.preventDefault(); // Evitar el envío automático
 
-    // Crear un objeto FormData para enviar los archivos y datos del formulario
-    const formData = new FormData(this);
+    const formData = new FormData(this); // Crear FormData del formulario
 
     // Agregar los archivos seleccionados al FormData
-    upload.cachedFileArray.forEach((file ) => {
-        formData.append(file-upload, file);
+    upload.cachedFileArray.forEach((file) => {
+        formData.append("archivo[]", file);
     });
 
-    // Enviar los datos del formulario mediante fetch
+    // Enviar los datos usando fetch
     fetch("/", {
         method: "POST",
         body: formData,
@@ -183,15 +182,14 @@ document.querySelector("form[name='contact']").addEventListener("submit", functi
         .then((response) => {
             if (response.ok) {
                 alert("Formulario enviado exitosamente.");
-                // Recargar la página (opcional)
-                window.location.reload();
+                window.location.reload(); // Opcional: Recargar la página
             } else {
-                alert("Error al enviar el formulario. Intenta de nuevo.");
+                alert("Error al enviar el formulario.");
             }
         })
         .catch((error) => {
-            console.error("Error al enviar el formulario:", error);
-            alert("Error al enviar el formulario. Intenta de nuevo.");
+            console.error("Error:", error);
+            alert("Error al enviar el formulario.");
         });
 });
 
