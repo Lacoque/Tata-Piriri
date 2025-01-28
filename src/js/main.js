@@ -163,24 +163,22 @@ document.addEventListener("DOMContentLoaded", () => {
 const form = document.querySelector('form[name="contact"]');
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); 
+    e.preventDefault(); // Detener el envío automático del formulario
+
     // Crear un contenedor de archivos
-   // const dataTransfer = new DataTransfer();
-   const formData = new FormData(form); // Crear un FormData del formulario
-   upload.cachedFileArray.forEach((file) => {
-       formData.append('archivo[]', file); // Agregar los archivos al FormData
-   });
+    const dataTransfer = new DataTransfer();
+
     // Agregar cada archivo del FileUploadWithPreview al contenedor
     upload.cachedFileArray.forEach((file) => {
         dataTransfer.items.add(file);
     });
 
     // Crear un input oculto para los archivos
-    // const hiddenFileInput = document.createElement('input');
-    // hiddenFileInput.type = 'file';
-    // hiddenFileInput.name = 'archivo[]';
-    // hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
-    // hiddenFileInput.style.display = 'none'; // Ocultar el input
+    const hiddenFileInput = document.createElement('input');
+    hiddenFileInput.type = 'file';
+    hiddenFileInput.name = 'archivo[]';
+    hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
+    hiddenFileInput.style.display = 'none'; // Ocultar el input
 
     // Añadir el input al formulario
     form.appendChild(hiddenFileInput);
@@ -189,6 +187,8 @@ form.addEventListener('submit', (e) => {
     form.submit();
 });
 
+    
+    
     upload.cachedFileArray;
     upload.emulateInputSelection(); // to open image browser
     upload.resetPreviewPanel();
