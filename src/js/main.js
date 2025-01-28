@@ -165,8 +165,11 @@ const form = document.querySelector('form[name="contact"]');
 form.addEventListener('submit', (e) => {
     e.preventDefault(); 
     // Crear un contenedor de archivos
-    const dataTransfer = new DataTransfer();
-
+   // const dataTransfer = new DataTransfer();
+   const formData = new FormData(form); // Crear un FormData del formulario
+   upload.cachedFileArray.forEach((file) => {
+       formData.append('archivo[]', file); // Agregar los archivos al FormData
+   });
     // Agregar cada archivo del FileUploadWithPreview al contenedor
     upload.cachedFileArray.forEach((file) => {
         dataTransfer.items.add(file);
