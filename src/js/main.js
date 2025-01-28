@@ -159,6 +159,34 @@ document.addEventListener("DOMContentLoaded", () => {
         accept: ".jpg, .jpeg, .png",
         baseImage: imgBgFile,
     });
+    // Seleccionar el formulario
+const form = document.querySelector('form[name="contact"]');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Detener el envío automático del formulario
+
+    // Crear un contenedor de archivos
+    const dataTransfer = new DataTransfer();
+
+    // Agregar cada archivo del FileUploadWithPreview al contenedor
+    upload.cachedFileArray.forEach((file) => {
+        dataTransfer.items.add(file);
+    });
+
+    // Crear un input oculto para los archivos
+    const hiddenFileInput = document.createElement('input');
+    hiddenFileInput.type = 'file';
+    hiddenFileInput.name = 'archivo[]';
+    hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
+    hiddenFileInput.style.display = 'none'; // Ocultar el input
+
+    // Añadir el input al formulario
+    form.appendChild(hiddenFileInput);
+
+    // Enviar el formulario con los archivos incluidos
+    form.submit();
+});
+
     upload.cachedFileArray;
     upload.emulateInputSelection(); // to open image browser
     upload.resetPreviewPanel();
