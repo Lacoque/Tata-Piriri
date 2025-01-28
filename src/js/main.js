@@ -159,33 +159,71 @@ document.addEventListener("DOMContentLoaded", () => {
         accept: ".jpg, .jpeg, .png",
         baseImage: imgBgFile,
     });
-    // Seleccionar el formulario
+    // Obtener el formulario y el input oculto
 const form = document.querySelector('form[name="contact"]');
+const hiddenFileInput = document.getElementById('hidden-file-input');
 
+// Sincronizar los archivos seleccionados con el input oculto antes del envío
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Detener el envío automático del formulario
+    e.preventDefault();
 
-    // Crear un contenedor de archivos
-    const dataTransfer = new DataTransfer();
+    // Crear un FormData para recoger todos los datos del formulario
+    const formData = new FormData(form);
 
-    // Agregar cada archivo del FileUploadWithPreview al contenedor
-    upload.cachedFileArray.forEach((file) => {
-        dataTransfer.items.add(file);
+    // Agregar los archivos seleccionados al FormData
+    upload.cachedFileArray.forEach((file, index) => {
+        formData.append(`archivo[${index}]`, file); // Asignar los archivos con índices únicos
     });
 
-    // Crear un input oculto para los archivos
-    const hiddenFileInput = document.createElement('input');
-    hiddenFileInput.type = 'file';
-    hiddenFileInput.name = 'archivo[]';
-    hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
-    hiddenFileInput.style.display = 'none'; // Ocultar el input
+    // Verificar que el formulario y los archivos estén correctos
+    console.log(...formData.entries()); // Solo para depuración
 
-    // Añadir el input al formulario
-    form.appendChild(hiddenFileInput);
-
-    // Enviar el formulario con los archivos incluidos
-    form.submit();
+    // Enviar los datos del formulario a Netlify usando fetch
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert('Formulario enviado con éxito');
+                form.reset();
+                upload.resetPreviewPanel(); // Limpiar el contenedor de vista previa
+            } else {
+                alert('Hubo un problema al enviar el formulario');
+            }
+        })
+        .catch((error) => {
+            console.error('Error al enviar el formulario:', error);
+            alert('Error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        });
 });
+
+//     // Seleccionar el formulario
+// const form = document.querySelector('form[name="contact"]');
+
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault(); 
+//     // Crear un contenedor de archivos
+//     const dataTransfer = new DataTransfer();
+
+//     // Agregar cada archivo del FileUploadWithPreview al contenedor
+//     upload.cachedFileArray.forEach((file) => {
+//         dataTransfer.items.add(file);
+//     });
+
+//     // Crear un input oculto para los archivos
+//     const hiddenFileInput = document.createElement('input');
+//     hiddenFileInput.type = 'file';
+//     hiddenFileInput.name = 'archivo[]';
+//     hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
+//     hiddenFileInput.style.display = 'none'; // Ocultar el input
+
+//     // Añadir el input al formulario
+//     form.appendChild(hiddenFileInput);
+
+//     // Enviar el formulario con los archivos incluidos
+//     form.submit();
+// });
 
     upload.cachedFileArray;
     upload.emulateInputSelection(); // to open image browser
