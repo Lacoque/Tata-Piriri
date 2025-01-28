@@ -186,10 +186,8 @@ form.addEventListener('submit', (e) => {
     // Enviar el formulario con los archivos incluidos
     form.submit();
 });
-    upload.cachedFileArray;
-    upload.emulateInputSelection(); // to open image browser
-    upload.resetPreviewPanel();
+    //upload.cachedFileArray;
+    //upload.emulateInputSelection(); // to open image browser
+    //upload.resetPreviewPanel(); estas linea 
   
-  
-   
 })
