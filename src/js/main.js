@@ -176,11 +176,11 @@ form.addEventListener('submit', (e) => {
     });
 
     // Crear un input oculto para los archivos
-    const hiddenFileInput = document.createElement('input');
-    hiddenFileInput.type = 'file';
-    hiddenFileInput.name = 'archivo[]';
-    hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
-    hiddenFileInput.style.display = 'none'; // Ocultar el input
+    // const hiddenFileInput = document.createElement('input');
+    // hiddenFileInput.type = 'file';
+    // hiddenFileInput.name = 'archivo[]';
+    // hiddenFileInput.files = dataTransfer.files; // Asignar los archivos
+    // hiddenFileInput.style.display = 'none'; // Ocultar el input
 
     // Añadir el input al formulario
     form.appendChild(hiddenFileInput);
