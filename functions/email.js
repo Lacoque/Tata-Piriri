@@ -4,7 +4,7 @@ exports.handler = async (event) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const body = JSON.parse(event.body);
-    console.log(body);
+    
     const emailContent = {
         to: "tatapiriri@gmail.com",
         from: "tatapiriri@gmail.com",
