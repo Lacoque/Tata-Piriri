@@ -15,6 +15,7 @@
     "@fortawesome/fontawesome-free": "6.7.1",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@popperjs/core": "^2.11.8",
+    "@sendgrid/mail": "^8.1.4",
     "bootstrap": "^5.3.3",
     "file-upload-with-preview": "^6.1.2",
     "gsap": "^3.12.5",

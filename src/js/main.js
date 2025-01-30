@@ -163,22 +163,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector('form[name="contact"]');
 
     // Manejar el envío del formulario
-    form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Detener el envío automático del formulario
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        const archivos = [];
 
         // Crear un objeto FormData para enviar los archivos
-        const formData = new FormData(form);
+       // const formData = new FormData(form);
 
         // Agregar los archivos seleccionados al FormData
         upload.cachedFileArray.forEach((file, index) => {
             formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
         });
+        for (const file of upload.cachedFileArray) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            await new Promise((resolve) => (reader.onload = () => {
+                archivos.push({
+                    nombre: file.name,
+                    tipo: file.type,
+                    base64: reader.result.split(',')[1] // Convertimos el archivo a base64
+                });
+                resolve();
+            }));
+        }
+    
+        await fetch('/.netlify/functions/email', {
+            method: 'POST',
+            body: JSON.stringify({ archivos }),
+            headers: { "Content-Type": "application/json" }
+        
+    
 
         // Enviar el formulario usando fetch
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-        })
+        // fetch(form.action, {
+        //     method: 'POST',
+        //     body: formData,
+        // })
         .then(response => {
             if (response.ok) {
                 alert('Formulario enviado correctamente');
@@ -191,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             console.error('Error:', error);
             alert('Hubo un error al enviar el formulario');
-        });
+        })
     });
 })
 .catch(error => {
@@ -199,5 +219,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 upload.cachedFileArray;
 upload.emulateInputSelection(); // to open image browser
-upload.resetPreviewPanel(); //estas linea 
-  
+upload.resetPreviewPanel(); 
+});
