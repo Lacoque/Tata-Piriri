@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const FileUploadWithPreview = module.default;
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
-                        const upload = new FileUploadWithPreview('file-upload', {
+                        new upload = new FileUploadWithPreview('file-upload', {
                             multiple: true,
                             text: {
                                 chooseFile: "Seleccioná el archivo",
