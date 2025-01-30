@@ -111,8 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     if (window.location.pathname.includes("form.html")) {
-        import('file-upload-with-preview')
-            .then(module => {
+        import('file-upload-with-preview').then(module => console.log("Módulo cargado:", module));
+
+        // import('file-upload-with-preview')
+        //     .then(module => {
                 const FileUploadWithPreview = module.default;
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
@@ -179,9 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
-    }
     
-})
+    
 
     // Remplazar imagen de bg de la carga de archivos en el formulario
    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
