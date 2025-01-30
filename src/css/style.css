@@ -1074,7 +1074,7 @@ footer #int img {
     background-color: var(--purpura);
     color: var(--gris);
 	
-	* {
+	*{
 		box-sizing: border-box;
 	}
 }
