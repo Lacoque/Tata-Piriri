@@ -198,6 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Error al cargar FileUploadWithPreview:", error);
 });
 upload.cachedFileArray;
-//upload.emulateInputSelection(); // to open image browser
-//upload.resetPreviewPanel(); estas linea 
+upload.emulateInputSelection(); // to open image browser
+upload.resetPreviewPanel(); //estas linea 
   
