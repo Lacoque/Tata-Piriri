@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Remplazar imagen de bg de la carga de archivos en el formulario
    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-    upload.cachedFileArray;
-    upload.emulateInputSelection(); // to open image browser
-    upload.resetPreviewPanel(); 
+    //upload.cachedFileArray;
+    //upload.emulateInputSelection(); // to open image browser
+    //upload.resetPreviewPanel(); 
 
