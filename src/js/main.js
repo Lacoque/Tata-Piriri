@@ -160,27 +160,42 @@ document.addEventListener("DOMContentLoaded", () => {
         baseImage: imgBgFile,
     });
     // Seleccionar el formulario
-const form = document.querySelector('form[name="contact"]');
+    const form = document.querySelector('form[name="contact"]');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Detener el envío automático del formulario
-    Array.from(fileInput.files).forEach((file) => {
-        console.log('Archivo adjunto:', file);
-        formData.append('archivo[]', file);
-    });
+    // Manejar el envío del formulario
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Detener el envío automático del formulario
 
-    // Enviar el formulario
-    fetch(form.action, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
+        // Crear un objeto FormData para enviar los archivos
+        const formData = new FormData(form);
+
+        // Agregar los archivos seleccionados al FormData
+        upload.cachedFileArray.forEach((file, index) => {
+            formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
+        });
+
+        // Enviar el formulario usando fetch
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Formulario enviado correctamente');
+                form.reset(); // Limpiar el formulario
+                upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
+            } else {
+                alert('Hubo un error al enviar el formulario');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario');
+        });
     });
+})
+.catch(error => {
+    console.error("Error al cargar FileUploadWithPreview:", error);
 });
     // Crear un contenedor de archivos
     //const dataTransfer = new DataTransfer();
@@ -207,4 +222,3 @@ form.addEventListener('submit', (e) => {
     //upload.emulateInputSelection(); // to open image browser
     //upload.resetPreviewPanel(); estas linea 
   
-})
