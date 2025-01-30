@@ -111,13 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     if (window.location.pathname.includes("form.html")) {
-        import('file-upload-with-preview').then(module => console.log("Módulo cargado:", module));
-
-        // import('file-upload-with-preview')
-        //     .then(module => {
+        import('file-upload-with-preview')
+            .then(module => {
+                console.log("Módulo cargado:", module);
                 const FileUploadWithPreview = module.default;
+    
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
+                        const fileContainer = document.querySelector('[data-upload-id="file-upload"]');
+                        if (!fileContainer) {
+                            console.error("Contenedor de archivos no encontrado en el DOM.");
+                            return;
+                        }
+    
                         const upload = new FileUploadWithPreview('file-upload', {
                             multiple: true,
                             text: {
@@ -129,35 +135,41 @@ document.addEventListener("DOMContentLoaded", () => {
                             accept: ".jpg, .jpeg, .png",
                             baseImage: 'url("/assets/img/marca-tata-piriri.png")',
                         });
-                        console.log("Input de archivos:", document.querySelector('[data-upload-id="file-upload"]'));
     
-    // Remplazar imagen de bg de la carga de archivos en el formulario
-   const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+                        console.log("Input de archivos inicializado:", upload);
+    
                         const form = document.querySelector('form[name="contact"]');
+                        if (!form) {
+                            console.error("Formulario no encontrado en el DOM.");
+                            return;
+                        }
+    
                         form.addEventListener('submit', async (e) => {
                             e.preventDefault();
     
                             const archivos = [];
-    
                             for (const file of upload.cachedFileArray) {
                                 const reader = new FileReader();
                                 reader.readAsDataURL(file);
+    
                                 await new Promise((resolve) => {
                                     reader.onload = () => {
                                         archivos.push({
                                             nombre: file.name,
                                             tipo: file.type,
-                                            base64: reader.result.split(',')[1] // Convertir a Base64
+                                            base64: reader.result.split(',')[1], // Convertir a Base64
                                         });
                                         resolve();
                                     };
                                 });
                             }
+    
                             console.log("Archivos a enviar:", archivos);
+    
                             fetch('/.netlify/functions/email', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({ archivos })
+                                body: JSON.stringify({ archivos }),
                             })
                             .then(response => {
                                 if (response.ok) {
@@ -181,12 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
-    
+    }
     
 
-    // Remplazar imagen de bg de la carga de archivos en el formulario
-   const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-    //upload.cachedFileArray;
-    //upload.emulateInputSelection(); // to open image browser
-    //upload.resetPreviewPanel(); 
-
+});
