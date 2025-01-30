@@ -129,6 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         });
                         console.log("Input de archivos:", document.querySelector('[data-upload-id="file-upload"]'));
     
+    // Remplazar imagen de bg de la carga de archivos en el formulario
+   const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
                         const form = document.querySelector('form[name="contact"]');
                         form.addEventListener('submit', async (e) => {
                             e.preventDefault();
