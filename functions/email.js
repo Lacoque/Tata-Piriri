@@ -11,8 +11,8 @@ exports.handler = async (event) => {
         }
 
         const emailContent = {
-            to: "tatapiriri@gmail.com",
-            from: "tatapiriri@gmail.com",
+            to: "tatapiriri8@gmail.com",
+            from: "tatapiriri8@gmail.com",
             subject: "Nuevo formulario con archivos",
             text: "Has recibido un nuevo formulario con archivos adjuntos.",
             attachments: body.archivos.map((archivo) => ({
