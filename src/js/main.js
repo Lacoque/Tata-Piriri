@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
  fetch('/.netlify/functions/email', {
  method: 'POST',
- headers: { "Content-Type": "application/json" },
+ body: formData,
  body: JSON.stringify({ archivos }),
       })
         .then(response => {
