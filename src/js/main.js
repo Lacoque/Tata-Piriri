@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
  fetch('/functions/email', {
  method: 'POST',
- body: body.archivos.map,
+ body: multipart/form-data,
       })
         .then(response => {
             if (response.ok) {
