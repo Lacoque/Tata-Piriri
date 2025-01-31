@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             baseImage: 'url("/assets/img/marca-tata-piriri.png")',
                         });
     
-                        console.log("Input de archivos inicializado:", upload);
+                        console.log(upload);
     
                         const form = document.querySelector('form[name="contact"]');
                         if (!form) {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
                             console.log("Archivos a enviar:", archivos);
     
-                            fetch('/.functions/email', {
+                            fetch('/.netlify/functions/email', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ archivos }),
@@ -196,9 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
-            upload.cachedFileArray; 
+            
     }
-   
+    upload.cachedFileArray; 
     upload.emulateInputSelection(); // to open image browser
 upload.resetPreviewPanel(); // clear all selected images
 
