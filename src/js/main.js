@@ -112,22 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
    
    
-   
-    if (window.location.pathname.includes("form.html")) {
+    if (window.location.pathname.includes("form.html")) { 
         import('file-upload-with-preview')
             .then(module => {
-                console.log("Módulo cargado:", module);
                 const FileUploadWithPreview = module.default;
-    
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
-                        const fileContainer = document.querySelector('[data-upload-id="file-upload"]');
-                        if (!fileContainer) {
-                            console.error("Contenedor de archivos no encontrado en el DOM.");
-                            return;
-                        }
-    
-                        const upload = new FileUploadWithPreview('file-upload', {
+                        new upload('file-upload', {
                             multiple: true,
                             text: {
                                 chooseFile: "Seleccioná el archivo",
@@ -138,56 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             accept: ".jpg, .jpeg, .png",
                             baseImage: 'url("/assets/img/marca-tata-piriri.png")',
                         });
-    
-                        console.log(upload);
-    
-                        const form = document.querySelector('form[name="contact"]');
-                        if (!form) {
-                            console.error("Formulario no encontrado en el DOM.");
-                            return;
-                        }
-    
-                        form.addEventListener('submit', async (e) => {
-                            e.preventDefault();
-    
-                            const archivos = [];
-                            for (const file of upload.cachedFileArray) {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(file);
-    
-                                await new Promise((resolve) => {
-                                    reader.onload = () => {
-                                        archivos.push({
-                                            nombre: file.name,
-                                            tipo: file.type,
-                                            base64: reader.result.split(',')[1], // Convertir a Base64
-                                        });
-                                        resolve();
-                                    };
-                                });
-                            }
-    
-                            console.log("Archivos a enviar:", archivos);
-    
-                            fetch('/.netlify/functions/email', {
-                                method: 'POST',
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({ archivos }),
-                            })
-                            .then(response => {
-                                if (response.ok) {
-                                    alert('Formulario enviado correctamente');
-                                    form.reset();
-                                    upload.resetPreviewPanel();
-                                } else {
-                                    alert('Hubo un error al enviar el formulario');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Hubo un error al enviar el formulario');
-                            });
-                        });
                     } catch (error) {
                         console.error("Error al inicializar FileUploadWithPreview:", error);
                     }
@@ -196,10 +137,152 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
-            
     }
-    upload.cachedFileArray; 
-    upload.emulateInputSelection(); // to open image browser
-upload.resetPreviewPanel(); // clear all selected images
 
+    // Remplazar imagen de bg de la carga de archivos en el formulario
+    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+
+    // Características de file-upload
+    const upload = new FileUploadWithPreview('file-upload', {
+        multiple: true,
+        text: {
+            chooseFile: "Seleccioná el archivo",
+            browse: "Explorar",
+            selectedCount: "Archivos seleccionados",
+            label: "",
+        },
+        accept: ".jpg, .jpeg, .png",
+        baseImage: imgBgFile,
+    });
+    // Seleccionar el formulario
+    const form = document.querySelector('form[name="contact"]');
+
+    // Manejar el envío del formulario
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Detener el envío automático del formulario
+
+        // Crear un objeto FormData para enviar los archivos
+        const formData = new FormData(form);
+
+        // Agregar los archivos seleccionados al FormData
+        upload.cachedFileArray.forEach((file, index) => {
+            formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
+        });
+
+        // Enviar el formulario usando fetch
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Formulario enviado correctamente');
+                form.reset(); // Limpiar el formulario
+                upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
+            } else {
+                alert('Hubo un error al enviar el formulario');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario');
+        });
+    });
+})
+.catch(error => {
+    console.error("Error al cargar FileUploadWithPreview:", error);
 });
+upload.cachedFileArray;
+upload.emulateInputSelection(); // to open image browser
+upload.resetPreviewPanel();
+
+//     if (window.location.pathname.includes("form.html")) {
+//         import('file-upload-with-preview')
+//             .then(module => {
+//                 console.log("Módulo cargado:", module);
+//                 const FileUploadWithPreview = module.default;
+    
+//                 document.addEventListener('DOMContentLoaded', () => {
+//                     try {
+//                         const fileContainer = document.querySelector('[data-upload-id="file-upload"]');
+//                         if (!fileContainer) {
+//                             console.error("Contenedor de archivos no encontrado en el DOM.");
+//                             return;
+//                         }
+    
+//                         const upload = new FileUploadWithPreview('file-upload', {
+//                             multiple: true,
+//                             text: {
+//                                 chooseFile: "Seleccioná el archivo",
+//                                 browse: "Explorar",
+//                                 selectedCount: "Archivos seleccionados",
+//                                 label: "",
+//                             },
+//                             accept: ".jpg, .jpeg, .png",
+//                             baseImage: 'url("/assets/img/marca-tata-piriri.png")',
+//                         });
+    
+//                         console.log(upload);
+    
+//                         const form = document.querySelector('form[name="contact"]');
+//                         if (!form) {
+//                             console.error("Formulario no encontrado en el DOM.");
+//                             return;
+//                         }
+    
+//                         form.addEventListener('submit', async (e) => {
+//                             e.preventDefault();
+    
+//                             const archivos = [];
+//                             for (const file of upload.cachedFileArray) {
+//                                 const reader = new FileReader();
+//                                 reader.readAsDataURL(file);
+    
+//                                 await new Promise((resolve) => {
+//                                     reader.onload = () => {
+//                                         archivos.push({
+//                                             nombre: file.name,
+//                                             tipo: file.type,
+//                                             base64: reader.result.split(',')[1], // Convertir a Base64
+//                                         });
+//                                         resolve();
+//                                     };
+//                                 });
+//                             }
+    
+//                             console.log("Archivos a enviar:", archivos);
+    
+//                             fetch('/.netlify/functions/email', {
+//                                 method: 'POST',
+//                                 headers: { "Content-Type": "application/json" },
+//                                 body: JSON.stringify({ archivos }),
+//                             })
+//                             .then(response => {
+//                                 if (response.ok) {
+//                                     alert('Formulario enviado correctamente');
+//                                     form.reset();
+//                                     upload.resetPreviewPanel();
+//                                 } else {
+//                                     alert('Hubo un error al enviar el formulario');
+//                                 }
+//                             })
+//                             .catch(error => {
+//                                 console.error('Error:', error);
+//                                 alert('Hubo un error al enviar el formulario');
+//                             });
+//                         });
+//                     } catch (error) {
+//                         console.error("Error al inicializar FileUploadWithPreview:", error);
+//                     }
+//                 });
+//             })
+//             .catch(error => {
+//                 console.error("Error al cargar FileUploadWithPreview:", error);
+//             });
+            
+//     }
+//     upload.cachedFileArray; 
+//     upload.emulateInputSelection(); // to open image browser
+// upload.resetPreviewPanel(); // clear all selected images
+
+// });
