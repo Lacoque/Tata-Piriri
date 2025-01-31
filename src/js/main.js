@@ -194,6 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
     }
-    
+    upload.cachedFileArray; 
 
 });
