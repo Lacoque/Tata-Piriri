@@ -169,13 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
         });
 
-        // Enviar el formulario usando fetch
+        // Enviar el formulario usando fetch este funciona sin la API
         // fetch(form.action, {
         //     method: 'POST',
         //     body: formData,
         // })
         
- fetch('/.netlify/functions/email', {
+ fetch('/functions/email', {
  method: 'POST',
  body: formData,
       })
