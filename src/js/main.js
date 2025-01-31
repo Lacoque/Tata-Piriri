@@ -110,6 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+   
+   
+   
     if (window.location.pathname.includes("form.html")) {
         import('file-upload-with-preview')
             .then(module => {
@@ -124,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             return;
                         }
     
-                        const upload = new FileUploadWithPreview.FileUploadWithPreview('file-upload', {
+                        const upload = new FileUploadWithPreview('file-upload', {
                             multiple: true,
                             text: {
                                 chooseFile: "Seleccioná el archivo",
@@ -193,8 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error al cargar FileUploadWithPreview:", error);
             });
+            upload.cachedFileArray; 
     }
-    upload.cachedFileArray; 
+   
     upload.emulateInputSelection(); // to open image browser
 upload.resetPreviewPanel(); // clear all selected images
 
