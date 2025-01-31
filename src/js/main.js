@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
  fetch('/functions/email', {
  method: 'POST',
- body: multipart/form-data,
+ body: multipart,
       })
         .then(response => {
             if (response.ok) {
