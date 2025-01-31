@@ -170,10 +170,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Enviar el formulario usando fetch
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-        })
+        // fetch(form.action, {
+        //     method: 'POST',
+        //     body: formData,
+        // })
+        
+ fetch('/.netlify/functions/email', {
+ method: 'POST',
+ headers: { "Content-Type": "application/json" },
+ body: JSON.stringify({ archivos }),
+      })
         .then(response => {
             if (response.ok) {
                 alert('Formulario enviado correctamente');
