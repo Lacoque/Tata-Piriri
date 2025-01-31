@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
                             console.log("Archivos a enviar:", archivos);
     
-                            fetch('/.netlify/functions/email', {
+                            fetch('/.functions/email', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ archivos }),
