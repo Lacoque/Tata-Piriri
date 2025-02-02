@@ -170,7 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 };
             });
+        
         });
-    };  
-}  
-
+    };
+} 
+)
