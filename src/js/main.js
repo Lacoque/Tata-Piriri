@@ -163,3 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 })
+try {
+    const sliderElement = document.querySelector(".slider");
+    if (sliderElement) {
+        // Iniciar el slider solo si existe
+        iniciarSlider();
+    }
+} catch (error) {
+    console.warn("El slider no se encontró, pero el formulario seguirá funcionando.");
+}
+
