@@ -110,89 +110,56 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-   
-   
-    if (window.location.pathname.includes("form.html")) { 
-        import('file-upload-with-preview')
-            .then(module => {
-                const FileUploadWithPreview = module.default;
-                document.addEventListener('DOMContentLoaded', () => {
-                    try {
-                        new upload('file-upload', {
-                            multiple: true,
-                            text: {
-                                chooseFile: "Seleccioná el archivo",
-                                browse: "Explorar",
-                                selectedCount: "Archivos seleccionados",
-                                label: "",
-                            },
-                            accept: ".jpg, .jpeg, .png",
-                            baseImage: 'url("/assets/img/marca-tata-piriri.png")',
-                        });
-                    } catch (error) {
-                        console.error("Error al inicializar FileUploadWithPreview:", error);
-                    }
-                });
-            })
-            .catch(error => {
-                console.error("Error al cargar FileUploadWithPreview:", error);
+    const upload = new FileUploadWithPreview("file-upload");
+
+    document.getElementById("contact-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const jsonData = {};
+
+        // Convertir inputs normales a JSON
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+        // Procesar archivos y convertir a Base64
+        const archivos = [];
+        const files = upload.cachedFileArray;
+
+        for (const file of files) {
+            const base64 = await fileToBase64(file);
+            archivos.push({
+                nombre: file.name,
+                tipo: file.type,
+                base64: base64.split(",")[1], // Quitamos el prefijo del Base64
             });
+        }
+
+        jsonData.archivos = archivos;
+
+        try {
+            const response = await fetch("/.netlify/functions/sendEmail", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonData),
+            });
+
+            const result = await response.text();
+            alert(result);
+        } catch (error) {
+            console.error("Error al enviar el formulario", error);
+            alert("Hubo un error al enviar el formulario.");
+        }
+    });
+
+    // Función para convertir archivos a Base64
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
     }
-
-    // Remplazar imagen de bg de la carga de archivos en el formulario
-    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-
-    // Características de file-upload
-    const upload = new FileUploadWithPreview('file-upload', {
-        multiple: true,
-        text: {
-            chooseFile: "Seleccioná el archivo",
-            browse: "Explorar",
-            selectedCount: "Archivos seleccionados",
-            label: "",
-        },
-        accept: ".jpg, .jpeg, .png",
-        baseImage: imgBgFile,
-    });
-    // Seleccionar el formulario
-    const form = document.querySelector('form[name="contact"]');
-
-    // Manejar el envío del formulario
-    form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Detener el envío automático del formulario
-
-        // Crear un objeto FormData para enviar los archivos
-        const formData = new FormData(form);
-
-        // Agregar los archivos seleccionados al FormData
-        upload.cachedFileArray.forEach((file, index) => {
-            formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
-        });
-
-        // Enviar el formulario usando fetch este funciona sin la API
-        fetch(form.action, {
-        method: 'POST',
-        body: formData,
-         })
-        .then(response => {
-            if (response.ok) {
-                alert('Formulario enviado correctamente');
-                form.reset(); // Limpiar el formulario
-                upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
-            } else {
-                alert('Hubo un error al enviar el formulario');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al enviar el formulario');
-        });
-    });
 })
-.catch(error => {
-    console.error("Error al cargar FileUploadWithPreview:", error);
-});
-upload.cachedFileArray;
-upload.emulateInputSelection(); // to open image browser
-upload.resetPreviewPanel();
-

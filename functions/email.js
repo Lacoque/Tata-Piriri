@@ -6,17 +6,23 @@ exports.handler = async (event) => {
     try {
         const body = JSON.parse(event.body);
 
-        if (!body.archivos || body.archivos.length === 0) {
-            return { statusCode: 400, body: "No se proporcionaron archivos adjuntos." };
-        }
-
         const emailContent = {
             to: "tatapiriri8@gmail.com",
             from: "tatapiriri8@gmail.com",
-            subject: "Nuevo formulario con archivos",
-            text: "Has recibido un nuevo formulario con archivos adjuntos.",
+            subject: "Nuevo formulario con archivos adjuntos",
+            text: `
+                Nombre del Referente: ${body.nombre}
+                Correo del Referente: ${body.email}
+                Grupo/Compañía: ${body.grupo}
+                Nombre del Espectáculo: ${body.espectaculo}
+                Sinopsis: ${body.sinopsis}
+                Duración: ${body.duracion} minutos
+                Público recomendado: ${body.role}
+                Origen: ${body.origen}
+                Mensaje adicional: ${body.message || "No hay mensaje adicional"}
+            `,
             attachments: body.archivos.map((archivo) => ({
-                content: archivo.base64, // Asegúrate de que esté en base64
+                content: archivo.base64, // Base64 sin el prefijo
                 filename: archivo.nombre,
                 type: archivo.tipo,
                 disposition: "attachment"
