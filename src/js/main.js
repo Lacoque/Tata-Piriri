@@ -110,71 +110,59 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-    const upload = new FileUploadWithPreview("file-upload");
+   //formulario
+   document.addEventListener("DOMContentLoaded", function () {
+    const upload = new FileUploadWithPreview("file-upload"); // Asegura que coincida con tu `data-upload-id`
+    
+    document.getElementById("contact-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-    document.getElementById("contact-form").addEventListener("submit", async function (event) {
-        event.preventDefault();
+        let formData = new FormData(this);
+        let archivos = upload.cachedFileArray; // Obtiene los archivos de file-upload-with-preview
 
-        const formData = new FormData(this);
-        const jsonData = {};
-
-        // Convertir inputs normales a JSON
-        formData.forEach((value, key) => {
-            jsonData[key] = value;
-        });
-
-        // Procesar archivos y convertir a Base64
-        const archivos = [];
-        const files = upload.cachedFileArray;
-
-        for (const file of files) {
-            const base64 = await fileToBase64(file);
-            archivos.push({
-                nombre: file.name,
-                tipo: file.type,
-                base64: base64.split(",")[1], // Quitamos el prefijo del Base64
-            });
+        if (archivos.length === 0) {
+            alert("Por favor, adjunta un archivo.");
+            return;
         }
 
-        jsonData.archivos = archivos;
+        let archivo = archivos[5]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
+        let reader = new FileReader();
 
-        try {
-            const response = await fetch("/.netlify/functions/sendEmail", {
+        reader.readAsDataURL(archivo);
+        reader.onload = async function () {
+            let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
+
+            let data = {
+                service_id: "service_a3g0l17",
+                template_id: "template_x4mo2hj",
+                public_key: "3-Q_I_P3_12dxNIJb",
+                template_params: {
+                    nombre: formData.get("nombre"),
+                    email: formData.get("email"),
+                    grupo: formData.get("grupo"),
+                    espectaculo: formData.get("espectaculo"),
+                    sinopsis: formData.get("sinopsis"),
+                    duracion: formData.get("duracion"),
+                    archivo: base64File, // Se envía en formato Base64
+                    archivo_nombre: archivo.name,
+                    archivo_tipo: archivo.type
+                }
+            };
+
+            let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(jsonData),
+                body: JSON.stringify(data)
             });
 
-            const result = await response.text();
-            alert(result);
-        } catch (error) {
-            console.error("Error al enviar el formulario", error);
-            alert("Hubo un error al enviar el formulario.");
-        }
+            if (response.ok) {
+                alert("Formulario enviado con éxito.");
+                upload.resetPreviewPanel(); // Limpia la previsualización de archivos
+                document.getElementById("contact-form").reset();
+            } else {
+                alert("Error al enviar el formulario.");
+            }
+        };
     });
-
-    // Función para convertir archivos a Base64
-    function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
-    }
-    try {
-        const sliderElement = document.querySelector(".slider");
-        if (sliderElement) {
-            // Iniciar el slider solo si existe
-            iniciarSlider();
-        }
-    } catch (error) {
-        console.warn("El slider no se encontró, pero el formulario seguirá funcionando.");
-    }
-    document.querySelector("#btn-transicion").addEventListener("click", function (e) {
-        e.preventDefault();  // Evitar recarga de página
-        console.log("Botón de enviar clickeado");
-        enviarFormulario();
-    });
-
+});
 })
