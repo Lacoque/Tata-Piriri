@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        let archivo = archivos[5]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
+        let archivo = archivos[0]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
         let reader = new FileReader();
 
         reader.readAsDataURL(archivo);
@@ -143,6 +143,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     espectaculo: formData.get("espectaculo"),
                     sinopsis: formData.get("sinopsis"),
                     duracion: formData.get("duracion"),
+                    publico: formData.get("publico"),
+                    origen: formData.get("origen"),
+                    message: formData.get("message"),
                     archivo: base64File, // Se envía en formato Base64
                     archivo_nombre: archivo.name,
                     archivo_tipo: archivo.type

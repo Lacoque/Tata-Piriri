@@ -35,7 +35,7 @@
             <div id="form-contacto">
                 <h2>¡Sumate al festi!</h2>
                 <!-- ACA VOY A ENVIAR DIRECTAMENTE AL BACKEND DE SENDGRID -->
-                <form id="contact-form"></form> 
+                <form id="contact-form">
                 <!--PARA USAR EN NETLIFY <form name="contact" method="POST" data-netlify="true" enctype="multipart/form-data" action="#">
                     <input type="hidden" name="form-name" value="contact"> -->
                 <p>
@@ -74,8 +74,6 @@
                 
                 <!-- <p>Adjuntá los archivos</p> -->
                 <div class="custom-file-container" data-upload-id="file-upload"></div>
-                    
-                <!-- Input oculto para Netlify -->
                 <input type="hidden" id="hidden-file-input" name="archivo[]" /><p>
                     
                     <label>Si querés comentarnos algo más <textarea name="message"></textarea></label>
@@ -89,13 +87,11 @@
                             <span class="text">ENVIAR</span>
                             <span>¡Gracias por participar!</span>
                         </button>
-                    </p> 
-                    
+                    </p>  
                 </div>
              </form>
             </div>
-        
-            <!-- <p class="btn-enviar"><button type="submit">Enviar</button></p> -->
+             <!-- <p class="btn-enviar"><button type="submit">Enviar</button></p> -->
         
     </section>
 
