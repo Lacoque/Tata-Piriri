@@ -162,14 +162,19 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.onerror = (error) => reject(error);
         });
     }
-})
-try {
-    const sliderElement = document.querySelector(".slider");
-    if (sliderElement) {
-        // Iniciar el slider solo si existe
-        iniciarSlider();
+    try {
+        const sliderElement = document.querySelector(".slider");
+        if (sliderElement) {
+            // Iniciar el slider solo si existe
+            iniciarSlider();
+        }
+    } catch (error) {
+        console.warn("El slider no se encontró, pero el formulario seguirá funcionando.");
     }
-} catch (error) {
-    console.warn("El slider no se encontró, pero el formulario seguirá funcionando.");
-}
+    document.querySelector("#btn-transicion").addEventListener("click", function (e) {
+        e.preventDefault();  // Evitar recarga de página
+        console.log("Botón de enviar clickeado");
+        enviarFormulario();
+    });
 
+})
