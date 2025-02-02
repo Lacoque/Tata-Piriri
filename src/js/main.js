@@ -111,61 +111,66 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
    //formulario
-   document.addEventListener("DOMContentLoaded", function () {
-    const upload = new FileUploadWithPreview("file-upload"); // Asegura que coincida con tu `data-upload-id`
-    
-    document.getElementById("contact-form").addEventListener("submit", async function (e) {
-        e.preventDefault();
+   if (window.location.pathname.includes("form.html")) { 
+    import('file-upload-with-preview')
+        .then(module => { 
+            const FileUploadWithPreview = module.default;
+            const upload = new FileUploadWithPreview("file-upload"); 
 
-        let formData = new FormData(this);
-        let archivos = upload.cachedFileArray; // Obtiene los archivos de file-upload-with-preview
+            document.getElementById("contact-form").addEventListener("submit", async function (e) {
+                e.preventDefault();
 
-        if (archivos.length === 0) {
-            alert("Por favor, adjunta un archivo.");
-            return;
-        }
+                let formData = new FormData(this);
+                let archivos = upload.cachedFileArray; // Obtiene los archivos de file-upload-with-preview
 
-        let archivo = archivos[0]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
-        let reader = new FileReader();
-
-        reader.readAsDataURL(archivo);
-        reader.onload = async function () {
-            let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
-
-            let data = {
-                service_id: "service_a3g0l17",
-                template_id: "template_x4mo2hj",
-                public_key: "3-Q_I_P3_12dxNIJb",
-                template_params: {
-                    nombre: formData.get("nombre"),
-                    email: formData.get("email"),
-                    grupo: formData.get("grupo"),
-                    espectaculo: formData.get("espectaculo"),
-                    sinopsis: formData.get("sinopsis"),
-                    duracion: formData.get("duracion"),
-                    publico: formData.get("publico"),
-                    origen: formData.get("origen"),
-                    message: formData.get("message"),
-                    archivo: base64File, // Se envía en formato Base64
-                    archivo_nombre: archivo.name,
-                    archivo_tipo: archivo.type
+                if (archivos.length === 0) {
+                    alert("Por favor, adjunta un archivo.");
+                    return;
                 }
-            };
 
-            let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                let archivo = archivos[0]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
+                let reader = new FileReader();
+
+                reader.readAsDataURL(archivo);
+                reader.onload = async function () {
+                    let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
+
+                    let data = {
+                        service_id: "service_a3g0l17",
+                        template_id: "template_x4mo2hj",
+                        public_key: "3-Q_I_P3_12dxNIJb",
+                        template_params: {
+                            nombre: formData.get("nombre"),
+                            email: formData.get("email"),
+                            grupo: formData.get("grupo"),
+                            espectaculo: formData.get("espectaculo"),
+                            sinopsis: formData.get("sinopsis"),
+                            duracion: formData.get("duracion"),
+                            publico: formData.get("publico"),
+                            origen: formData.get("origen"),
+                            message: formData.get("message"),
+                            archivo: base64File, // Se envía en formato Base64
+                            archivo_nombre: archivo.name,
+                            archivo_tipo: archivo.type
+                        }
+                    };
+
+                    let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        alert("Formulario enviado con éxito.");
+                        upload.resetPreviewPanel(); // Limpia la previsualización de archivos
+                        document.getElementById("contact-form").reset();
+                    } else {
+                        alert("Error al enviar el formulario.");
+                    }
+                };
             });
+        });
+    };  
+}  
 
-            if (response.ok) {
-                alert("Formulario enviado con éxito.");
-                upload.resetPreviewPanel(); // Limpia la previsualización de archivos
-                document.getElementById("contact-form").reset();
-            } else {
-                alert("Error al enviar el formulario.");
-            }
-        };
-    });
-});
-})
