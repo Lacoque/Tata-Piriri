@@ -111,50 +111,66 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
    //formulario
-   if (window.location.pathname.includes("form.html")) { 
-    import('file-upload-with-preview')
-        .then(module => { 
-            const FileUploadWithPreview = module.default;
-            const upload = new FileUploadWithPreview("file-upload"); 
+   document.addEventListener("DOMContentLoaded", function () {
+    // Inicializa el campo de subida de archivos
+    try {
+        const upload = new Upload('file-upload', {
+            multiple: true,
+            text: {
+                chooseFile: "Seleccioná el archivo",
+                browse: "Explorar",
+                selectedCount: "Archivos seleccionados",
+                label: "",
+            },
+            accept: ".jpg, .jpeg, .png",
+            baseImage: 'url("/assets/img/marca-tata-piriri.png")',
+        });
 
-            document.getElementById("contact-form").addEventListener("submit", async function (e) {
-                e.preventDefault();
+        // Maneja el envío del formulario
+        document.getElementById("contact-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-                let formData = new FormData(this);
-                let archivos = upload.cachedFileArray; // Obtiene los archivos de file-upload-with-preview
+            // Obtén los datos del formulario
+            let formData = new FormData(this);
+            let archivos = upload.getFiles(); // Obtiene los archivos subidos
 
-                if (archivos.length === 0) {
-                    alert("Por favor, adjunta un archivo.");
-                    return;
-                }
+            // Verifica si se adjuntó un archivo
+            if (archivos.length === 0) {
+                alert("Por favor, adjunta un archivo.");
+                return;
+            }
 
-                let archivo = archivos[0]; // Tomamos el primer archivo (puedes adaptarlo para múltiples)
-                let reader = new FileReader();
+            // Convierte el archivo a Base64
+            let archivo = archivos[0]; // Tomamos el primer archivo
+            let reader = new FileReader();
 
-                reader.readAsDataURL(archivo);
-                reader.onload = async function () {
-                    let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
+            reader.readAsDataURL(archivo);
+            reader.onload = async function () {
+                let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
 
-                    let data = {
-                        service_id: "service_a3g0l17",
-                        template_id: "template_x4mo2hj",
-                        public_key: "3-Q_I_P3_12dxNIJb",
-                        template_params: {
-                            nombre: formData.get("nombre"),
-                            email: formData.get("email"),
-                            grupo: formData.get("grupo"),
-                            espectaculo: formData.get("espectaculo"),
-                            sinopsis: formData.get("sinopsis"),
-                            duracion: formData.get("duracion"),
-                            publico: formData.get("publico"),
-                            origen: formData.get("origen"),
-                            message: formData.get("message"),
-                            archivo: base64File, // Se envía en formato Base64
-                            archivo_nombre: archivo.name,
-                            archivo_tipo: archivo.type
-                        }
-                    };
+                // Prepara los datos para EmailJS
+                let data = {
+                    service_id: "service_a3g0l17", // Reemplaza con tu Service ID
+                    template_id: "template_x4mo2hj", // Reemplaza con tu Template ID
+                    user_id: "3-Q_I_P3_12dxNIJb", // Reemplaza con tu User ID
+                    template_params: {
+                        nombre: formData.get("nombre"),
+                        email: formData.get("email"),
+                        grupo: formData.get("grupo"),
+                        espectaculo: formData.get("espectaculo"),
+                        sinopsis: formData.get("sinopsis"),
+                        duracion: formData.get("duracion"),
+                        publico: formData.get("publico"),
+                        origen: formData.get("origen"),
+                        message: formData.get("message"),
+                        archivo: base64File, // Archivo en Base64
+                        archivo_nombre: archivo.name,
+                        archivo_tipo: archivo.type
+                    }
+                };
 
+                // Envía el correo usando EmailJS
+                try {
                     let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -163,15 +179,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (response.ok) {
                         alert("Formulario enviado con éxito.");
-                        upload.resetPreviewPanel(); // Limpia la previsualización de archivos
-                        document.getElementById("contact-form").reset();
+                        upload.clear(); // Limpia la previsualización de archivos
+                        document.getElementById("contact-form").reset(); // Limpia el formulario
                     } else {
-                        alert("Error al enviar el formulario.");
+                        alert("Error al enviar el formulario. Inténtalo de nuevo.");
                     }
-                };
-            });
-        
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Hubo un error al enviar el formulario.");
+                }
+            };
         });
-    };
+    } catch (error) {
+        console.error("Error al inicializar el campo de subida de archivos:", error);
+    }
+});
 } 
 )
