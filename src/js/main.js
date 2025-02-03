@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
             let archivos = upload.getFiles(); // Obtiene los archivos subidos
 
             // Verifica si se adjuntó un archivo
-            if (archivos.length === 0) {
-                alert("Por favor, adjunta un archivo.");
-                return;
-            }
+            // if (archivos.length === 0) {
+            //     alert("Por favor, adjunta un archivo.");
+            //     return;
+            // }
 
             // Convierte el archivo a Base64
             let archivo = archivos[0]; // Tomamos el primer archivo
