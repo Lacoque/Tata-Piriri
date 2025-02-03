@@ -132,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
                      const form = document.querySelector('form[name="contact"]');
 
                      // Manejar el envío del formulario
-                     form.addEventListener('submit', async (e) => {
-                         e.preventDefault(); // Detener el envío automático del formulario
+                    // form.addEventListener('submit', async (e) => {
+                       //  e.preventDefault(); // Detener el envío automático del formulario
  
                          // Crear un objeto FormData para obtener los datos del formulario
                          const formData = new FormData(form);
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                  alert("Hubo un error al enviar el formulario.");
                              }
                          };
-                     });
+                    //  });
                  } catch (error) {
                      console.error("Error al inicializar FileUploadWithPreview:", error);
                  }
