@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
    //formulario
-   document.addEventListener('DOMContentLoaded', () => {
+    
     if (window.location.pathname.includes("form.html")) {
         import('file-upload-with-preview')
             .then(module => {
@@ -204,4 +204,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-})
