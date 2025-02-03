@@ -169,8 +169,11 @@ form.addEventListener('submit', (e) => {
        const input= document.createElement("input");
        input.type="file";
        input.name="archivo${index};" 
-       input.files=[file];
        form.appendChild(input);// Adjuntar cada archivo con un índice único
+
+       const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file); // Agregar el archivo al DataTransfer
+            input.files = dataTransfer.files; // Asignar el FileList al campo de entrada
     }); 
      
     // Enviar el formulario usando fetch este funciona sin la API
