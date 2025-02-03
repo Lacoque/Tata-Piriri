@@ -111,7 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
    //formulario
-   document.addEventListener("DOMContentLoaded", function () {
+   if (window.location.pathname.includes("form.html")) { 
+    import('file-upload-with-preview')
+        .then(module => {
+            const FileUploadWithPreview = module.default;
+            document.addEventListener('DOMContentLoaded', () => {
     // Inicializa el campo de subida de archivos
     try {
         const upload = new Upload('file-upload', {
@@ -194,5 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error al inicializar el campo de subida de archivos:", error);
     }
 });
-} 
-)
+        });
+    }
+})
+
