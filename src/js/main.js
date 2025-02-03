@@ -204,3 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
          });
     };
 })
+upload.cachedFileArray;
+upload.emulateInputSelection(); // to open image browser
+upload.resetPreviewPanel();
+
