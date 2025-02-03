@@ -162,18 +162,17 @@ form.addEventListener('submit', (e) => {
     e.preventDefault(); // Detener el envío automático del formulario
 
     // Crear un objeto FormData para enviar los archivos
-    const formData = new FormData(form);
+    //const formData = new FormData(form);
 
     // Agregar los archivos seleccionados al FormData
     upload.cachedFileArray.forEach((file, index) => {
-        formData.append(`archivo${index}`, file); // Adjuntar cada archivo con un índice único
+       const input= document.createElement("input");
+       input.type="file";
+       input.name="archivo${index};" 
+       input.files=[file];
+       form.appendChild(input);// Adjuntar cada archivo con un índice único
     }); 
-     // Obtener los valores del formulario
-    //  const formDataObject = {};
-    //  formData.forEach((value, key) => {
-    //      formDataObject[key] = value;
-    //  });
-
+     
     // Enviar el formulario usando fetch este funciona sin la API
     emailjs.sendForm("service_a3g0l17","template_x4mo2hj", form) 
     .then(response => {
