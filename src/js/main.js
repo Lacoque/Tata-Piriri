@@ -175,7 +175,7 @@ form.addEventListener('submit', (e) => {
     //  });
 
     // Enviar el formulario usando fetch este funciona sin la API
-    emailjs.sendForm("service_a3g0l17","template_x4mo2hj", formData) 
+    emailjs.sendForm("service_a3g0l17","template_x4mo2hj", form) 
     .then(response => {
         if(response.status === 200){
             alert("Formulario enviado correctamente");
