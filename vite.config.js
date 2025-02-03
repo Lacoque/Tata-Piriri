@@ -14,6 +14,7 @@ export default defineConfig({
       },
       // external: ['@fortawesome/fontawesome-svg-core'],
     },
+    external: ['googleapis']
   },
   optimizeDeps: {
     include: ['gsap','file-upload-with-preview','@fortawesome/fontawesome-svg-core'],
