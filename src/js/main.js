@@ -111,13 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
    //formulario
-   if (window.location.pathname.includes("form.html")) { 
-    import('file-upload-with-preview')
-        .then(module => {
-            const FileUploadWithPreview = module.default;
-            document.addEventListener('DOMContentLoaded', () => {
+   document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.includes("form.html")) {
+        import('file-upload-with-preview')
+            .then(module => {
+                const FileUploadWithPreview = module.default;
                 try {
-                    new upload('file-upload', {
+                    new FileUploadWithPreview('file-upload', {
                         multiple: true,
                         text: {
                             chooseFile: "Seleccioná el archivo",
@@ -131,70 +131,77 @@ document.addEventListener("DOMContentLoaded", () => {
                 } catch (error) {
                     console.error("Error al inicializar FileUploadWithPreview:", error);
                 }
+            })
+            .catch(error => {
+                console.error("Error al cargar FileUploadWithPreview:", error);
             });
-        })
-        .catch(error => {
-            console.error("Error al cargar FileUploadWithPreview:", error);
-        });
-}
+    }
 
-// Remplazar imagen de bg de la carga de archivos en el formulario
-const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+    // Remplazar imagen de bg de la carga de archivos en el formulario
+    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
 
-// Características de file-upload
-const upload = new FileUploadWithPreview('file-upload', {
-    multiple: true,
-    text: {
-        chooseFile: "Seleccioná el archivo",
-        browse: "Explorar",
-        selectedCount: "Archivos seleccionados",
-        label: "",
-    },
-    accept: ".jpg, .jpeg, .png",
-    baseImage: imgBgFile,
-});
-// Seleccionar el formulario
-const form = document.querySelector('form[name="contact"]');
-emailjs.init("3-Q_I_P3_12dxNIJb")
+    // Características de file-upload
+    const upload = new FileUploadWithPreview('file-upload', {
+        multiple: true,
+        text: {
+            chooseFile: "Seleccioná el archivo",
+            browse: "Explorar",
+            selectedCount: "Archivos seleccionados",
+            label: "",
+        },
+        accept: ".jpg, .jpeg, .png",
+        baseImage: imgBgFile,
+    });
 
-// Manejar el envío del formulario
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Detener el envío automático del formulario
+    // Seleccionar el formulario
+    const form = document.querySelector('form[name="contact"]');
+    if (!form) {
+        console.error("El formulario no fue encontrado en el DOM.");
+        return;
+    }
 
-    // Crear un objeto FormData para enviar los archivos
-    //const formData = new FormData(form);
+    // Inicializar EmailJS con tu User ID
+    emailjs.init('TU_USER_ID'); // Reemplaza 'TU_USER_ID' con tu ID de usuario de EmailJS
 
-    // Agregar los archivos seleccionados al FormData
-    upload.cachedFileArray.forEach((file, index) => {
-       const input= document.createElement("input");
-       input.type="file";
-       input.name="archivo${index};" 
-       input.style.display = 'none'; // Ocultar el campo de archivo
-       const dataTransfer = new DataTransfer();
+    // Manejar el envío del formulario
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Detener el envío automático del formulario
+
+        // Agregar los archivos seleccionados al formulario
+        upload.cachedFileArray.forEach((file, index) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.name = `archivo${index}`;
+            input.style.display = 'none'; // Ocultar el campo de archivo
+
+            // Usar DataTransfer para asignar el archivo al campo de entrada
+            const dataTransfer = new DataTransfer();
             dataTransfer.items.add(file); // Agregar el archivo al DataTransfer
             input.files = dataTransfer.files; // Asignar el FileList al campo de entrada
-            form.appendChild(input);// Adjuntar cada archivo con un índice único
-    }); 
-     
-    // Enviar el formulario usando fetch este funciona sin la API
-    emailjs.sendForm("service_a3g0l17","template_x4mo2hj", form) 
-    .then(response => {
-        if(response.status === 200){
-            alert("Formulario enviado correctamente");
-            form.reset();
-            upload.resetPreviewPanel();
-        } else{
-            alert("Hubo un error al enviar el formulario");
-        }
-  
-     })
-    
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Hubo un error al enviar el formulario');
+
+            form.appendChild(input); // Adjuntar el campo al formulario
+        });
+
+        // Enviar el correo usando EmailJS
+        emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', form) // Pasar el formulario HTML como tercer parámetro
+            .then(response => {
+                if (response.status === 200) {
+                    alert('Formulario enviado correctamente');
+                    form.reset(); // Limpiar el formulario
+                    upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
+                } else {
+                    alert('Hubo un error al enviar el formulario');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar el formulario');
+            });
+
+        // Limpiar los campos de archivo adicionales después del envío
+        upload.cachedFileArray.forEach(() => {
+            form.removeChild(form.lastChild);
+        });
     });
 });
-upload.cachedFileArray;
-upload.emulateInputSelection(); // to open image browser
-upload.resetPreviewPanel();
+})
