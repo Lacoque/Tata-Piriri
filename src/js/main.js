@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const FileUploadWithPreview = module.default;
             document.addEventListener('DOMContentLoaded', () => {
                 try {
-                    new upload('file-upload', {
+                    const upload = new FileUploadWithPreview('file-upload', {
                         multiple: true,
                         text: {
                             chooseFile: "Seleccioná el archivo",
@@ -128,83 +128,44 @@ document.addEventListener("DOMContentLoaded", () => {
                         accept: ".jpg, .jpeg, .png",
                         baseImage: 'url("/assets/img/marca-tata-piriri.png")',
                     });
-                     // Seleccionar el formulario
-                     const form = document.querySelector('form[name="contact"]');
 
-                     // Manejar el envío del formulario
-                    // form.addEventListener('submit', async (e) => {
-                       //  e.preventDefault(); // Detener el envío automático del formulario
- 
-                         // Crear un objeto FormData para obtener los datos del formulario
-                         const formData = new FormData(form);
- 
-                         // Verificar si hay archivos adjuntos
-                         if (upload.cachedFileArray.length === 0) {
-                             alert("Por favor, adjunta un archivo.");
-                             return;
-                         }
- 
-                         // Convertir el archivo a Base64
-                         const archivo = upload.cachedFileArray[0]; // Tomar el primer archivo
-                         const reader = new FileReader();
- 
-                         reader.readAsDataURL(archivo);
-                         reader.onload = async function () {
-                             const base64File = reader.result.split(",")[1]; // Eliminar el encabezado Base64
- 
-                             // Preparar los datos para EmailJS
-                             const data = {
-                                 service_id: "service_a3g0l17", // Reemplaza con tu Service ID
-                                 template_id: "template_x4mo2hj", // Reemplaza con tu Template ID
-                                 user_id: "3-Q_I_P3_12dxNIJb", // Reemplaza con tu User ID
-                                 template_params: {
-                                     nombre: formData.get("nombre"),
-                                     email: formData.get("email"),
-                                     grupo: formData.get("grupo"),
-                                     espectaculo: formData.get("espectaculo"),
-                                     sinopsis: formData.get("sinopsis"),
-                                     duracion: formData.get("duracion"),
-                                     publico: formData.get("publico"),
-                                     origen: formData.get("origen"),
-                                     message: formData.get("message"),
-                                     archivo: base64File, // Archivo en Base64
-                                     archivo_nombre: archivo.name,
-                                     archivo_tipo: archivo.type
-                                 }
-                             };
- 
-                             // Enviar el correo usando EmailJS
-                             try {
-                                 const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-                                     method: "POST",
-                                     headers: { "Content-Type": "application/json" },
-                                     body: JSON.stringify(data)
-                                 });
- 
-                                 if (response.ok) {
-                                     alert("Formulario enviado con éxito.");
-                                     form.reset(); // Limpiar el formulario
-                                     upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
-                                 } else {
-                                     alert("Error al enviar el formulario. Inténtalo de nuevo.");
-                                 }
-                             } catch (error) {
-                                 console.error("Error:", error);
-                                 alert("Hubo un error al enviar el formulario.");
-                             }
-                         };
-                    //  });
-                 } catch (error) {
-                     console.error("Error al inicializar FileUploadWithPreview:", error);
-                 }
-             });
-         })
-         .catch(error => {
-             console.error("Error al cargar FileUploadWithPreview:", error);
-         });
+                    // Inicializar EmailJS
+                    emailjs.init("3-Q_I_P3_12dxNIJb");
+
+                    // Seleccionar el formulario
+                    const form = document.querySelector('form[name="contact"]');
+
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault(); // Detener el envío automático del formulario
+
+                        // Crear un objeto FormData para enviar los archivos
+                        const formData = new FormData(form);
+
+                        // Agregar los archivos seleccionados
+                        upload.cachedFileArray.forEach((file, index) => {
+                            formData.append('archivo[]', file);
+                        });
+
+                        // Enviar el formulario con EmailJS
+                        emailjs.sendForm("service_a3g0l17", "template_x4mo2hj", form)
+                            .then(response => {
+                                alert('Formulario enviado correctamente');
+                                form.reset(); // Limpiar el formulario
+                                upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Hubo un error al enviar el formulario');
+                            });
+                    });
+
+                } catch (error) {
+                    console.error("Error al inicializar FileUploadWithPreview:", error);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error al cargar FileUploadWithPreview:", error);
+        });
     };
 })
-upload.cachedFileArray;
-upload.emulateInputSelection(); // to open image browser
-upload.resetPreviewPanel();
-
