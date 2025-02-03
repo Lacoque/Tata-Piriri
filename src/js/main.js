@@ -116,27 +116,96 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(module => {
             const FileUploadWithPreview = module.default;
             document.addEventListener('DOMContentLoaded', () => {
-    // Inicializa el campo de subida de archivos
-    try {
-        const upload = new Upload('file-upload', {
-            multiple: true,
-            text: {
-                chooseFile: "Seleccioná el archivo",
-                browse: "Explorar",
-                selectedCount: "Archivos seleccionados",
-                label: "",
-            },
-            accept: ".jpg, .jpeg, .png",
-            baseImage: 'url("/assets/img/marca-tata-piriri.png")',
+                try {
+                    new upload('file-upload', {
+                        multiple: true,
+                        text: {
+                            chooseFile: "Seleccioná el archivo",
+                            browse: "Explorar",
+                            selectedCount: "Archivos seleccionados",
+                            label: "",
+                        },
+                        accept: ".jpg, .jpeg, .png",
+                        baseImage: 'url("/assets/img/marca-tata-piriri.png")',
+                    });
+                } catch (error) {
+                    console.error("Error al inicializar FileUploadWithPreview:", error);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error al cargar FileUploadWithPreview:", error);
         });
+}
+
+// Remplazar imagen de bg de la carga de archivos en el formulario
+const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+
+// Características de file-upload
+const upload = new FileUploadWithPreview('file-upload', {
+    multiple: true,
+    text: {
+        chooseFile: "Seleccioná el archivo",
+        browse: "Explorar",
+        selectedCount: "Archivos seleccionados",
+        label: "",
+    },
+    accept: ".jpg, .jpeg, .png",
+    baseImage: imgBgFile,
+});
+// Seleccionar el formulario
+const form = document.querySelector('form[name="contact"]');
+
+// Manejar el envío del formulario
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Detener el envío automático del formulario
+
+    // Crear un objeto FormData para enviar los archivos
+    const formData = new FormData(form);
+
+    // Agregar los archivos seleccionados al FormData
+    upload.cachedFileArray.forEach((file, index) => {
+        formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
+    });
+
+    // Enviar el formulario usando fetch este funciona sin la API
+    fetch(form.action, {
+    method: 'POST',
+    body: formData,
+     })
+    .then(response => {
+        if (response.ok) {
+            alert('Formulario enviado correctamente');
+            form.reset(); // Limpiar el formulario
+            upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
+        } else {
+            alert('Hubo un error al enviar el formulario');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar el formulario');
+    });
+});
+})
+.catch(error => {
+console.error("Error al cargar FileUploadWithPreview:", error);
+});
+upload.cachedFileArray;
+upload.emulateInputSelection(); // to open image browser
+upload.resetPreviewPanel();
+
+
+    
+   
 
         // Maneja el envío del formulario
-        document.getElementById("contact-form").addEventListener("submit", async function (e) {
-            e.preventDefault();
+        //document.getElementById("contact-form").addEventListener("submit", async function (e) {
+           // e.preventDefault();
 
             // Obtén los datos del formulario
-            let formData = new FormData(this);
-            let archivos = upload.getFiles(); // Obtiene los archivos subidos
+           // let formData = new FormData(this);
+            //let archivos = upload.getFiles(); // Obtiene los archivos subidos
 
             // Verifica si se adjuntó un archivo
             // if (archivos.length === 0) {
@@ -145,60 +214,55 @@ document.addEventListener("DOMContentLoaded", () => {
             // }
 
             // Convierte el archivo a Base64
-            let archivo = archivos[0]; // Tomamos el primer archivo
-            let reader = new FileReader();
+            //let archivo = archivos[0]; // Tomamos el primer archivo
+           // let reader = new FileReader();
 
-            reader.readAsDataURL(archivo);
-            reader.onload = async function () {
-                let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
+           // reader.readAsDataURL(archivo);
+           // reader.onload = async function () {
+               // let base64File = reader.result.split(",")[1]; // Elimina el encabezado Base64
 
                 // Prepara los datos para EmailJS
-                let data = {
-                    service_id: "service_a3g0l17", // Reemplaza con tu Service ID
-                    template_id: "template_x4mo2hj", // Reemplaza con tu Template ID
-                    user_id: "3-Q_I_P3_12dxNIJb", // Reemplaza con tu User ID
-                    template_params: {
-                        nombre: formData.get("nombre"),
-                        email: formData.get("email"),
-                        grupo: formData.get("grupo"),
-                        espectaculo: formData.get("espectaculo"),
-                        sinopsis: formData.get("sinopsis"),
-                        duracion: formData.get("duracion"),
-                        publico: formData.get("publico"),
-                        origen: formData.get("origen"),
-                        message: formData.get("message"),
-                        archivo: base64File, // Archivo en Base64
-                        archivo_nombre: archivo.name,
-                        archivo_tipo: archivo.type
-                    }
-                };
+                // let data = {
+                //     service_id: "service_a3g0l17", // Reemplaza con tu Service ID
+                //     template_id: "template_x4mo2hj", // Reemplaza con tu Template ID
+                //     user_id: "3-Q_I_P3_12dxNIJb", // Reemplaza con tu User ID
+                //     template_params: {
+                //         nombre: formData.get("nombre"),
+                //         email: formData.get("email"),
+                //         grupo: formData.get("grupo"),
+                //         espectaculo: formData.get("espectaculo"),
+                //         sinopsis: formData.get("sinopsis"),
+                //         duracion: formData.get("duracion"),
+                //         publico: formData.get("publico"),
+                //         origen: formData.get("origen"),
+                //         message: formData.get("message"),
+                //         archivo: base64File, // Archivo en Base64
+                //         archivo_nombre: archivo.name,
+                //         archivo_tipo: archivo.type
+                //     }
+                // };
 
                 // Envía el correo usando EmailJS
-                try {
-                    let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)
-                    });
+//                 try {
+//                     let response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+//                         method: "POST",
+//                         headers: { "Content-Type": "application/json" },
+//                         body: JSON.stringify(data)
+//                     });
 
-                    if (response.ok) {
-                        alert("Formulario enviado con éxito.");
-                        upload.clear(); // Limpia la previsualización de archivos
-                        document.getElementById("contact-form").reset(); // Limpia el formulario
-                    } else {
-                        alert("Error al enviar el formulario. Inténtalo de nuevo.");
-                    }
-                } catch (error) {
-                    console.error("Error:", error);
-                    alert("Hubo un error al enviar el formulario.");
-                }
-            };
-        });
-    } catch (error) {
-        console.error("Error al inicializar el campo de subida de archivos:", error);
-    }
-});
-        });
-    }
-})
-
+//                     if (response.ok) {
+//                         alert("Formulario enviado con éxito.");
+//                         upload.clear(); // Limpia la previsualización de archivos
+//                         document.getElementById("contact-form").reset(); // Limpia el formulario
+//                     } else {
+//                         alert("Error al enviar el formulario. Inténtalo de nuevo.");
+//                     }
+//                 } catch (error) {
+//                     console.error("Error:", error);
+//                     alert("Hubo un error al enviar el formulario.");
+//                 }
+//             };
+//         });
+//     } catch (error) {
+//         console.error("Error al inicializar el campo de subida de archivos:", error);
+   
