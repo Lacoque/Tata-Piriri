@@ -160,8 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Inicializar EmailJS con tu User ID
-    emailjs.init('TU_USER_ID'); // Reemplaza 'TU_USER_ID' con tu ID de usuario de EmailJS
+    // Inicializar EmailJS con la API
+    emailjs.init('3-Q_I_P3_12dxNIJb'); 
 
     // Manejar el envío del formulario
     form.addEventListener('submit', (e) => {
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Enviar el correo usando EmailJS
-        emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', form) // Pasar el formulario HTML como tercer parámetro
+        emailjs.sendForm('service_a3g0l17', 'template_x4mo2hj', form) // Pasar el formulario HTML como tercer parámetro
             .then(response => {
                 if (response.status === 200) {
                     alert('Formulario enviado correctamente');
