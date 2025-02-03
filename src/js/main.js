@@ -155,6 +155,7 @@ const upload = new FileUploadWithPreview('file-upload', {
 });
 // Seleccionar el formulario
 const form = document.querySelector('form[name="contact"]');
+emailjs.init("3-Q_I_P3_12dxNIJb")
 
 // Manejar el envío del formulario
 form.addEventListener('submit', (e) => {
@@ -169,27 +170,23 @@ form.addEventListener('submit', (e) => {
     });
 
     // Enviar el formulario usando fetch este funciona sin la API
-    fetch(form.action, {
-    method: 'POST',
-    body: formData,
-     })
+    emailjs.send("service_a3g0l17","template_x4mo2hj", formDataObject) 
     .then(response => {
-        if (response.ok) {
-            alert('Formulario enviado correctamente');
-            form.reset(); // Limpiar el formulario
-            upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
-        } else {
-            alert('Hubo un error al enviar el formulario');
+        if(response.status === 200){
+            alert("Formulario enviado correctamente");
+            form.reset();
+            upload.resetPreviewPanel();
+        } else{
+            alert("Hubo un error al enviar el formulario");
         }
+  
+     })
+    
     })
     .catch(error => {
         console.error('Error:', error);
         alert('Hubo un error al enviar el formulario');
     });
-});
-})
-.catch(error => {
-console.error("Error al cargar FileUploadWithPreview:", error);
 });
 upload.cachedFileArray;
 upload.emulateInputSelection(); // to open image browser
