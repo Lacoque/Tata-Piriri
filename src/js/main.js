@@ -168,6 +168,11 @@ form.addEventListener('submit', (e) => {
     upload.cachedFileArray.forEach((file, index) => {
         formData.append('archivo[]', file); // Asegúrate de que el nombre coincida con el esperado por Netlify
     });
+     // Obtener los valores del formulario
+     const formDataObject = {};
+     formData.forEach((value, key) => {
+         formDataObject[key] = value;
+     });
 
     // Enviar el formulario usando fetch este funciona sin la API
     emailjs.send("service_a3g0l17","template_x4mo2hj", formDataObject) 
