@@ -1,7 +1,7 @@
 [build]
   command = "yarn build"
-  publish = "dist"
-  functions = "functions"
+  publish = "frontend/dist"
+  
 
 [[redirects]]
   from = "/*"
