@@ -144,6 +144,7 @@ async function uploadFileToDrive(file) {
 }
    //formulario
     
+ 
     if (window.location.pathname.includes("form.html")) {
         import('file-upload-with-preview')
             .then(module => {
@@ -169,10 +170,7 @@ async function uploadFileToDrive(file) {
             });
     }
 
-    // Remplazar imagen de bg de la carga de archivos en el formulario
     const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-
-    // Características de file-upload
     const upload = new FileUploadWithPreview('file-upload', {
         multiple: true,
         text: {
@@ -185,98 +183,56 @@ async function uploadFileToDrive(file) {
         baseImage: imgBgFile,
     });
 
-    // Seleccionar el formulario
     const form = document.querySelector('form[name="contact"]');
     if (!form) {
         console.error("El formulario no fue encontrado en el DOM.");
         return;
     }
 
-    // Inicializar EmailJS con la API
     emailjs.init('3-Q_I_P3_12dxNIJb'); 
-    // Función para subir archivos a Google Drive
-    async function uploadFileToDrive(file) {
-        const { google } = await import('googleapis');
-        const fs = require('fs');
-        // Configurar autenticación de Google Drive
-        const auth = new google.auth.GoogleAuth({
-            keyFile: 'credenciales.json', // Reemplaza con la ruta a tus credenciales JSON
-            scopes: ['https://www.googleapis.com/auth/drive.file']
-        });
 
-        const drive = google.drive({ version: 'v3', auth });
-         // Crear un archivo temporal para subir
-         const tempFilePath = `/tmp/${file.name}`;
-         fs.writeFileSync(tempFilePath, file);
-          // Subir el archivo a Google Drive
-        const response = await drive.files.create({
-            requestBody: {
-                name: file.name, // Nombre del archivo
-                mimeType: file.type // Tipo MIME del archivo
-            },
-            media: {
-                mimeType: file.type,
-                body: fs.createReadStream(tempFilePath)
-            }
-        });
-        // Obtener el enlace de descarga
-        const fileId = response.data.id;
-        await drive.permissions.create({
-            fileId: fileId,
-            requestBody: {
-                role: 'reader',
-                type: 'anyone'
-            }
-        });
-        const result = await drive.files.get({
-            fileId: fileId,
-            fields: 'webViewLink, webContentLink'
-        });
-
-        return result.data.webContentLink; // Enlace de descarga
-    }
-
-    // Manejar el envío del formulario
     form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Detener el envío automático del formulario
-        try {
-            // Subir archivos a Google Drive y obtener los enlaces
-        const fileLinks = await Promise.all(
-            upload.cachedFileArray.map(async (file) => {
-                return await uploadFileToDrive(file); // Subir cada archivo a Google Drive
-            })
-        );
-         // Crear un objeto con los datos del formulario
-         const formDataObject = {
-            nombre: form.querySelector('[name="nombre"]').value,
-            email: form.querySelector('[name="email"]').value,
-            mensaje: form.querySelector('[name="mensaje"]').value,
-            archivos: fileLinks.join('\n') // Unir los enlaces en una cadena
-        };
+        e.preventDefault();
 
-        
-        // Enviar el correo usando EmailJS
-        emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject) // Pasar el formulario HTML como tercer parámetro
-            .then(response => {
-                if (response.status === 200) {
-                    alert('Formulario enviado correctamente');
-                    form.reset(); // Limpiar el formulario
-                    upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
-                } else {
-                    alert('Hubo un error al enviar el formulario');
-                }
-            })
-        .catch(error => {
-                console.error('Error:', error);
-                alert('Hubo un error al enviar el formulario');
+        const formData = new FormData();
+        upload.cachedFileArray.forEach((file) => {
+            formData.append('files', file); // Agregar cada archivo al FormData
+        });
+
+        try {
+            // Enviar los archivos al backend
+            const response = await fetch('https://tatapiri.glitch.me/upload', { // Reemplaza con la URL de tu backend
+                method: 'POST',
+                body: formData
             });
 
-        // Limpiar los campos de archivo adicionales después del envío
-        upload.cachedFileArray.forEach(() => {
-            form.removeChild(form.lastChild);
-        });
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  });
-})
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Error al subir archivos');
+            }
+
+            // Crear un objeto con los datos del formulario
+            const formDataObject = {
+                nombre: form.querySelector('[name="nombre"]').value,
+                email: form.querySelector('[name="email"]').value,
+                mensaje: form.querySelector('[name="mensaje"]').value,
+                archivos: data.links.join('\n') // Unir los enlaces en una cadena
+            };
+
+            // Enviar el correo usando EmailJS
+            emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
+                .then(() => {
+                    alert('Formulario enviado correctamente');
+                    form.reset();
+                    upload.resetPreviewPanel();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un error al enviar el formulario');
+                });
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
+        }
+    });
+});
