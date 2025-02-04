@@ -110,38 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-    //configuracion de Google Drive API
-    
-const { google } = require('googleapis');
-const fs = require('fs');
 
-async function uploadFileToDrive(file) {
-    
-    const auth = new google.auth.GoogleAuth({
-        keyFile: 'credenciales.json', 
-        scopes: ['https://www.googleapis.com/auth/drive.file']
-    });
-
-    const drive = google.drive({ version: 'v3', auth });
-
-    // Crear un archivo temporal para subir
-    const tempFilePath = `/tmp/${file.name}`;
-    fs.writeFileSync(tempFilePath, file);
-
-    // Subir el archivo a Google Drive
-    const response = await drive.files.create({
-        requestBody: {
-            name: file.name, // Nombre del archivo
-            mimeType: file.type // Tipo MIME del archivo
-        },
-        media: {
-            mimeType: file.type,
-            body: fs.createReadStream(tempFilePath)
-        }
-    });
-
-
-}
    //formulario
     
  
