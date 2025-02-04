@@ -8,7 +8,7 @@
   to = "/index.html"
   status = 200
   
-//redirecciones del backend
+#redirecciones del backend
 [[redirects]]
   from = "/upload"
   to = "https://tatapiri.glitch.me/upload"
