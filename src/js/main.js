@@ -113,12 +113,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
    //formulario
-   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form[name="contact"]');
-    if (!form) {
-        console.error("El formulario no fue encontrado en el DOM.");
-        return;
-    }
+//    document.addEventListener('DOMContentLoaded', () => {
+//     const form = document.querySelector('form[name="contact"]');
+//     if (!form) {
+//         console.error("El formulario no fue encontrado en el DOM.");
+//         return;
+//     }
 
     // Inicializar FileUploadWithPreview
     if (window.location.pathname.includes("form.html")) {
