@@ -168,23 +168,26 @@ document.addEventListener("DOMContentLoaded", () => {
     body: formData
     });
     const data = await response.json();
-    if (!response.ok) {
-    throw new Error(data.error || 'Error al subir archivos');
+       if (!response.ok) {
+         throw new Error(data.error || 'Error al subir archivos');
     }
     // Crear un objeto con los datos del formulario
 
         const formDataObject = {
             nombre: form.querySelector('[name="nombre"]')?.value || '',
             email: form.querySelector('[name="email"]')?.value || '',
-            mensaje: form.querySelector('[name="message"]')?.value || '',
+            grupo: form.querySelector('[name="grupo"]')?.value || '',
+            espectaculo: form.querySelector('[name="espectaculo"]')?.value || '',
+            sinopsis: form.querySelector('[name="sinopsis"]')?.value || '',
+            duracion: form.querySelector('[name="duracion"]')?.value || '',
             archivos: data.links.join('\n') // Unir los enlaces en una cadena
     };
     // Enviar el correo usando EmailJS
     emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
     .then(() => {
-    alert('Formulario enviado correctamente');
-    form.reset();
-    upload.resetPreviewPanel();
+           alert('Formulario enviado correctamente');
+           form.reset();
+           upload.resetPreviewPanel();
     })
     .catch(error => {
     console.error('Error:', error);
