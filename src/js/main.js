@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             espectaculo: form.querySelector('[name="espectaculo"]')?.value || '',
             sinopsis: form.querySelector('[name="sinopsis"]')?.value || '',
             duracion: form.querySelector('[name="duracion"]')?.value || '',
-            archivos: data.links.join('\n') // Unir los enlaces en una cadena
+            archivos: data.links.join('\n') 
     };
     // Enviar el correo usando EmailJS
     emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
