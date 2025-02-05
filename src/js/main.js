@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
    //formulario
-   document.addEventListener('DOMContentLoaded', () => {
+  
     // Inicializar FileUploadWithPreview primero
     let upload;
     import('file-upload-with-preview')
@@ -206,4 +206,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-});
+
