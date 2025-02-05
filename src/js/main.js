@@ -110,10 +110,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+    
 
    //formulario
-    
- 
+   document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form[name="contact"]');
+    if (!form) {
+        console.error("El formulario no fue encontrado en el DOM.");
+        return;
+    }
+
+    // Inicializar FileUploadWithPreview
     if (window.location.pathname.includes("form.html")) {
         import('file-upload-with-preview')
             .then(module => {
@@ -139,31 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-    const upload = new FileUploadWithPreview('file-upload', {
-        multiple: true,
-        text: {
-            chooseFile: "Seleccioná el archivo",
-            browse: "Explorar",
-            selectedCount: "Archivos seleccionados",
-            label: "",
-        },
-        accept: ".jpg, .jpeg, .png",
-        baseImage: imgBgFile,
-    });
-
-    const form = document.querySelector('form[name="contact"]');
-    if (!form) {
-        console.error("El formulario no fue encontrado en el DOM.");
-        return;
-    }
-
-    emailjs.init('3-Q_I_P3_12dxNIJb'); 
+    // Configurar EmailJS
+    emailjs.init('3-Q_I_P3_12dxNIJb');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
+        const upload = new FileUploadWithPreview('file-upload');
         upload.cachedFileArray.forEach((file) => {
             formData.append('files', file); // Agregar cada archivo al FormData
         });
@@ -182,9 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Crear un objeto con los datos del formulario
             const formDataObject = {
-                nombre: form.querySelector('[name="nombre"]').value,
-                email: form.querySelector('[name="email"]').value,
-                mensaje: form.querySelector('[name="mensaje"]').value,
+                nombre: form.querySelector('[name="nombre"]')?.value || '',
+                email: form.querySelector('[name="email"]')?.value || '',
+                mensaje: form.querySelector('[name="message"]')?.value || '',
                 archivos: data.links.join('\n') // Unir los enlaces en una cadena
             };
 
@@ -204,4 +194,5 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
         }
     });
+});
 });
