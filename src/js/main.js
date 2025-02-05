@@ -113,97 +113,86 @@ document.addEventListener("DOMContentLoaded", () => {
     
    //formulario
   
-    // Inicializar FileUploadWithPreview primero
-    let upload;
+   if (window.location.pathname.includes("form.html")) {
     import('file-upload-with-preview')
-        .then(module => {
-            const FileUploadWithPreview = module.default;
-            try {
-                upload = new FileUploadWithPreview('file-upload', {
-                    multiple: true,
-                    text: {
-                        chooseFile: "Seleccioná el archivo",
-                        browse: "Explorar",
-                        selectedCount: "Archivos seleccionados",
-                        label: "",
-                    },
-                    accept: ".jpg, .jpeg, .png",
-                    baseImage: 'url("/assets/img/marca-tata-piriri.png")',
-                });
-                console.log("FileUploadWithPreview inicializado correctamente");
-
-                // Continuar con el resto del código solo después de inicializar el plugin
-                initForm(upload);
-            } catch (error) {
-                console.error("Error al inicializar FileUploadWithPreview:", error);
-            }
-        })
-        .catch(error => {
-            console.error("Error al cargar FileUploadWithPreview:", error);
-        });
-
-    // Función para inicializar el formulario
-    function initForm(upload) {
-        // Verificar que el formulario exista
-        const form = document.querySelector('form[name="contact"]');
-        if (!form) {
-            console.error("El formulario no fue encontrado en el DOM.");
-            return;
-        }
-
-        // Configurar EmailJS
-        emailjs.init('3-Q_I_P3_12dxNIJb');
-
-        // Manejar el envío del formulario
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Crear FormData para los archivos
-            const formData = new FormData();
-            if (upload && upload.cachedFileArray) {
-                upload.cachedFileArray.forEach((file) => {
-                    formData.append('files', file); // Agregar cada archivo al FormData
-                });
-            }
-
-            try {
-                // Enviar los archivos al backend
-                const response = await fetch('https://backend-de-tata.onrender.com/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(data.error || 'Error al subir archivos');
-                }
-
-                // Crear un objeto con los datos del formulario
-                const formDataObject = {
-                    nombre: form.querySelector('[name="nombre"]')?.value || '',
-                    email: form.querySelector('[name="email"]')?.value || '',
-                    mensaje: form.querySelector('[name="message"]')?.value || '',
-                    archivos: data.links.join('\n') // Unir los enlaces en una cadena
-                };
-
-                // Enviar el correo usando EmailJS
-                emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
-                    .then(() => {
-                        alert('Formulario enviado correctamente');
-                        form.reset();
-                        if (upload) {
-                            upload.resetPreviewPanel(); // Limpiar la vista previa de archivos
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Hubo un error al enviar el formulario');
-                    });
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
-            }
-        });
+    .then(module => {
+    const FileUploadWithPreview = module.default;
+    try {
+    new FileUploadWithPreview('file-upload', {
+    multiple: true,
+    text: {
+    chooseFile: "Seleccioná el archivo",
+    browse: "Explorar",
+    selectedCount: "Archivos seleccionados",
+    label: "",
+    },
+    accept: ".jpg, .jpeg, .png",
+    baseImage: 'url("/assets/img/marca-tata-piriri.png")',
+    });
+    } catch (error) {
+    console.error("Error al inicializar FileUploadWithPreview:", error);
     }
-});
+    })
+    .catch(error => {
+    console.error("Error al cargar FileUploadWithPreview:", error);
+    });
+    }
+    const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+    const upload = new FileUploadWithPreview('file-upload', {
+    multiple: true,
+    text: {
+    chooseFile: "Seleccioná el archivo",
+    browse: "Explorar",
+    selectedCount: "Archivos seleccionados",
+    label: "",
+    },
+    accept: ".jpg, .jpeg, .png",
+    baseImage: imgBgFile,
+    });
+    const form = document.querySelector('form[name="contact"]');
+    if (!form) {
+    console.error("El formulario no fue encontrado en el DOM.");
+    return;
+    }
+    emailjs.init('3-Q_I_P3_12dxNIJb');
+    form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    upload.cachedFileArray.forEach((file) => {
+    formData.append('files', file); // Agregar cada archivo al FormData
+    });
+    try {
+    // Enviar los archivos al backend
+    const response = await fetch('https://backend-de-tata.onrender.com/upload', { // Reemplaza con la URL de tu backend
+    method: 'POST',
+    body: formData
+    });
+    const data = await response.json();
+    if (!response.ok) {
+    throw new Error(data.error || 'Error al subir archivos');
+    }
+    // Crear un objeto con los datos del formulario
 
+        const formDataObject = {
+            nombre: form.querySelector('[name="nombre"]')?.value || '',
+            email: form.querySelector('[name="email"]')?.value || '',
+            mensaje: form.querySelector('[name="message"]')?.value || '',
+            archivos: data.links.join('\n') // Unir los enlaces en una cadena
+    };
+    // Enviar el correo usando EmailJS
+    emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
+    .then(() => {
+    alert('Formulario enviado correctamente');
+    form.reset();
+    upload.resetPreviewPanel();
+    })
+    .catch(error => {
+    console.error('Error:', error);
+    alert('Hubo un error al enviar el formulario');
+    });
+    } catch (error) {
+    console.error('Error:', error);
+    alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
+    }
+    });
+    });
