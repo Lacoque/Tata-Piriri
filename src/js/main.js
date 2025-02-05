@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Enviar los archivos al backend
-            const response = await fetch('https://tatapiri.glitch.me/upload', { // Reemplaza con la URL de tu backend
+            const response = await fetch('https://backend-de-tata.onrender.com/upload', { // Reemplaza con la URL de tu backend
                 method: 'POST',
                 body: formData
             });

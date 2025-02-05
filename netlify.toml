@@ -11,5 +11,5 @@
 #redirecciones del backend
 [[redirects]]
   from = "/upload"
-  to = "https://tatapiri.glitch.me/upload"
+  to = "https://backend-de-tata.onrender.com/upload"
   status = 200
