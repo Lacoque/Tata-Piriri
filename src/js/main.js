@@ -155,17 +155,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
     }
     emailjs.init('3-Q_I_P3_12dxNIJb');
-    form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    upload.cachedFileArray.forEach((file) => {
-    formData.append('files', file); // Agregar cada archivo al FormData
+      form.addEventListener('submit', async (e) => {
+                           e.preventDefault();
+                const formData = new FormData();
+                upload.cachedFileArray.forEach((file) => {
+                formData.append('files', file); // Agregar cada archivo al FormData
     });
     try {
     // Enviar los archivos al backend
     const response = await fetch('https://backend-de-tata.onrender.com/upload', { 
                    method: 'POST',
-                body: formData
+                body: formData,
+                signal: AbortSignal.timeout(60000) 
     });
     const data = await response.json();
         if (!response.ok) {
