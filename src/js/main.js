@@ -163,12 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     try {
     // Enviar los archivos al backend
-    const response = await fetch('https://backend-de-tata.onrender.com/upload', { // Reemplaza con la URL de tu backend
-    method: 'POST',
-    body: formData
+    const response = await fetch('https://backend-de-tata.onrender.com/upload', { 
+                   method: 'POST',
+                body: formData
     });
     const data = await response.json();
-       if (!response.ok) {
+        if (!response.ok) {
          throw new Error(data.error || 'Error al subir archivos');
     }
     // Crear un objeto con los datos del formulario
@@ -190,12 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
            upload.resetPreviewPanel();
     })
     .catch(error => {
-    console.error('Error:', error);
-    alert('Hubo un error al enviar el formulario');
+              console.error('Error:', error);
+                alert('Hubo un error al enviar el formulario');
     });
-    } catch (error) {
-    console.error('Error:', error);
-    alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
-    }
-    });
+    }  
+    catch (error) {
+               console.error('Error:', error);
+            alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
+            }
+       });
     });
