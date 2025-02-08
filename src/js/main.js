@@ -154,51 +154,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!form) {
          console.error("El formulario no fue encontrado en el DOM.");
         return;
-          }
-    emailjs.init('3-Q_I_P3_12dxNIJb');
+               }
       form.addEventListener('submit', async (e) => {
                            e.preventDefault();
-                const formData = new FormData();
+               
+        const formData = new FormData();
                 upload.cachedFileArray.forEach((file) => {
                 formData.append('files', file); 
     });
+     // Agrega los campos del formulario
+     formData.append('nombre', form.querySelector('[name="nombre"]')?.value || '');
+     formData.append('email', form.querySelector('[name="email"]')?.value || '');
+     formData.append('grupo', form.querySelector('[name="grupo"]')?.value || '');
+     formData.append('espectaculo', form.querySelector('[name="espectaculo"]')?.value || '');
+     formData.append('sinopsis', form.querySelector('[name="sinopsis"]')?.value || '');
+     formData.append('duracion', form.querySelector('[name="duracion"]')?.value || '');
     try {
     // Envia los archivos al backend
-    const response = await fetch('https://backend-de-tata.onrender.com/upload', { 
+    const response = await fetch('', { 
                    method: 'POST',
                 body: formData,
                 signal: AbortSignal.timeout(60000) 
     });
     const data = await response.json();
         if (!response.ok) {
-         throw new Error(data.error || 'Error al subir archivos');
+         throw new Error(data.error || 'Error al procesar el formulario');
+    }
+    alert('Formulario enviado correctamente');
+    form.reset();
+    upload.resetPreviewPanel();
     }
     
-
-        const formDataObject = {
-            nombre: form.querySelector('[name="nombre"]')?.value || '',
-            email: form.querySelector('[name="email"]')?.value || '',
-            grupo: form.querySelector('[name="grupo"]')?.value || '',
-            espectaculo: form.querySelector('[name="espectaculo"]')?.value || '',
-            sinopsis: form.querySelector('[name="sinopsis"]')?.value || '',
-            duracion: form.querySelector('[name="duracion"]')?.value || '',
-            archivos: data.links.join('\n') 
-    };
-    // Envia el correo usando EmailJS
-    emailjs.send('service_a3g0l17', 'template_x4mo2hj', formDataObject)
-    .then(() => {
-           alert('Formulario enviado correctamente');
-           form.reset();
-           upload.resetPreviewPanel();
-    })
-    .catch(error => {
-              console.error('Error:', error);
-                alert('Hubo un error al enviar el formulario');
-    });
-    }  
     catch (error) {
                console.error('Error:', error);
             alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
             }
        });
-    });
+})
