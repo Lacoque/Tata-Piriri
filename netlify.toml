@@ -10,6 +10,6 @@
   
 #redirecciones del backend
 [[redirects]]
-  from = "/upload"
-  to = "https://backend-de-tata.onrender.com/upload"
+  from = "/"
+  to = "https://backend-del-tata.contenidx.workers.dev/"
   status = 200
