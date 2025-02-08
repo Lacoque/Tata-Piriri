@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
      formData.append('duracion', form.querySelector('[name="duracion"]')?.value || '');
     try {
     // Envia los archivos al backend
-    const response = await fetch('https://backend-del-tata.contenidx.workers.dev/', { 
+    const response = await fetch('https://backend-del-tata.contenidx.workers.dev/upload', { 
                    method: 'POST',
                 body: formData,
                 signal: AbortSignal.timeout(60000) 
