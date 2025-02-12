@@ -156,7 +156,9 @@ async function getAccessToken() {
       method: 'GET',
     });
     if (!response.ok) {
-      throw new Error('Error al obtener el token de acceso');
+      const errorDetails = await response.text(); // Captura la respuesta completa
+      console.error('Error al obtener el token de acceso:', errorDetails);
+      throw new Error(`Error al obtener el token de acceso: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
     return data.accessToken;
