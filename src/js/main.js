@@ -192,3 +192,4 @@ document.addEventListener("DOMContentLoaded", () => {
        });
 })
 upload.cachedFileArray;
+console.log('Archivos seleccionados:', upload.cachedFileArray);
