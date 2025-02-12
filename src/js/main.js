@@ -191,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
 //             }
 //        });
 // Obtener el token de acceso del backend
+// Obtener el token de acceso del backend
+// Obtener el token de acceso del backend
 async function getAccessToken() {
     const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
       method: 'GET',
@@ -202,6 +204,8 @@ async function getAccessToken() {
   // Subir archivos directamente a Google Drive
   async function uploadFilesToGoogleDrive(files, accessToken) {
     const GOOGLE_DRIVE_FOLDER_ID = "https://drive.google.com/drive/folders/1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
+    console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
+  
     const fileUrls = [];
   
     for (const file of files) {
@@ -229,6 +233,7 @@ async function getAccessToken() {
       fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
     }
   
+    console.log('URLs de los archivos subidos:', fileUrls);
     return fileUrls;
   }
   
@@ -239,6 +244,7 @@ async function getAccessToken() {
     try {
       // Obtener el token de acceso
       const accessToken = await getAccessToken();
+      console.log('Token de acceso:', accessToken);
   
       // Subir archivos a Google Drive
       const fileUrls = await uploadFilesToGoogleDrive(upload.cachedFileArray, accessToken);
@@ -274,4 +280,3 @@ async function getAccessToken() {
     }
   });
 })
-console.log('Archivos seleccionados:', upload.cachedFileArray);
