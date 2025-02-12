@@ -190,5 +190,88 @@ document.addEventListener("DOMContentLoaded", () => {
 //             alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
 //             }
 //        });
+// Obtener el token de acceso del backend
+async function getAccessToken() {
+    const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
+      method: 'GET',
+    });
+    const data = await response.json();
+    return data.accessToken;
+  }
+  
+  // Subir archivos directamente a Google Drive
+  async function uploadFilesToGoogleDrive(files, accessToken) {
+    const GOOGLE_DRIVE_FOLDER_ID = 'TU_CARPETA_ID'; // Reemplaza con tu ID de carpeta
+    const fileUrls = [];
+  
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append('metadata', new Blob([JSON.stringify({
+        name: file.name,
+        parents: [GOOGLE_DRIVE_FOLDER_ID],
+      })], { type: 'application/json' }));
+      formData.append('file', file);
+  
+      const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        throw new Error(`Error al subir el archivo ${file.name}: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
+      }
+  
+      const data = await response.json();
+      fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
+    }
+  
+    return fileUrls;
+  }
+  
+  // Manejar el envío del formulario
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+  
+    try {
+      // Obtener el token de acceso
+      const accessToken = await getAccessToken();
+  
+      // Subir archivos a Google Drive
+      const fileUrls = await uploadFilesToGoogleDrive(upload.cachedFileArray, accessToken);
+  
+      // Enviar los datos del formulario al backend
+      const formData = {
+        nombre: form.querySelector('[name="nombre"]')?.value || '',
+        email: form.querySelector('[name="email"]')?.value || '',
+        grupo: form.querySelector('[name="grupo"]')?.value || '',
+        espectaculo: form.querySelector('[name="espectaculo"]')?.value || '',
+        sinopsis: form.querySelector('[name="sinopsis"]')?.value || '',
+        duracion: form.querySelector('[name="duracion"]')?.value || '',
+        fileUrls,
+      };
+  
+      const response = await fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al procesar el formulario');
+      }
+  
+      alert('Formulario enviado correctamente');
+      form.reset();
+      upload.resetPreviewPanel();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
+    }
+  });
 })
 console.log('Archivos seleccionados:', upload.cachedFileArray);
