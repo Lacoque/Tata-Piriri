@@ -256,8 +256,14 @@ form.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
+    if (!backendResponse.ok) {
+      const errorData = await backendResponse.json(); 
+      throw new Error(errorData.error || 'Error al procesar el formulario en el backend');
+    }
 
     const backendData = await backendResponse.json();
+    console.log('Respuesta del backend:', backendData);
+alert('Formulario enviado correctamente');
     if (!backendResponse.ok) {
       throw new Error(backendData.error || 'Error al procesar el formulario en el backend');
     }
