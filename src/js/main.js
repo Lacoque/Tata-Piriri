@@ -201,7 +201,7 @@ async function getAccessToken() {
   
   // Subir archivos directamente a Google Drive
   async function uploadFilesToGoogleDrive(files, accessToken) {
-    const GOOGLE_DRIVE_FOLDER_ID = 'TU_CARPETA_ID'; // Reemplaza con tu ID de carpeta
+    const GOOGLE_DRIVE_FOLDER_ID = "https://drive.google.com/drive/folders/1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
     const fileUrls = [];
   
     for (const file of files) {
