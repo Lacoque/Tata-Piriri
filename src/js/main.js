@@ -150,53 +150,14 @@ document.addEventListener("DOMContentLoaded", () => {
     accept: ".jpg, .jpeg, .png",
     baseImage: imgBgFile,
     });
-//     const form = document.querySelector('form[name="contact"]');
-//     if (!form) {
-//          console.error("El formulario no fue encontrado en el DOM.");
-//         return;
-//                }
-//       form.addEventListener('submit', async (e) => {
-//                            e.preventDefault();
-               
-//         const formData = new FormData();
-//                 upload.cachedFileArray.forEach((file) => {
-//                 formData.append('files', file); 
-//     });
-//      // Agrega los campos del formulario
-//      formData.append('nombre', form.querySelector('[name="nombre"]')?.value || '');
-//      formData.append('email', form.querySelector('[name="email"]')?.value || '');
-//      formData.append('grupo', form.querySelector('[name="grupo"]')?.value || '');
-//      formData.append('espectaculo', form.querySelector('[name="espectaculo"]')?.value || '');
-//      formData.append('sinopsis', form.querySelector('[name="sinopsis"]')?.value || '');
-//      formData.append('duracion', form.querySelector('[name="duracion"]')?.value || '');
-//     try {
-//     // Envia los archivos al backend
-//     const response = await fetch('https://backend-del-tata.contenidx.workers.dev/upload', { 
-//                    method: 'POST',
-//                 body: formData,
-//                 signal: AbortSignal.timeout(60000) 
-//     });
-//     const data = await response.json();
-//         if (!response.ok) {
-//          throw new Error(data.error || 'Error al procesar el formulario');
-//     }
-//     alert('Formulario enviado correctamente');
-//     form.reset();
-//     upload.resetPreviewPanel();
-//     }
-    
-//     catch (error) {
-//                console.error('Error:', error);
-//             alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
-//             }
-//        });
-// Obtener el token de acceso del backend
-// Obtener el token de acceso del backend
-// Obtener el token de acceso del backend
+
 async function getAccessToken() {
     const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
       method: 'GET',
     });
+    if (!response.ok) {
+      throw new Error('Error al obtener el token de acceso');
+    }
     const data = await response.json();
     return data.accessToken;
   }
