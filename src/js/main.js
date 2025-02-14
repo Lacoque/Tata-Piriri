@@ -119,16 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     enviarSpan.classList.add('d-none');
     enviandoSpan.classList.remove('d-none');
-
+    // Deshabilita el btn de Enviar
     this.disabled = true;
-
-    // setTimeout(() => {
-    //     console.log('Formulario enviado');
-
-    //     enviarSpan.classList.remove('d-none');
-    //     enviandoSpan.classList.add('d-none');
-    //     this.disabled = false;
-    // }, 3000);
+    setTimeout(() => {
+      // Vuelve a activar el btn de Enviar
+        enviarSpan.classList.remove('d-none');
+        enviandoSpan.classList.add('d-none');
+        this.disabled = false;
+    }, 7000);
   });
 
 
