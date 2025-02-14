@@ -1052,7 +1052,7 @@ footer #int img {
 	grid-auto-rows: minmax(60px, auto);
 }
 
-#mapa iframe {
+iframe#mapa {
 	border: none;
 	filter: grayscale(100%);
 }
@@ -1257,6 +1257,23 @@ div article .info-obras p {
 .gente i {
 	opacity: 1;
 	transition: all .3s;
+}
+
+a.sumate-equipo {
+	text-align: center;
+    text-decoration: none;
+}
+
+@media (hover:hover) {
+	#nosotros-tarjetas > a.sumate-equipo:hover {
+		transform: scale(1.02);
+		box-shadow: 0px 7px 35px var(--marron);
+	}
+	#nosotros-tarjetas > a.sumate-equipo:hover article img {
+		transform: scale(1.05);
+		box-shadow: 0px 0px 10px #4b4b4b;
+		transform: translateY(-20px);
+	}
 }
 
 /* FIN NOSOTROS */
@@ -1499,13 +1516,34 @@ div#form-contacto p i input[type="file"]::file-selector-button {
 	height: 16vh;
 }
 
+#form-contacto > div:first-of-type > div {
+	display: flex;
+	height: fit-content;
+	gap: .75rem;
+	align-items: center;
+	font-size: 18px;
+	line-height: 20px;
+	color: var(--gris);
+	border: 2px solid var(--gris);
+	background-color: var(--amarillo);
+	border-radius: 10px;
+	overflow: hidden;
+}
+#form-contacto > div:first-of-type > div p {
+	margin: 0;
+	padding: .0rem .75rem .0rem 0rem;
+}
+#form-contacto > div:first-of-type > div > div {
+	color: var(--bordo);
+	background-color: var(--gris);
+	padding: .75rem .75rem .75rem .75rem;
+}
+
 a#btn-transicion {
     position: relative;
     overflow: hidden;
-    /* border: 1px solid var(--purpura); */
     color: var(--purpura);
     display: inline-block;
-    /* padding: .5rem 2rem; */
     text-decoration: none;
     cursor: pointer;
     background: var(--gris);
@@ -1574,3 +1612,42 @@ a#btn-transicion:hover span:last-child {
 
 
 /* FIN FORMUARIO */
+
+
+
+
+/* Mapas */
+#obras-y-sedes {
+	background-color: var(--purpura);
+}
+
+.mapas-teatros ul {
+	justify-content: center;
+}
+
+.mapas-teatros .nav-link,
+.mapas-teatros .nav-link {
+	color: var(--amarillo);
+}
+
+.mapas-teatros .nav-link:focus,
+.mapas-teatros .nav-link:hover {
+	color: var(--amarillo);
+}
+
+.mapas-teatros .nav-link:hover {
+	border-color: var(--amarillo);
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+	color: var(--purpura);
+	background-color: var(--gris);
+}
+
+.mapas-teatros div[role="tabpanel"]{
+	background-color: var(--gris);
+}
+
+
+/* Fin Mapas */

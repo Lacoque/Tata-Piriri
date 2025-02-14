@@ -21,8 +21,8 @@
                 <li><a href="index.html#info-entradas">Entradas</a></li>
                 <li><a href="obras-y-sedes.html#obras">Obras</a></li>
                 <li><a href="obras-y-sedes.html#sedes">Sedes</a></li>
-                <li><a href="nosotros.html">Nosotres</a></li>
-                <li><a href="form.html#top">Sumate</a></li>
+                <li><a href="nosotros.html">Equipo</a></li>
+                <li><a href="form.html#top">Convocatoria</a></li>
                 <div class="nav-redes">
                     <li><a href="https://www.instagram.com/tata_piriri/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="https://www.facebook.com/TataPiriri" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -34,9 +34,14 @@
      <section id="form">
     
             <div id="form-contacto">
-                <h2>¡Sumate al festi!</h2>
+                <div class="d-flex gap-2 align-items-center">
+                    <h2>¡Están convocados al festival!</h2>
+                    <div>
+                        <div><i class="fa-regular fa-flag"></i></div>
+                        <p>Este formulario es para la edición del 2026.</p>
+                    </div>
+                </div>
                 <form name="contact">
-                
                 <p>
                     Referentes
                     <label>
@@ -83,10 +88,15 @@
                         Vamos a procesar el datos y comunicarnos con el referente lo antes posible.
                     </span>
                     <p class="btn-enviar">
-                       <button type="submit" id="btn-transicion">
-                            <span class="text">ENVIAR</span>
-                            <span>¡Gracias por participar!</span>
+                        <button class="btn btn-primary gap-2" type="submit" id="btn-transicion">
+                            <span id="enviar" class="text">ENVIAR</span>
+                            <span id="enviando" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                         </button>
+
+                        <!-- <button class="btn btn-primary gap-2" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button> -->
                     </p>  
                 </div>
              </form>
@@ -103,16 +113,17 @@
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                        <a class="px-3 py-2" href="#top"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
+                                                <a class="px-3 py-2" href="form-team.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
+
                     </p>
                 </div>
             </div>
             <div class="item-footer">
                 <div class="d-flex flex-column">
-                    <a class="px-1 mb-1" href="#inicio">Grupos y espectáculos</a>
-                    <a class="px-1 mb-1" href="#inicio">Quienes somos</a>
-                    <a class="px-1 mb-1" href="#inicio">Más festivales</a>
-                    <a class="px-1 mb-1" href="#inicio">Agradecimientos</a>
+                    <a class="px-1 mb-1" href="/obras-y-sedes.html">Grupos y espectáculos</a>
+                    <a class="px-1 mb-1" href="/nosotros.html">Quienes somos</a>
+                    <a class="px-1 mb-1" href="/nosotros.html#otros-festivales">Más festivales</a>
+                    <a class="px-1 mb-1" href="/index.html">Inicio</a>
                     <p class="px-1 mb-1">Por el momento, las entradas virtuales las vendemos por Whatsapp.</p>
                 </div>
             </div>
@@ -122,17 +133,19 @@
                 <p class="px-1">
                     Este festival cuenta con el apoyo del
                 </p>
-                <a href="https://inteatro.ar/" target="_blank" rel="noopener noreferrer">
-                    <img class="px-1" src="/assets/img/logo-int-blanco.svg" alt="Marca del Instituto Nacional del Teatro">
-                </a>
+                <div class="d-flex gap-1">
+                    <a href="https://inteatro.ar/" target="_blank" rel="noopener noreferrer">
+                        <img class="px-1" src="/assets/img/logo-int-blanco.svg" alt="Marca del Instituto Nacional del Teatro">
+                    </a>
+                    <img src="/assets/img/2023-04-Recurso-31-Muni-Eldo.png" alt="Logo de Municipalidad de Eldorado">
+                </div>
             </div>
             <a class="prueba-gsap px-3 py-2" href="#top"><i class="fa-solid fa-angles-up px-1"></i></a>
         </div>
     </footer>
+
     <script type="module" src="./src/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-   
 
-    
 </body>
 </html>
