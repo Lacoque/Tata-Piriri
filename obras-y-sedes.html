@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obras y Sedes | Festival de Títeres</title>
 
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="/css/css/bootstrap-grid.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body id="obras-y-sedes">
 
     <section id="top"></section>
     <section id="section-navegador">
@@ -21,8 +19,8 @@
                 <li><a href="index.html#info-entradas">Entradas</a></li>
                 <li><a href="obras-y-sedes.html#obras">Obras</a></li>
                 <li><a href="obras-y-sedes.html#sedes">Sedes</a></li>
-                <li><a href="nosotros.html">Nosotres</a></li>
-                <li><a href="form.html#top">Sumate</a></li>
+                <li><a href="nosotros.html">Equipo</a></li>
+                <li><a href="form.html#top">Convocatoria</a></li>
                 <div class="nav-redes">
                     <li><a href="https://www.instagram.com/tata_piriri/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="https://www.facebook.com/TataPiriri" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -121,7 +119,8 @@
     <section id="sedes">
         <div class="sedes-general">
             <div class="sedes-info">
-                <div>
+                <div id="aca-los-ves">
+                    <h5>Acá los podés ver</h5>
                     <h1>Sede principal</h1>
                     <div>
                         <h4>Eldorado</h4>
@@ -156,27 +155,59 @@
             </div>
         </div>
     </section>
-    <!-- Mapa -->
-    <section id="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1461.4530666629596!2d-54.60949837337362!3d-26.411057614940265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f772009df4de73%3A0x38de65868810db01!2sCIRCULO%20MEDICO%20ALTO%20PARANA!5e1!3m2!1ses!2sar!4v1734555892121!5m2!1ses!2sar" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <section>
+        <div class="mapas-teatros">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="circulo-medico-tab" data-bs-toggle="tab" data-bs-target="#circulo-medico" type="button" role="tab" aria-controls="circulo-medico" aria-selected="true">Sala del Círculo Médico</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="teatro-del-pueblo-tab" data-bs-toggle="tab" data-bs-target="#teatro-del-pueblo" type="button" role="tab" aria-controls="teatro-del-pueblo" aria-selected="false">Teatro Del Pueblo</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="salon-eibl-tab" data-bs-toggle="tab" data-bs-target="#salon-eibl" type="button" role="tab" aria-controls="salon-eibl" aria-selected="false">Salón Eibl</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="circulo-medico" role="tabpanel" aria-labelledby="circulo-medico-tab">
+                    <div>
+                        <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=CIRCULO%20MEDICO%20ALTO%20PARANA%20C.%20Paraguay%201542,%20N3380%20Eldorado,%20Misiones+(Sala%20del%20Circulo%20M%C3%A9dico)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="teatro-del-pueblo" role="tabpanel" aria-labelledby="teatro-del-pueblo-tab">
+                    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Club%20de%20Teatro%20del%20Pueblo,%20km%202,%20Eldorado,%20Misiones,%20Argentina+(Teatro%20del%20Pueblo)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                </div>
+                <div class="tab-pane fade" id="salon-eibl" role="tabpanel" aria-labelledby="salon-eibl-tab">
+                    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Sal%C3%B3n%20Cultural%20Eibl+(Sal%C3%B3n%20Eibl)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Mapa -->
+    <!-- <section id="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1461.4530666629596!2d-54.60949837337362!3d-26.411057614940265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f772009df4de73%3A0x38de65868810db01!2sCIRCULO%20MEDICO%20ALTO%20PARANA!5e1!3m2!1ses!2sar!4v1734555892121!5m2!1ses!2sar" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section> -->
+
+
 
     <footer class="d-flex justify-content-between">
         <div class="d-flex">
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                                                <a class="px-3 py-2" href="form.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
+                                                <a class="px-3 py-2" href="form-team.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
 
                     </p>
                 </div>
             </div>
             <div class="item-footer">
                 <div class="d-flex flex-column">
-                    <a class="px-1 mb-1" href="#inicio">Grupos y espectáculos</a>
-                    <a class="px-1 mb-1" href="#inicio">Quienes somos</a>
-                    <a class="px-1 mb-1" href="#inicio">Más festivales</a>
-                    <a class="px-1 mb-1" href="#inicio">Agradecimientos</a>
+                    <a class="px-1 mb-1" href="/obras-y-sedes.html">Grupos y espectáculos</a>
+                    <a class="px-1 mb-1" href="/nosotros.html">Quienes somos</a>
+                    <a class="px-1 mb-1" href="/nosotros.html#otros-festivales">Más festivales</a>
+                    <a class="px-1 mb-1" href="/index.html">Inicio</a>
                     <p class="px-1 mb-1">Por el momento, las entradas virtuales las vendemos por Whatsapp.</p>
                 </div>
             </div>
@@ -186,19 +217,17 @@
                 <p class="px-1">
                     Este festival cuenta con el apoyo del
                 </p>
-                <a href="https://inteatro.ar/" target="_blank" rel="noopener noreferrer">
-                    <img class="px-1" src="/assets/img/logo-int-blanco.svg" alt="Marca del Instituto Nacional del Teatro">
-                </a>
+                <div class="d-flex gap-1">
+                    <a href="https://inteatro.ar/" target="_blank" rel="noopener noreferrer">
+                        <img class="px-1" src="/assets/img/logo-int-blanco.svg" alt="Marca del Instituto Nacional del Teatro">
+                    </a>
+                    <img src="/assets/img/2023-04-Recurso-31-Muni-Eldo.png" alt="Logo de Municipalidad de Eldorado">
+                </div>
             </div>
             <a class="prueba-gsap px-3 py-2" href="#top"><i class="fa-solid fa-angles-up px-1"></i></a>
         </div>
     </footer>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script> -->
-    <!-- <script src="js/custom.js"></script> -->
-    <!-- <script src="/js/js/bootstrap.js" crossorigin="anonymous"></script> -->
     <script src="https://unpkg.com/split-type"></script>
     <script type="module" src="./src/js/main.js"></script>
     

@@ -68,8 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         open(`https://wa.me/543751362949?text=${encodeURIComponent(mensaje)}`);
     };
 
-
-
+    
 
     // Slider de descripción de las obras
     const articulos = gsap.utils.toArray(".slider article")
@@ -92,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2, #quienes-somos h2, #otros-festivales h2, #form h2'); // Selecciona TODOS los h2
+    const h2Elements = document.querySelectorAll('#info-entradas h2, #inicio .accion h2, #info-sedes h2, #obras h2, #info-programacion h2, #quienes-somos h2, #otros-festivales h2, #form h2, #aca-los-ves h5'); // Selecciona TODOS los h2
 
     h2Elements.forEach(h2 => { // Itera sobre CADA h2
         const textoSplit = new SplitType(h2); // SplitType para CADA h2
@@ -110,9 +109,33 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-    
+
+
+  // Spinner
+  document.getElementById('btn-transicion').addEventListener('click', function () {
+    const enviarSpan = document.getElementById('enviar');
+    const enviandoSpan = document.getElementById('enviando');
+
+
+    enviarSpan.classList.add('d-none');
+    enviandoSpan.classList.remove('d-none');
+
+    this.disabled = true;
+
+    // setTimeout(() => {
+    //     console.log('Formulario enviado');
+
+    //     enviarSpan.classList.remove('d-none');
+    //     enviandoSpan.classList.add('d-none');
+    //     this.disabled = false;
+    // }, 3000);
+  });
+
+
+
    //formulario
-   if (window.location.pathname.includes("form.html")) {
+  
+  if (window.location.pathname.includes("form.html")) {
     import('file-upload-with-preview')
       .then(module => {
         const FileUploadWithPreview = module.default;
@@ -125,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
               selectedCount: "Archivos seleccionados",
               label: "",
             },
-            accept: ".jpg, .jpeg, .png",
+            accept: ".jpg, .jpeg, .png, .pdf",
             baseImage: 'url("/assets/img/marca-tata-piriri.png")',
           });
         } catch (error) {
@@ -146,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedCount: "Archivos seleccionados",
       label: "",
     },
-    accept: ".jpg, .jpeg, .png",
+    accept: ".jpg, .jpeg, .png, .pdf",
     baseImage: imgBgFile,
   });
   
