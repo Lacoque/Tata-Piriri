@@ -291,5 +291,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 })
-const text = await response.text();
-console.log('Respuesta del servidor:', text);
