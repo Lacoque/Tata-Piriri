@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 
-  async function getAccessToken() {
+  async function fetchAccessToken() {
     const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
       method: 'GET',
     });
