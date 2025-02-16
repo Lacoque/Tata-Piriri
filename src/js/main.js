@@ -183,9 +183,17 @@ document.addEventListener("DOMContentLoaded", () => {
       throw new Error(`Error al obtener el token de acceso: ${response.status} ${response.statusText}`);
     }
   
-    const data = await response.json();
-    return data.accessToken;
+    const text = await response.text();
+    console.log("Respuesta del servidor:", text)
+    try {
+      const data = JSON.parse(text);
+      return data.accessToken;
+    } catch (error) {
+      console.error('La respuesta del servidor no es un JSON válido:', text);
+      throw new Error('La respuesta del servidor no es un JSON válido');
+    }
   }
+  
   
   async function uploadFilesToGoogleDrive(files, accessToken) {
     const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
