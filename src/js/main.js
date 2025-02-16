@@ -171,14 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
     baseImage: imgBgFile,
   });
   
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * Obtiene un token de acceso para interactuar con la API de Google Drive.
- * Lanza un error si no se puede obtener el token de acceso.
- * @returns {string} El token de acceso.
- */
-/******  9ef8b324-3f79-4b77-9b5c-feb8bc6c4ee8  *******/
-  async function fetchAccessToken() {
+
+  async function getAccessToken() {
     const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
       method: 'GET',
     });
