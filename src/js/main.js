@@ -279,25 +279,51 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('Correo electrónico enviado correctamente');
   
       // Enviar los datos del formulario al backend
-      const response = await fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
+      fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        const text = await response.text();
-        console.error("respuesta del servidor:", text)
-        throw new Error('Error al procesar el formulario en el backend');
-      }
-  const data =await response.json();
-  console.log("respuesta del servidor:", data)
-      alert('Formulario enviado correctamente');
-      form.reset();
-      upload.resetPreviewPanel();
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            return response.json(); // Parse as JSON if it's JSON
+          } else {
+            return response.text(); // Otherwise, treat it as plain text
+          }
+        })
+        .then(data => {
+          console.log('Data:', data); // Log the data, whether it's JSON or plain text
+          if (typeof data === 'object') {
+            // If you have an object.
+            if (data.status === "OK") {
+              // Process as success
+              console.log("All ok");
+              alert('Formulario enviado correctamente');
+              form.reset();
+              upload.resetPreviewPanel();
+            }
+          } else if (typeof data === 'string' && data === "OK") {
+            // Process as a success
+            console.log("All ok");
+            alert('Formulario enviado correctamente');
+            form.reset();
+            upload.resetPreviewPanel();
+          } else {
+            // It is an error
+            alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
+          }
+        })
+        .catch(error => {
+          console.error('Error during fetch:', error);
+          alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
+        });
     } catch (error) {
       console.error('Error:', error);
       alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
     }
-  })
+  });
 })
