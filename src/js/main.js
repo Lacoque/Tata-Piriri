@@ -293,32 +293,15 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(text => {
             console.log('Respuesta del servidor:', text);
     
-            if (text.trim() === "OK") {
+            if (text.trim() === "") {
               // Procesar "OK" como éxito
               console.log("Formulario procesado correctamente");
               alert('Formulario enviado correctamente');
               form.reset();
               upload.resetPreviewPanel();
             } else {
-              try {
-                const data = JSON.parse(text); // Intentar parsear como JSON
-                console.log("Datos recibidos:", data);
-    
-                if (data.status === "OK") {
-                  // Procesar como éxito
-                  console.log("Formulario procesado correctamente");
-                  alert('Formulario enviado correctamente');
-                  form.reset();
-                  upload.resetPreviewPanel();
-                } else {
-                  // Es un error
-                  alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-                }
-              } catch (err) {
-                console.error("Error al parsear la respuesta como JSON:", err, text);
-                alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
+            alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
               }
-            }
           })
           .catch(error => {
             console.error('Error durante la solicitud:', error);
