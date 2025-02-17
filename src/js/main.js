@@ -279,17 +279,19 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('Correo electrónico enviado correctamente');
   
       // Enviar los datos del formulario al backend
-      const backendResponse = await fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
+      const response = await fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
   
-      if (!backendResponse.ok) {
-        const errorData = await backendResponse.json();
-        throw new Error(errorData.error || 'Error al procesar el formulario en el backend');
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("respuesta del servidor:", text)
+        throw new Error('Error al procesar el formulario en el backend');
       }
-  
+  const data =await response.json();
+  console.log("respuesta del servidor:", data)
       alert('Formulario enviado correctamente');
       form.reset();
       upload.resetPreviewPanel();
