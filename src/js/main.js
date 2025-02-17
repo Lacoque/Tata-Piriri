@@ -288,42 +288,45 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
-          const contentType = response.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            return response.json(); // Parse as JSON if it's JSON
-          } else {
-            return response.text(); // Otherwise, treat it as plain text
-          }
+          return response.text();
         })
-        .then(data => {
-          console.log('Data:', data); // Log the data, whether it's JSON or plain text
-          if (typeof data === 'object') {
-            // If you have an object.
-            if (data.status === "OK") {
-              // Process as success
-              console.log("All ok");
+          .then(text => {
+            console.log('Respuesta del servidor:', text);
+    
+            if (text.trim() === "OK") {
+              // Procesar "OK" como éxito
+              console.log("Formulario procesado correctamente");
               alert('Formulario enviado correctamente');
               form.reset();
               upload.resetPreviewPanel();
+            } else {
+              try {
+                const data = JSON.parse(text); // Intentar parsear como JSON
+                console.log("Datos recibidos:", data);
+    
+                if (data.status === "OK") {
+                  // Procesar como éxito
+                  console.log("Formulario procesado correctamente");
+                  alert('Formulario enviado correctamente');
+                  form.reset();
+                  upload.resetPreviewPanel();
+                } else {
+                  // Es un error
+                  alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
+                }
+              } catch (err) {
+                console.error("Error al parsear la respuesta como JSON:", err, text);
+                alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
+              }
             }
-          } else if (typeof data === 'string' && data === "OK") {
-            // Process as a success
-            console.log("All ok");
-            alert('Formulario enviado correctamente');
-            form.reset();
-            upload.resetPreviewPanel();
-          } else {
-            // It is an error
+          })
+          .catch(error => {
+            console.error('Error durante la solicitud:', error);
             alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-          }
-        })
-        .catch(error => {
-          console.error('Error during fetch:', error);
-          alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-        });
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
-    }
+          });
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
+      }
   });
 })
