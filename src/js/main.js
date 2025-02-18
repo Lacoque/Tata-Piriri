@@ -251,11 +251,19 @@ document.addEventListener("DOMContentLoaded", () => {
   
     return response.json();
   }
-  
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
   
     try {
+      // Mostrar el spinner
+      const enviarSpan = document.getElementById('enviar');
+      const enviandoSpan = document.getElementById('enviando');
+      const submitButton = document.getElementById('btn-transicion');
+  
+      enviarSpan.classList.add('d-none');
+      enviandoSpan.classList.remove('d-none');
+      submitButton.disabled = true;
+  
       // Obtener el token de acceso
       const accessToken = await getAccessToken();
       console.log('Token de acceso:', accessToken);
@@ -286,30 +294,37 @@ document.addEventListener("DOMContentLoaded", () => {
       })
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
           }
-          return response.text();
+          return response.json(); // Leer la respuesta como JSON
         })
-          .then(text => {
-            console.log('Respuesta del servidor:', text);
-    
-            if (text.trim() === "") {
-              // Procesar "OK" como éxito
-              console.log("Formulario procesado correctamente");
-              alert('Formulario enviado correctamente');
-              form.reset();
-              upload.resetPreviewPanel();
-            } else {
-            alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-              }
-          })
-          .catch(error => {
-            console.error('Error durante la solicitud:', error);
-            alert("Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-          });
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Hubo un error al procesar el formulario. Por favor, inténtalo de nuevo.');
-      }
+        .then(data => {
+          console.log('Respuesta del servidor:', data);
+  
+          if (data.status === "success") {
+            alert(data.message); // Mostrar mensaje de éxito
+            form.reset();
+            upload.resetPreviewPanel();
+          } else {
+            alert(data.message); // Mostrar mensaje de error
+          }
+        })
+        .catch(error => {
+          console.error('Error durante la solicitud:', error);
+          alert("Hubo un error al procesar el formulario.");
+        });
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al procesar el formulario.');
+    } finally {
+      // Ocultar el spinner
+      const enviarSpan = document.getElementById('enviar');
+      const enviandoSpan = document.getElementById('enviando');
+      const submitButton = document.getElementById('btn-transicion');
+  
+      enviarSpan.classList.remove('d-none');
+      enviandoSpan.classList.add('d-none');
+      submitButton.disabled = false;
+    }
   });
 })
