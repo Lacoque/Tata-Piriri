@@ -292,36 +292,36 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-          }
-          return response.text(); // Leer la respuesta como JSON
-        })
-        .then(text => {
-          console.log('Respuesta del servidor:', text);
-          try {
-            const data = JSON.parse(text); // Intentar parsear como JSON
-            console.log("Datos recibidos:", data)
+      //   .then(response => {
+      //     if (!response.ok) {
+      //       throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+      //     }
+      //     return response.text(); // Leer la respuesta como JSON
+      //   })
+      //   .then(text => {
+      //     console.log('Respuesta del servidor:', text);
+      //     try {
+      //       const data = JSON.parse(text); // Intentar parsear como JSON
+      //       console.log("Datos recibidos:", data)
   
-          if (data.status === "success") {
-            alert(data.message); // Mostrar mensaje de éxito
-            form.reset();
-            upload.resetPreviewPanel();
-          } else {
-            alert(data.message); // Mostrar mensaje de error
-          }
-        }catch (error) {
-          if (text.trim() === "OK") {
-            alert("Formulario enviado correctamente");
-            form.reset();
-            upload.resetPreviewPanel();
-          } else {
-            console.error("Respuesta inesperada del servidor:", text);
-            alert("Hubo un error al procesar el formulario.");
-          }
-        }
-      })
+      //     if (data.status === "success") {
+      //       alert(data.message); // Mostrar mensaje de éxito
+      //       form.reset();
+      //       upload.resetPreviewPanel();
+      //     } else {
+      //       alert(data.message); // Mostrar mensaje de error
+      //     }
+      //   }catch (error) {
+      //     if (text.trim() === "OK") {
+      //       alert("Formulario enviado correctamente");
+      //       form.reset();
+      //       upload.resetPreviewPanel();
+      //     } else {
+      //       console.error("Respuesta inesperada del servidor:", text);
+      //       alert("Hubo un error al procesar el formulario.");
+      //     }
+      //   }
+      // })
         .catch(error => {
           console.error('Error durante la solicitud:', error);
           alert("Hubo un error al procesar el formulario.");
