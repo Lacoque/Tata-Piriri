@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   async function sendEmail(formData) {
-    const EMAILJS_PUBLIC_KEY = '3-Q_I_P3_12dxNIJb';
+    const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
     const EMAILJS_SERVICE_ID = 'service_a3g0l17';
     const EMAILJS_TEMPLATE_ID = 'template_x4mo2hj';
   
@@ -296,10 +296,13 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
           }
-          return response.json(); // Leer la respuesta como JSON
+          return response.text(); // Leer la respuesta como JSON
         })
-        .then(data => {
-          console.log('Respuesta del servidor:', data);
+        .then(text => {
+          console.log('Respuesta del servidor:', text);
+          try {
+            const data = JSON.parse(text); // Intentar parsear como JSON
+            console.log("Datos recibidos:", data)
   
           if (data.status === "success") {
             alert(data.message); // Mostrar mensaje de éxito
@@ -308,7 +311,17 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             alert(data.message); // Mostrar mensaje de error
           }
-        })
+        }catch (error) {
+          if (text.trim() === "OK") {
+            alert("Formulario enviado correctamente");
+            form.reset();
+            upload.resetPreviewPanel();
+          } else {
+            console.error("Respuesta inesperada del servidor:", text);
+            alert("Hubo un error al procesar el formulario.");
+          }
+        }
+      })
         .catch(error => {
           console.error('Error durante la solicitud:', error);
           alert("Hubo un error al procesar el formulario.");
