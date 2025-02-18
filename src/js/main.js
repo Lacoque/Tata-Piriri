@@ -283,8 +283,8 @@ document.addEventListener("DOMContentLoaded", () => {
       };
   
       // Enviar el correo electrónico desde el frontend
-      await sendEmail(formData);
-      console.log('Correo electrónico enviado correctamente');
+      // await sendEmail(formData);
+      // console.log('Correo electrónico enviado correctamente');
   
       // Enviar los datos del formulario al backend
       fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
