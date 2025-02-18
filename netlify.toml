@@ -13,3 +13,11 @@
   from = "/upload"
   to = "https://backend-del-tata.contenidx.workers.dev/upload"
   status = 200
+  [[redirects]]
+  from = "/process-form"
+  to = "https://backend-del-tata.contenidx.workers.dev/process-form"
+  status = 200
+  [[redirects]]
+  from = "/get-access-token"
+  to = "https://backend-del-tata.contenidx.workers.dev/get-access-token"
+  status = 200
