@@ -132,212 +132,169 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
    //formulario
-  
-  if (window.location.pathname.includes("form.html")) {
-    import('file-upload-with-preview')
-      .then(module => {
-        const FileUploadWithPreview = module.default;
-        try {
-          new FileUploadWithPreview('file-upload', {
-            multiple: true,
-            text: {
-              chooseFile: "Seleccioná el archivo",
-              browse: "Explorar",
-              selectedCount: "Archivos seleccionados",
-              label: "",
-            },
-            accept: ".jpg, .jpeg, .png, .pdf",
-            baseImage: 'url("/assets/img/marca-tata-piriri.png")',
-          });
-        } catch (error) {
-          console.error("Error al inicializar FileUploadWithPreview:", error);
-        }
-      })
-      .catch(error => {
-        console.error("Error al cargar FileUploadWithPreview:", error);
-      });
-  }
-  
-  const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-  const upload = new FileUploadWithPreview('file-upload', {
-    multiple: true,
-    text: {
-      chooseFile: "Seleccioná el archivo",
-      browse: "Explorar",
-      selectedCount: "Archivos seleccionados",
-      label: "",
-    },
-    accept: ".jpg, .jpeg, .png, .pdf",
-    baseImage: imgBgFile,
-  });
-  
-
-  async function getAccessToken() {
-    const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
-      method: 'GET',
-    });
-  
-    if (!response.ok) {
-      const errorDetails = await response.text();
-      console.error('Error al obtener el token de acceso:', errorDetails);
-      throw new Error(`Error al obtener el token de acceso: ${response.status} ${response.statusText}`);
-    }
-  
-    const text = await response.text();
-    console.log("Respuesta del servidor:", text)
-    try {
-      const data = JSON.parse(text);
-      return data.accessToken;
-    } catch (error) {
-      console.error('La respuesta del servidor no es un JSON válido:', text);
-      throw new Error('La respuesta del servidor no es un JSON válido');
-    }
-  }
-  
-  
-  async function uploadFilesToGoogleDrive(files, accessToken) {
-    const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
-    console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
-  
-    const fileUrls = [];
-  
-    for (const file of files) {
-      const formData = new FormData();
-      formData.append('metadata', new Blob([JSON.stringify({
-        name: file.name,
-        parents: [GOOGLE_DRIVE_FOLDER_ID],
-      })], { type: 'application/json' }));
-      formData.append('file', file);
-  
-      const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${accessToken}` },
-        body: formData,
-      });
-  
-      if (!response.ok) {
-        const errorDetails = await response.text();
-        throw new Error(`Error al subir el archivo ${file.name}: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
-      }
-  
-      const data = await response.json();
-      fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
-    }
-  
-    console.log('URLs de los archivos subidos:', fileUrls);
-    return fileUrls;
-  }
-  
-  async function sendEmail(formData) {
-    const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
-    const EMAILJS_SERVICE_ID = 'service_a3g0l17';
-    const EMAILJS_TEMPLATE_ID = 'template_x4mo2hj';
-  
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id: EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id: EMAILJS_PUBLIC_KEY,
-        template_params: formData,
-      }),
-    });
-  
-    if (!response.ok) {
-      const errorDetails = await response.text();
-      throw new Error(`Error al enviar el correo electrónico: ${errorDetails}`);
-    }
-  
-    return response.json();
-  }
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-  
-    try {
-      // Mostrar el spinner
-      const enviarSpan = document.getElementById('enviar');
-      const enviandoSpan = document.getElementById('enviando');
-      const submitButton = document.getElementById('btn-transicion');
-  
-      enviarSpan.classList.add('d-none');
-      enviandoSpan.classList.remove('d-none');
-      submitButton.disabled = true;
-  
-      // Obtener el token de acceso
-      const accessToken = await getAccessToken();
-      console.log('Token de acceso:', accessToken);
-  
-      // Subir archivos a Google Drive
-      const fileUrls = await uploadFilesToGoogleDrive(upload.cachedFileArray, accessToken);
-  
-      // Preparar los datos del formulario
-      const formData = {
-        nombre: form.querySelector('[name="nombre"]')?.value || '',
-        email: form.querySelector('[name="email"]')?.value || '',
-        grupo: form.querySelector('[name="grupo"]')?.value || '',
-        espectaculo: form.querySelector('[name="espectaculo"]')?.value || '',
-        sinopsis: form.querySelector('[name="sinopsis"]')?.value || '',
-        duracion: form.querySelector('[name="duracion"]')?.value || '',
-        fileUrls: fileUrls.join(', '), // URLs de los archivos subidos
-      };
-  
-      // Enviar el correo electrónico desde el frontend
-      // await sendEmail(formData);
-      // console.log('Correo electrónico enviado correctamente');
-  
-      // Enviar los datos del formulario al backend
-      fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-      //   .then(response => {
-      //     if (!response.ok) {
-      //       throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-      //     }
-      //     return response.text(); // Leer la respuesta como JSON
-      //   })
-      //   .then(text => {
-      //     console.log('Respuesta del servidor:', text);
-      //     try {
-      //       const data = JSON.parse(text); // Intentar parsear como JSON
-      //       console.log("Datos recibidos:", data)
-  
-      //     if (data.status === "success") {
-      //       alert(data.message); // Mostrar mensaje de éxito
-      //       form.reset();
-      //       upload.resetPreviewPanel();
-      //     } else {
-      //       alert(data.message); // Mostrar mensaje de error
-      //     }
-      //   }catch (error) {
-      //     if (text.trim() === "OK") {
-      //       alert("Formulario enviado correctamente");
-      //       form.reset();
-      //       upload.resetPreviewPanel();
-      //     } else {
-      //       console.error("Respuesta inesperada del servidor:", text);
-      //       alert("Hubo un error al procesar el formulario.");
-      //     }
-      //   }
-      // })
-        .catch(error => {
-          console.error('Error durante la solicitud:', error);
-          alert("Hubo un error al procesar el formulario.");
+  // Verifica si estamos en la página del formulario
+if (window.location.pathname.includes("form.html")) {
+  import('file-upload-with-preview')
+    .then(module => {
+      const FileUploadWithPreview = module.default;
+      try {
+        // Inicializa el componente de subida de archivos
+        new FileUploadWithPreview('file-upload', {
+          multiple: true,
+          text: {
+            chooseFile: "Seleccioná el archivo",
+            browse: "Explorar",
+            selectedCount: "Archivos seleccionados",
+            label: "",
+          },
+          accept: ".jpg, .jpeg, .png, .pdf",
+          baseImage: 'url("/assets/img/marca-tata-piriri.png")',
         });
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Hubo un error al procesar el formulario.');
-    } finally {
-      // Ocultar el spinner
-      const enviarSpan = document.getElementById('enviar');
-      const enviandoSpan = document.getElementById('enviando');
-      const submitButton = document.getElementById('btn-transicion');
-  
-      enviarSpan.classList.remove('d-none');
-      enviandoSpan.classList.add('d-none');
-      submitButton.disabled = false;
-    }
+      } catch (error) {
+        console.error("Error al inicializar FileUploadWithPreview:", error);
+      }
+    })
+    .catch(error => {
+      console.error("Error al cargar FileUploadWithPreview:", error);
+    });
+}
+
+// Configuración del componente de subida de archivos
+const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
+const upload = new FileUploadWithPreview('file-upload', {
+  multiple: true,
+  text: {
+    chooseFile: "Seleccioná el archivo",
+    browse: "Explorar",
+    selectedCount: "Archivos seleccionados",
+    label: "",
+  },
+  accept: ".jpg, .jpeg, .png, .pdf",
+  baseImage: imgBgFile,
+});
+
+// Obtiene el token de acceso desde el backend
+async function getAccessToken() {
+  const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
+    method: 'GET',
   });
+
+  if (!response.ok) {
+    const errorDetails = await response.text();
+    console.error('Error al obtener el token de acceso:', errorDetails);
+    throw new Error(`Error al obtener el token de acceso: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.accessToken;
+}
+
+// Sube archivos a Google Drive
+async function uploadFilesToGoogleDrive(files, accessToken) {
+  const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
+  console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
+
+  const fileUrls = [];
+
+  for (const file of files) {
+    const formData = new FormData();
+    formData.append('metadata', new Blob([JSON.stringify({
+      name: file.name,
+      parents: [GOOGLE_DRIVE_FOLDER_ID],
+    })], { type: 'application/json' }));
+    formData.append('file', file);
+
+    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      throw new Error(`Error al subir el archivo ${file.name}: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
+    }
+
+    const data = await response.json();
+    fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
+  }
+
+  console.log('URLs de los archivos subidos:', fileUrls);
+  return fileUrls;
+}
+
+// Envía el formulario al backend
+async function submitForm(formData) {
+  const response = await fetch('https://backend-del-tata.contenidx.workers.dev/process-form', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    const errorDetails = await response.text();
+    throw new Error(`Error al enviar el formulario: ${errorDetails}`);
+  }
+
+  return response.json();
+}
+
+// Maneja el envío del formulario
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  try {
+    // Mostrar el spinner y deshabilitar el botón de envío
+    const enviarSpan = document.getElementById('enviar');
+    const enviandoSpan = document.getElementById('enviando');
+    const submitButton = document.getElementById('btn-transicion');
+
+    enviarSpan.classList.add('d-none');
+    enviandoSpan.classList.remove('d-none');
+    submitButton.disabled = true;
+
+    // Obtener el token de acceso
+    const accessToken = await getAccessToken();
+    console.log('Token de acceso:', accessToken);
+
+    // Subir archivos a Google Drive
+    const fileUrls = await uploadFilesToGoogleDrive(upload.cachedFileArray, accessToken);
+
+    // Preparar los datos del formulario
+    const formData = {
+      nombre: document.querySelector('[name="nombre"]')?.value || '',
+      email: document.querySelector('[name="email"]')?.value || '',
+      grupo: document.querySelector('[name="grupo"]')?.value || '',
+      espectaculo: document.querySelector('[name="espectaculo"]')?.value || '',
+      sinopsis: document.querySelector('[name="sinopsis"]')?.value || '',
+      duracion: document.querySelector('[name="duracion"]')?.value || '',
+      fileUrls: fileUrls.join(', '), // URLs de los archivos subidos
+    };
+
+    // Enviar el formulario al backend
+    const response = await submitForm(formData);
+    console.log('Respuesta del backend:', response);
+
+    // Mostrar mensaje de éxito
+    if (response.status === "success") {
+      alert(response.message);
+      document.getElementById('form').reset();
+      upload.resetPreviewPanel();
+    } else {
+      alert(response.message || "Hubo un error al procesar el formulario.");
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Hubo un error al procesar el formulario.');
+  } finally {
+    // Ocultar el spinner y habilitar el botón de envío
+    const enviarSpan = document.getElementById('enviar');
+    const enviandoSpan = document.getElementById('enviando');
+    const submitButton = document.getElementById('btn-transicion');
+
+    enviarSpan.classList.remove('d-none');
+    enviandoSpan.classList.add('d-none');
+    submitButton.disabled = false;
+  }
+});
 })
