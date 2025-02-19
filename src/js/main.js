@@ -222,6 +222,22 @@ async function uploadFilesToGoogleDrive(files, accessToken) {
   console.log('URLs de los archivos subidos:', fileUrls);
   return fileUrls;
 }
+async function sendEmail(formData) {
+  const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
+  const EMAILJS_SERVICE_ID = 'service_a3g0l17';
+  const EMAILJS_TEMPLATE_ID = 'template_x4mo2hj';
+
+  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      service_id: EMAILJS_SERVICE_ID,
+      template_id: EMAILJS_TEMPLATE_ID,
+      user_id: EMAILJS_PUBLIC_KEY,
+      template_params: formData,
+    }),
+  });
+}
 
 // Envía el formulario al backend
 async function submitForm(formData) {
@@ -296,5 +312,5 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     enviandoSpan.classList.add('d-none');
     submitButton.disabled = false;
   }
-});
 })
+},1000)
