@@ -242,7 +242,7 @@ async function sendEmail(formData) {
     throw new Error(`Respuesta inesperada de EmailJS: ${text}`);
   }
 }
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
 // Maneja el envío del formulario
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -302,4 +302,4 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   }
 });
 });
-})
+
