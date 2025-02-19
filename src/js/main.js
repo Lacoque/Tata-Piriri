@@ -275,7 +275,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     // Enviar el correo electrónico usando EmailJS
     await sendEmail(formData);
     // Mostrar mensaje de éxito
-    alert("Formulario enviado correctamente");
+    //alert("Formulario enviado correctamente");
 
     const form = document.getElementById('form');
     if (form && typeof form.reset === 'function') {
