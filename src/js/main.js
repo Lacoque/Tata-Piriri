@@ -242,7 +242,7 @@ async function sendEmail(formData) {
     throw new Error(`Respuesta inesperada de EmailJS: ${text}`);
   }
 }
-
+document.addEventListener('DOMContentLoaded', () => {
 // Maneja el envío del formulario
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -275,11 +275,19 @@ document.getElementById('form').addEventListener('submit', async (e) => {
 
     // Enviar el correo electrónico usando EmailJS
     await sendEmail(formData);
-
     // Mostrar mensaje de éxito
     alert("Formulario enviado correctamente");
-    document.getElementById('form').reset();
-    upload.resetPreviewPanel();
+
+    // Reiniciar el formulario
+    const form = document.getElementById('form');
+    if (form && typeof form.reset === 'function') {
+      form.reset(); // Limpia los campos del formulario
+    }
+
+    // Limpiar la vista previa de archivos
+    if (upload.resetPreviewPanel) {
+      upload.resetPreviewPanel();
+    }
   } catch (error) {
     console.error('Error:', error);
     alert('Hubo un error al procesar el formulario.');
@@ -292,5 +300,6 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     enviandoSpan.classList.add('d-none');
     submitButton.disabled = false;
   }
+});
 });
 })
