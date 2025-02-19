@@ -242,7 +242,6 @@ async function sendEmail(formData) {
     throw new Error(`Respuesta inesperada de EmailJS: ${text}`);
   }
 }
-// document.addEventListener('DOMContentLoaded', () => {
 // Maneja el envío del formulario
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -278,12 +277,12 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     // Mostrar mensaje de éxito
     alert("Formulario enviado correctamente");
 
-    // Reiniciar el formulario
     const form = document.getElementById('form');
     if (form && typeof form.reset === 'function') {
       form.reset(); // Limpia los campos del formulario
+    } else {
+      clearFormFields(); // Usa la función alternativa para limpiar campos
     }
-
     // Limpiar la vista previa de archivos
     if (upload.resetPreviewPanel) {
       upload.resetPreviewPanel();
@@ -301,5 +300,24 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     submitButton.disabled = false;
   }
 });
+// Función alternativa para limpiar campos del formulario
+function clearFormFields() {
+  const form = document.getElementById('form');
+  if (!form) return;
+
+  const inputs = form.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    if (input.type === 'checkbox' || input.type === 'radio') {
+      input.checked = false; // Desmarca checkboxes y radios
+    } else {
+      input.value = ''; // Limpia el valor de otros campos
+    }
+  });
+
+  const fileInputs = form.querySelectorAll('input[type="file"]');
+  fileInputs.forEach(fileInput => {
+    fileInput.value = ''; // Limpia el input de archivos
+  });
+}
 });
 
