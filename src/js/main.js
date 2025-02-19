@@ -110,27 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-  // Spinner
-  // document.getElementById('btn-transicion').addEventListener('click', function () {
-  //   const enviarSpan = document.getElementById('enviar');
-  //   const enviandoSpan = document.getElementById('enviando');
-
-
-  //   enviarSpan.classList.add('d-none');
-  //   enviandoSpan.classList.remove('d-none');
-  //   // Deshabilita el btn de Enviar
-  //   this.disabled = true;
-  //   setTimeout(() => {
-  //     // Vuelve a activar el btn de Enviar
-  //       enviarSpan.classList.remove('d-none');
-  //       enviandoSpan.classList.add('d-none');
-  //       this.disabled = false;
-  //   }, 7000);
-  // });
-
-
-
    //formulario
  
 if (window.location.pathname.includes("form.html")) {
@@ -171,7 +150,7 @@ const upload = new FileUploadWithPreview('file-upload', {
   baseImage: imgBgFile,
 });
 
-// Obtiene el token de acceso desde el backend
+// token  desde el backend
 async function getAccessToken() {
   const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
     method: 'GET',
@@ -185,7 +164,6 @@ async function getAccessToken() {
   return data.accessToken;
 }
 
-// Sube archivos a Google Drive
 async function uploadFilesToGoogleDrive(files, accessToken) {
   const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
   console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
@@ -213,7 +191,7 @@ async function uploadFilesToGoogleDrive(files, accessToken) {
   return fileUrls;
 }
 
-// Envía el correo electrónico usando EmailJS
+// Envía el correo electrónico
 async function sendEmail(formData) {
   const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
   const EMAILJS_SERVICE_ID = 'service_a3g0l17';
@@ -237,16 +215,16 @@ async function sendEmail(formData) {
 
   const text = await response.text();
   if (text.trim() === "OK") {
-    return true; // Correo enviado correctamente
+    return true; 
   } else {
     throw new Error(`Respuesta inesperada de EmailJS: ${text}`);
   }
 }
-// Maneja el envío del formulario
+
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
   try {
-    // Mostrar el spinner y deshabilitar el botón de envío
+    // spinner 
     const enviarSpan = document.getElementById('enviar');
     const enviandoSpan = document.getElementById('enviando');
     const submitButton = document.getElementById('btn-transicion');
@@ -254,14 +232,14 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     enviandoSpan.classList.remove('d-none');
     submitButton.disabled = true;
 
-    // Obtener el token de acceso
+    
     const accessToken = await getAccessToken();
     console.log('Token de acceso:', accessToken);
 
-    // Subir archivos a Google Drive
+  
     const fileUrls = await uploadFilesToGoogleDrive(upload.cachedFileArray, accessToken);
 
-    // Preparar los datos del formulario
+    // Preparar los datos 
     const formData = {
       nombre: document.querySelector('[name="nombre"]')?.value || '',
       email: document.querySelector('[name="email"]')?.value || '',
@@ -269,21 +247,22 @@ document.getElementById('form').addEventListener('submit', async (e) => {
       espectaculo: document.querySelector('[name="espectaculo"]')?.value || '',
       sinopsis: document.querySelector('[name="sinopsis"]')?.value || '',
       duracion: document.querySelector('[name="duracion"]')?.value || '',
-      fileUrls: fileUrls.join(', '), // URLs de los archivos subidos
+      message: document.querySelector('[name="message"]')?.value || '',
+      fileUrls: fileUrls.join(', '),
     };
 
-    // Enviar el correo electrónico usando EmailJS
+  
     await sendEmail(formData);
-    // Mostrar mensaje de éxito
+    
     //alert("Formulario enviado correctamente");
 
     const form = document.getElementById('form');
     if (form && typeof form.reset === 'function') {
-      form.reset(); // Limpia los campos del formulario
+      form.reset(); 
     } else {
-      clearFormFields(); // Usa la función alternativa para limpiar campos
+      clearFormFields(); 
     }
-    // Limpiar la vista previa de archivos
+    
     if (upload.resetPreviewPanel) {
       upload.resetPreviewPanel();
     }
@@ -291,7 +270,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     console.error('Error:', error);
     alert('Hubo un error al procesar el formulario.');
   } finally {
-    // Ocultar el spinner y habilitar el botón de envío
+    // fin del spinner 
     const enviarSpan = document.getElementById('enviar');
     const enviandoSpan = document.getElementById('enviando');
     const submitButton = document.getElementById('btn-transicion');
@@ -300,7 +279,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     submitButton.disabled = false;
   }
 });
-// Función alternativa para limpiar campos del formulario
+//  limpiar campos del formulario
 function clearFormFields() {
   const form = document.getElementById('form');
   if (!form) return;
