@@ -1,0 +1,56 @@
+@media (max-width:960px) {
+    div.entradas-tickets {
+        padding: 0rem;
+        box-shadow: none;
+        background: transparent;
+        overflow-x: scroll;
+    }
+
+    div.entradas-tickets > div:has(#ticket-1){
+        align-items: start;
+        width: 200vw;
+    }
+
+    div.accion {
+        padding: 0rem .8rem;
+    }
+    
+    div.accion .btn-accion {
+        width: 100%;
+        height: 80px;
+        gap: 0;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 5rem;
+    }
+    
+    div.accion .btn-accion #programacion,
+    div.accion .btn-accion #entrada {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        border-radius: 0px;
+    }
+
+    section#inicio h2:first-of-type {
+        text-align: center;
+    }
+    section#inicio img {
+        height: 40vh;
+    }
+
+    section#int > div:first-of-type {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        text-align: center;
+        padding: 0rem 1rem;
+    }
+    section#int > div > h4 {
+        grid-column: 1 / -1;
+    }
+    section#int > div > img {
+        height: 7vh;
+    }
+}
