@@ -10,6 +10,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
+    <!-- Modal formulario en bootstrap -->
+    <!-- El botón que dispara el evento está escrito más abajo. Por una recomendación de Bootstrap, se define dejar el modal en la parte superior del archivo. -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="modal-formulario">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Sumate!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="contact-form" action="" name="contact" method="POST" autocomplete="on" data-netlify="true">
+                            <p><label><input type="text" name="name" placeholder="Nombre" required /></label></p>
+                            <p><label><input type="email" name="email" placeholder="Correo electrónico" required /></label></p>
+                            <p><label><textarea name="message" placeholder="Mensaje" required></textarea></label></p>
+                            
+                            <p><button type="submit" id="enviar">Enviar</button></p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Pronto te respondemos, gracias por querer sumarte!</p>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar cambios</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <section id="top"></section>
     <section id="section-navegador">
         <nav id="navegador">
@@ -115,7 +144,7 @@
                 </div>
             </article>
             <!-- Sumate -->
-            <a href="/form-team.html" class="sumate-equipo">
+            <a href="/form-team.html" class="sumate-equipo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                 <article>
                     <img src="assets/img/Perfil-Usuario.png" alt="Sumate">
                     <h5>Me quiero sumar al equipo</h5>

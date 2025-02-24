@@ -1,10 +1,13 @@
+// Imoprtación de Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import '../css/style.css';
+import '../css/style-mobile.css';
 
 import { FileUploadWithPreview } from 'file-upload-with-preview';
 import 'file-upload-with-preview/dist/style.css';
@@ -298,5 +301,47 @@ function clearFormFields() {
     fileInput.value = ''; // Limpia el input de archivos
   });
 }
+
+
+
+// Manejo de confirmación formulario Sumate
+const form = document.getElementById('contact-form');
+  const alertContainer = document.getElementById('alert-container');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alertContainer.innerHTML = ''; // Limpiar alertas
+  
+    const formData = new FormData(form); // Obtener datos del formulario
+  
+    fetch('/tu-ruta-en-nodejs', { // Reemplaza con la ruta correcta
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error en el envío'); // Lanza un error si la respuesta no es OK
+      }
+      return response.json(); // Si la respuesta es OK, intenta parsear el JSON
+    })
+    .then(data => {
+        // Si el servidor responde con un JSON, puedes acceder a los datos aquí
+        // Ejemplo: if (data.success) { ... }
+        const successAlert = document.createElement('div');
+        successAlert.classList.add('alert', 'alert-success');
+        successAlert.textContent = 'Mensaje enviado correctamente!';
+        alertContainer.appendChild(successAlert);
+        form.reset();
+    })
+    .catch(error => {
+      const errorAlert = document.createElement('div');
+      errorAlert.classList.add('alert', 'alert-danger');
+      errorAlert.textContent = 'Error al enviar el mensaje: ' + error.message; // Muestra el mensaje de error
+      alertContainer.appendChild(errorAlert);
+      console.error('Error:', error);
+    });
+  });
+
+  
 });
 

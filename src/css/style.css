@@ -1415,6 +1415,32 @@ form button[type="submit"] {
 	background-color: var(--purpura);
 }
 
+.modal-body form button[type="submit"] {
+	width: 100%;
+	margin-top: 1rem;
+	text-align: center;
+	text-transform: uppercase;
+	padding: .5rem 1rem;
+	box-shadow: none;
+	border: none;
+	
+	font-family: 'Lato-Bold';
+	font-size: 1rem;
+	color: var(--gris);
+	background-color: var(--purpura);
+
+	transition: all .3s;
+}
+@media (hover:hover) {
+	.modal-body form button[type="submit"]:hover {
+		background-color: var(--gris);
+	}
+	div#modal-formulario button:hover {
+		color: var(--purpura);
+	}
+}
+
+
 #form-contacto label select#seleccion-publico option:first-child {
 	font-family: 'Lato-Regular';
 	color: var(--marron-oscuro);
@@ -1651,3 +1677,42 @@ a#btn-transicion:hover span:last-child {
 
 
 /* Fin Mapas */
+
+
+
+
+/* Modal para formulario Sumate */
+div#modal-formulario {
+	border: none;
+	background: linear-gradient(90deg, var(--amarillo-op-70), var(--bordo)), url('/assets/img/Perfil-Usuario.png');
+}
+div#modal-formulario h5,
+div#modal-formulario button, 
+div#modal-formulario p {
+	color: var(--gris);
+}
+
+div#modal-formulario form {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	justify-content: center;
+	align-items: center;
+}
+
+div#modal-formulario form#contact-form p {
+	margin: 0;
+}
+
+div#modal-formulario form#contact-form input,
+div#modal-formulario form#contact-form textarea {
+	border-radius: 5px;
+	padding: .3rem;
+}
+
+div#modal-formulario form#contact-form p,
+div#modal-formulario form#contact-form label,
+div#modal-formulario form#contact-form input,
+div#modal-formulario form#contact-form textarea	{
+	width: 100%;
+}
