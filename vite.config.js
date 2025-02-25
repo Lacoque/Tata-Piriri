@@ -9,7 +9,6 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'), // Punto de entrada principal
         form: path.resolve(__dirname, 'form.html'),
-        formsumate: path.resolve(__dirname, 'form-team.html'),
         nosotros: path.resolve(__dirname, 'nosotros.html'),
         obrasedes: path.resolve(__dirname, 'obras-y-sedes.html'),
       },
