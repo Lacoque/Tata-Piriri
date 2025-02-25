@@ -1,7 +1,12 @@
 @media (max-width:960px) {
+    #info-entradas div:has(.col-12.text-center){
+        padding: 0rem;
+    }
+
     div.entradas-tickets {
         padding: 0rem;
         box-shadow: none;
+        border-radius: 0px;
         background: transparent;
         overflow-x: scroll;
     }
