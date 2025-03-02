@@ -35,12 +35,14 @@
         width: 100%;
         height: 100%;
         justify-content: center;
+        align-items: center;
         border-radius: 0px;
     }
 
     section#inicio h2:first-of-type {
         text-align: center;
     }
+    
     section#inicio img {
         height: 40vh;
     }
@@ -50,12 +52,121 @@
         grid-template-columns: 1fr 1fr;
         justify-items: center;
         text-align: center;
-        padding: 0rem 1rem;
+        padding: .5rem 1rem;
     }
+
     section#int > div > h4 {
         grid-column: 1 / -1;
     }
+    
     section#int > div > img {
         height: 7vh;
+    }
+
+
+    div#int {
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    footer {
+        display: block !important;
+        height: fit-content;
+        padding: 1rem 1rem 3rem 1rem;
+    }
+    footer > div:first-of-type {
+        flex-direction: column;
+    }
+    footer #int img {
+        height: 8vh;
+    }
+
+    .item-footer > div:first-of-type{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .item-footer:nth-child(1){
+        margin-top: 2rem;
+    }
+
+    .item-footer:nth-child(2) div {
+        gap: .5rem;
+    }
+    .item-footer:nth-child(2) a {
+        border: 1px solid #9f597b;
+        padding: .5rem !important;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        text-align: center;
+    }
+
+
+    footer p {
+        grid-column: 1 / -1;
+    }
+    
+    footer a.prueba-gsap {
+        justify-content: end;
+        display: flex;
+        margin-top: 3rem;
+    }
+
+    .card-horizontal {
+        padding: .5rem 1rem .5rem 0rem;
+        background-color: var(--gris);
+        height: fit-content;
+    }
+
+
+    .card-horizontal img {
+        height: auto;
+        width: 30vw;
+    }
+
+    .card-horizontal h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--bordo);
+    }
+
+    .card-horizontal h5 {
+        display: none;
+    }
+
+    .card-horizontal p {
+        color: var(--bordo);
+    }
+
+
+    #card-horizontal-mobile {
+        display: block;
+        margin: auto 2rem;
+    }
+
+    .card-horizontal > div:first-of-type {
+        padding: 0rem;
+    }
+    .card-horizontal p {
+        bottom: 0px;
+        opacity: 1;
+    }
+    
+    #info-sedes > a {
+        margin: 1rem .5rem 0rem;
+    }
+}
+
+
+
+
+
+
+/* Más de 960 px de viewport */
+
+@media (min-width:960px) {
+    #card-horizontal-mobile {
+        display: none;
     }
 }
