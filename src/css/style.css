@@ -283,6 +283,7 @@ section#inicio div#entrada a {
 }
 
 .card-horizontal {
+	display: flex;
 	color: var(--gris);
 	background-color: #1f2029;
 	border-radius: 10px;
@@ -370,13 +371,14 @@ section#inicio div#entrada a {
 
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap'); */
 
-:root {
+/* :root {
 	font-size: 20px;
 	--dark-blue: #1f2029;
 	--white-gr: #c4c3ca;
 	--yellow: #ffeba7;
 	--yellow-2: #f8ab37;
-}
+} */
+
 #info-entradas body{
 	color: var(--white-gr);
 	background-color: var(--marron);
@@ -770,6 +772,8 @@ section#inicio div#entrada a {
 
 
 footer{
+	display: flex;
+	justify-content: space-between;
 	height: 50vh;
 	padding: 2rem 4rem;
 	background-color: var(--bordo);
@@ -810,6 +814,10 @@ footer #int img {
 .item-footer {
 	width: 100%;
 }
+.item-footer > div:first-of-type{
+	display: flex;
+	flex-direction: column;
+}
 .item-footer:nth-child(2) {
 	margin-top: 1em;
 }
@@ -822,6 +830,18 @@ footer #int img {
 @media (hover:hover) {
 	.item-footer p a:hover {
 		border: 1px solid var(--amarillo);
+	}
+}
+
+footer .logos-footer {
+	display: flex;
+	gap: .25rem;
+}
+
+@media (max-width:960px) {
+	footer .logos-footer {
+		width: 100%;
+		justify-content: space-around;
 	}
 }
 
