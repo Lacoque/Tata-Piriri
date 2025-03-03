@@ -74,19 +74,22 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     // Slider de descripción de las obras
-    const articulos = gsap.utils.toArray(".slider article")
-
-    let scrollTween = gsap.to(articulos, {
-      xPercent: -100 * (articulos.length - .75),
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".slider",
-            pin: true,
-            scrub: 1,
-            start: "top 20%",
-            end: "+=3000",
-            // markers: true
-        }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 960) {
+        const articulos = gsap.utils.toArray(".slider article")
+        let scrollTween = gsap.to(articulos, {
+          xPercent: -100 * (articulos.length - .75),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".slider",
+                pin: true,
+                scrub: 1,
+                start: "top 20%",
+                end: "+=3000",
+                // markers: true
+            }
+        })
+      }
     })
 
 

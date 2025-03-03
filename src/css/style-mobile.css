@@ -185,10 +185,16 @@
 
     #obras .slider-container {
         padding: 0rem .5rem;
+        overflow: auto;
+    }
+
+    #obras div.slider {
+        overflow: visible;
     }
     
     #obras div.slider article {
         width: 100%;
+        height: fit-content;
         flex-direction: column-reverse;
     }
 
@@ -199,6 +205,12 @@
     #obras div article div img {
         height: max-content;
         width: 100%;
+    }
+
+    #obras h2 {
+        text-align: start;
+        line-height: 2.75rem;
+        margin: 1.5rem .5rem;
     }
 
     #sedes {
