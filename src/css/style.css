@@ -310,13 +310,11 @@ section#inicio div#entrada a {
 
 .card-horizontal:hover p{
 	transform: translateY(-20px);
-	/* visibility: visible; */
 	opacity: 1;
 }
 
 .card-horizontal h5 {
 	font-family: 'Lato-Light';
-	font-size: .85rem;
 	letter-spacing: .03rem;
 }
 
@@ -505,6 +503,9 @@ section#inicio div#entrada a {
 	color: var(--marron);
 	display: block;
 	transition: all 250ms linear;
+}
+.checkbox-ticket + label:last-child span.duration{
+	line-height: 1.85rem;
 }
 .checkbox-ticket + label .duration span:first-of-type{
 	font-family: 'Lato-Black';
@@ -733,6 +734,7 @@ section#inicio div#entrada a {
 }
 
 .entradas-tickets label img:first-of-type {
+	margin-bottom: .5rem;
 	object-fit: fill;
 	opacity: .3;
 	width: 3vw;
@@ -784,15 +786,11 @@ footer > div:first-of-type{
 }
 
 footer p {
-	font-family: 'Lato-Light';
-	font-size: .845rem;
-	/* color: var(--gris); */
+	font-family: 'Lato-Regular';
 	color: #9f597b;
 }
 footer a {
 	font-family: 'Lato-Regular';
-    font-size: .845rem;
-    /* color: var(--gris); */
 	color: #9f597b;
 	text-decoration: none;
 	background-color: transparent;
@@ -912,8 +910,8 @@ footer .logos-footer {
 	justify-content: center;
 }
 
-#section-navegador  #navegador a {
-	font-size: .75rem;
+#section-navegador #navegador a {
+	font-size: 1rem;
 	color: var(--gris);
 	background-color: transparent;
 	text-decoration: none;
@@ -1082,7 +1080,6 @@ iframe#mapa {
 
 
 #obras {
-	/* width: auto; */
 	display: flex;
 	padding: 5rem 0rem;
 	gap: 2rem;
@@ -1151,7 +1148,6 @@ iframe#mapa {
 }
 
 #obras .slider-container{
-	/* width: 300vw; */
 	width: 100%;
 	padding: 0rem 2rem;
 	overflow: hidden;
