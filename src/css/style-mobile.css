@@ -174,8 +174,9 @@
     .sedes-general > div:nth-child(2) {
         position: relative;
         top: 8rem;
-        height: fit-content;
         left: 12rem;
+        width: fit-content;
+        height: fit-content;
         z-index: 99;
     }
 
@@ -228,6 +229,105 @@
         z-index: 99;
         bottom: -5rem;
     }
+
+
+
+/* Mobile Menu */
+
+    #section-navegador {
+        display: none;
+    }
+
+    .toggle-container-mobile-menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    .toggle-container-mobile-menu input#toggle {
+        display: none;
+    }
+
+
+  /* Botón de alternar menú */
+    .button-toggle-mobile-menu {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: #533557;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        color: #EC7263;
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .button-toggle-mobile-menu:hover {
+        position: absolute;
+        right: 0px;
+        z-index: 10000;
+        background-color: var(--amarillo);
+        color: var(--marron);
+    }
+    
+    /* Menú de navegación */
+    .nav-mobile-menu {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top: -20px;
+        right: -20px;
+        z-index: 99;
+
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 5rem;
+        
+        background: linear-gradient(90deg, #A25629, #e47d1d00);
+        backdrop-filter: blur(3.5px);
+        padding: 1rem 2rem;
+
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-mobile-menu a {
+        text-decoration: none;
+        padding: .5rem;
+        background-color: transparent;
+    }
+    .nav-mobile-menu a i {
+            padding-right: .5rem;
+    }
+
+    .nav-mobile-menu img {
+        height: 5vh;
+    }
+    
+    .nav-item-mobile-menu {
+        display: block;
+        padding: 10px;
+        color: var(--gris);
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Mostrar el menú cuando el checkbox está marcado */
+    #toggle:checked ~ .nav-mobile-menu {
+        transform: translateX(0);
+    }
+
+    .nav-redes {
+        display: flex;
+        padding: 2rem 0rem;
+    }
+    .nav-redes li {
+        list-style-type: none
+    }
 }
 
 
@@ -239,6 +339,9 @@
 
 @media (min-width:960px) {
     #card-horizontal-mobile {
+        display: none;
+    }
+    .toggle-container-mobile-menu {
         display: none;
     }
 }
