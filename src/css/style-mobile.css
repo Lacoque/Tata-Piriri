@@ -1,10 +1,15 @@
 @media (max-width:960px) {
     #info-entradas div:has(.col-12.text-center){
-        padding: 0rem;
+        padding-right: 0rem;
+        padding-left: 0rem;
+    }
+
+    #info-entradas p {
+        margin: auto 2rem 1rem;
     }
 
     div.entradas-tickets {
-        padding: 0rem;
+        padding: 0rem .85rem;
         box-shadow: none;
         border-radius: 0px;
         background: transparent;
@@ -241,7 +246,7 @@
     .toggle-container-mobile-menu {
         position: fixed;
         top: 20px;
-        right: 20px;
+        right: 0px;
         z-index: 1000;
     }
     
@@ -252,25 +257,32 @@
 
   /* Botón de alternar menú */
     .button-toggle-mobile-menu {
+        position: relative;
+        right: 20px;
         display: inline-block;
         width: 40px;
         height: 40px;
-        background-color: #533557;
+        background-color: var(--bordo);
         border-radius: 50%;
         text-align: center;
         line-height: 40px;
         cursor: pointer;
-        color: #EC7263;
+        color: var(--gris);
         font-size: 20px;
+        z-index: 10000;
         transition: all 0.3s ease;
     }
     
-    .button-toggle-mobile-menu:hover {
-        position: absolute;
-        right: 0px;
-        z-index: 10000;
-        background-color: var(--amarillo);
-        color: var(--marron);
+    .button-toggle-mobile-menu:active {
+        /* position: absolute;
+        right: 20px;
+        z-index: 10000; */
+        background-color: var(--gris);
+        color: var(--bordo);
+    }
+
+    label > i:has(.button-toggle-mobile-menu:hover) {
+        color: var(--amarillo);
     }
     
     /* Menú de navegación */
@@ -279,7 +291,7 @@
         height: 100vh;
         width: 100vw;
         top: -20px;
-        right: -20px;
+        right: 0px;
         z-index: 99;
 
         display: flex;
@@ -327,6 +339,23 @@
     }
     .nav-redes li {
         list-style-type: none
+    }
+
+    /* Formulario */
+    div#form-contacto {
+        width: 95%;
+        padding: 1.3rem .3rem .7rem;
+        margin: 0rem;
+    }
+
+    div#form-contacto > div:first-of-type {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    div#form-contacto p:nth-child(1) label,
+    div#form-contacto p:nth-child(2) label:first-of-type {
+        grid-template-columns: 1fr;
     }
 }
 
