@@ -3,8 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
+// import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import '../css/style.css';
 import '../css/style-mobile.css';
@@ -17,8 +18,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 
 
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
 dom.watch()
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -41,6 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
             } 
         })
     }
+
+    // Menu mobile
+    document.querySelectorAll('.nav-item-mobile-menu').forEach(item => {
+      item.addEventListener('click', () => {
+        document.getElementById('toggle').checked = false;
+      });
+    });
 
 
 
