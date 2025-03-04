@@ -18,7 +18,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 
 
-dom.watch()
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Menu mobile
-    document.querySelectorAll('.nav-item-mobile-menu').forEach(item => {
-      item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
         document.getElementById('toggle').checked = false;
       });
     });
