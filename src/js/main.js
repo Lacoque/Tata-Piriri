@@ -237,7 +237,7 @@ async function sendEmail(formData) {
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
   try {
-    // spinner 
+    
     const enviarSpan = document.getElementById('enviar');
     const enviandoSpan = document.getElementById('enviando');
     const submitButton = document.getElementById('btn-transicion');
@@ -267,7 +267,6 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   
     await sendEmail(formData);
     
-    //alert("Formulario enviado correctamente");
 
     const form = document.getElementById('form');
     if (form && typeof form.reset === 'function') {
