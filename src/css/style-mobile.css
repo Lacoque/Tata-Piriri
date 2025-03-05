@@ -344,8 +344,9 @@
     /* Formulario */
     div#form-contacto {
         width: 95%;
-        padding: 1.3rem .3rem .7rem;
+        padding: 1.3rem 1.25rem .7rem;
         margin: 0rem;
+        gap: 3rem;
     }
 
     div#form-contacto > div:first-of-type {
@@ -357,6 +358,15 @@
     div#form-contacto p:nth-child(2) label:first-of-type {
         grid-template-columns: 1fr;
     }
+
+    div#form-contacto p label.mas-datos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    div#form-contacto p label input {
+        border-radius: 5px;
+    }
+
 }
 
 
