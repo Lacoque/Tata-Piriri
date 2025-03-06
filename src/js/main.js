@@ -78,29 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
         open(`https://wa.me/543751362949?text=${encodeURIComponent(mensaje)}`);
     };
 
-    
 
-    // Slider de descripción de las obras
-    // window.addEventListener('resize', () => {
-    //   if (window.innerWidth >= 960) {
-    //     const articulos = gsap.utils.toArray(".slider article")
-    //     let scrollTween = gsap.to(articulos, {
-    //       xPercent: -100 * (articulos.length - .75),
-    //         ease: "none",
-    //         scrollTrigger: {
-    //             trigger: ".slider",
-    //             pin: true,
-    //             scrub: 1,
-    //             start: "top 20%",
-    //             end: "+=3000",
-    //             markers: true
-    //           }
-    //       })
-    //     }
-    // })
 
   let scrollTween;
-
   function initSlider() {
     const articulos = gsap.utils.toArray(".slider article");
 
@@ -108,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
       scrollTween = gsap.to(articulos, {
-        xPercent: -100 * (articulos.length - 0.75),
+        xPercent: -100 * (articulos.length - 0.70),
         ease: "none",
         scrollTrigger: {
           trigger: ".slider",
