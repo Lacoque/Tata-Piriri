@@ -1136,6 +1136,10 @@ div article .info-obras p {
 	background-color: var(--purpura);
 }
 
+.misiones-mobile img:nth-child(2){
+	display: none;
+}
+
 /* FIN OBRAS */
 
 
