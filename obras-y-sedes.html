@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obras y Sedes | Festival de Títeres</title>
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 </head>
 <body id="obras-y-sedes">
+
+    <!-- Modal formulario en bootstrap -->
+    <!-- El botón que dispara el evento está escrito más abajo. Por una recomendación de Bootstrap, se define dejar el modal en la parte superior del archivo. -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" id="modal-formulario">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sumate!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contact-form" action="" name="contact" method="POST" autocomplete="on" data-netlify="true">
+                        <p><label><input type="text" name="name" placeholder="Nombre" required /></label></p>
+                        <p><label><input type="email" name="email" placeholder="Correo electrónico" required /></label></p>
+                        <p><label><textarea name="message" placeholder="Mensaje" required></textarea></label></p>
+                        
+                        <p><button type="submit" id="enviar">Enviar</button></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>Pronto te respondemos, gracias por querer sumarte!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="top"></section>
 
@@ -62,6 +86,86 @@
 
             <div class="slider-container">
                 <div class="slider">
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/anima-circus.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Uruguay</h6>
+                            <h4>ANIMA CIRCUS</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>La Loca Compañía</h6>
+                            </div>
+                            <p>Es un espectáculo que combina expresiones artísticas de gran atractivo popular como los títeres, el circo y el teatro callejero. Propone distintos números donde los actores-titiriteros y sus títeres en relación simbiótica generan performances con música, humor, y gran despliegue visual. Se presentan desde muy elaborados títeres gigantes de 3mts de altura hasta títeres más elementales y pequeños, en una amplia muestra de técnicas de manipulación de los mismos. El hecho de que los artistas del circo, quienes realizan las pruebas, sean títeres, lleva a que los límites de su accionar,  por ridículo, grotesco y tierno a la vez, sean infinitos. Las constantes del espectáculo son el colorido, la musicalidad  y el humor absurdo e irreverente de los títeres. Representamos un estilo a medio camino entre los circos tradicionales y los modernos, llevando los números a dificultades al borde del ridículo, nos reímos de nosotros mismos como circo, y nos permitimos, sin culpa, presentar animales en la pista, ya que son títeres.</p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/Cuentos-del-Sombrero-Amigos-del-rio.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Venezuela</h6>
+                            <h4>Los amigos del río</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Cuentos del Sombrero</h6>
+                            </div>
+                            <p>Juan y Efrén son primos; viven en dos pueblitos de montaña separados por un ancho y caudaloso río. Un viejo y querido puente les une desde siempre. Un mal día, por una tonta discusión, algunos vecinos quitan el puente. Otro mal día, sorpresivamente una compañía llega a talar los árboles del bosque cercano, sin que los reclamos de los vecinos puedan impedirlo. Sin el bosque, escasean las lluvias, se pierden las cosechas, se seca el río. El hambre obliga a muchas familias a emigrar. Cuando todo parece perdido, una abuelita pone un puñado de semillas en su pecho, y en su corazón presiente los árboles que han de nacer, el canto de los pájaros que han de regresar, el delicioso y ansiado sonido de la lluvia. A su alrededor se convocan los vecinos. Hermanados en la esperanza, siembran juntos lo que con el tiempo será un nuevo bosque. Poco a poco regresan las lluvias, las buenas cosechas…, y ante la inminente crecida del río, entre todos construyen un nuevo puente. La abuela lo bautiza con el nombre de “Los Amigos del Río”</p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/Histórias-do-Carlão-Lucas-Fialho.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Brasil | Gramado</h6>
+                            <div class="numero-obra">
+                                <h4>Histórias do Carlão</h4>
+                                <p><span>1°</span> Obra</p>
+                            </div>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Bonecos da Montanha</h6>
+                            </div>
+                            <p>Prepare-se para se encantar com "Histórias do Carlão", um espetáculo de teatro de bonecos que promete divertir toda a família! Carlão, o argentino mais querido da serra gaúcha, convida o público a embarcar em uma viagem pelas suas aventuras no Brasil, onde chegou há 20 anos. Com muito humor e interação, Carlão revela suas origens e compartilha a memorável experiência de seu primeiro dia em solo brasileiro. Venha rir e se emocionar com as peripécias desse carismático personagem, que fará todos se sentirem parte de sua incrível jornada. Não perca a chance de viver momentos de pura diversão e bom humor com "Histórias do Carlão"!</p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/A-Chuva-de-Moedas-de-5-Soles-Foto-Lucas-Fialho.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Brasil | Gramado</h6>
+                            <div class="numero-obra">
+                                <h4>A chuva de moedas de 5 $oles</h4>
+                                <p><span>2°</span> Obra</p>
+                            </div>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Bonecos da Montanha</h6>
+                            </div>
+                            <p>Inspirada no conto de Pepito Ron, esta montagem conta a história de uma vila peruana, situada numa montanha comum, onde a maior escassez era de água. A adaptação é encenada na vila, num dia comum, onde acompanhamos a conversa de dois moradores descendo a rua no lendário dia em que choveu moedas de 5 soles. Uma instigante adaptação brasileira que reúne em uma mesma obra duas linguagens das artes cênicas: o Teatro Narrativo (contação de histórias) e o Teatro de Objetos.</p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/AmericanaMente-Foto-Sergio-Azevedo.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Brasil | Gramado</h6>
+                            <div class="numero-obra">
+                                <h4>AmericanaMente</h4>
+                                <p><span>3°</span> Obra</p>
+                            </div>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Bonecos da Montanha</h6>
+                            </div>
+                            <p>Estreado em 2019, AmericanaMente é uma homenagem póstuma ao Diretor que tanto inspirou o grupo: Julio Saraiva. Costurando textos de diversos autores com a louca lucidez do Diretor, a atriz apresenta uma personagem que vive nas ruas de “Qualquer Cidade Americana” , suas lembranças e constatações. Uma reflexão feminina sobre textos e homens americanos. Um espetáculo adulto que aborda as similaridades, felicidades e injustiças latinoamericanas. Utilizando textos de Giovanni Pappinni, José Luis de Oliveira e Beth Bado, a atriz recorta seus olhares e reflexões sobre o feminino e sociedade moderna.</p>
+                        </div>
+                    </article>
+
                     <article>
                         <div>
                             <img src="/assets/img/LaNiñaqueriegalaalbahacayelPríncipePreguntón.jpeg" alt="Obra">
@@ -69,8 +173,8 @@
                         <div class="info-obras">
                             <h6>Argentina | Buenos Aires</h6>
                             <h4>La Niña que riega la albahaca y el Príncipe Preguntón</h4>
-                            <div class="d-flex gap-1 align-items-end">
-                                <i class="fa-solid fa-star"></i><h6>Compañia Teatral EL DESNIVEL</h6>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Compañia Teatral EL DESNIVEL</h6>
                             </div>
                             <p>La obra La niña que riega la albahaca y el príncipe preguntón, "viejo cuento andaluz en dos estampas y un cromo", es una obra escrita por Federico García Lorca para títeres de guante, La niña Irene y su padre, el zapatero don Gaiferos, viven frente al palacio del Príncipe. Ambos jóvenes, Irene y el Príncipe, entablan un juego de burlas y farsas, que nada puede contra el amor que entre ellos existe y que sin embargo intentan ocultar. En un último y feliz engaño, Irene se disfraza de Maga y cura al Príncipe, ya "muy mal herido, herido de amor, herido, herido, muerto de amor". Ambos se prometen en matrimonio bajo el brillo natural e inocente del sol y la luna.</p>
                         </div>
@@ -78,65 +182,88 @@
     
                     <article>
                         <div>
-                            <img src="/assets/img/portada-funcion-p2.jpg" alt="Obra">
+                            <img src="/assets/img/arbol-inmortal.jpeg" alt="Obra">
                         </div>
                         <div class="info-obras">
-                            <h6>Argentina | Buenos Aires</h6>
-                            <h4>La Niña que riega la albahaca y el Príncipe Preguntón</h4>
-                            <div class="d-flex gap-1 align-items-end">
-                                <i class="fa-solid fa-star"></i><h6>Compañia Teatral EL DESNIVEL</h6>
+                            <h6>Argentina | Misiones</h6>
+                            <h4>El árbol inmortal</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>El Castillo Vagabundo</h6>
                             </div>
-                            <p>La obra La niña que riega la albahaca y el príncipe preguntón, "viejo cuento andaluz en dos estampas y un cromo", es una obra escrita por Federico García Lorca para títeres de guante, La niña Irene y su padre, el zapatero don Gaiferos, viven frente al palacio del Príncipe. Ambos jóvenes, Irene y el Príncipe, entablan un juego de burlas y farsas, que nada puede contra el amor que entre ellos existe y que sin embargo intentan ocultar. En un último y feliz engaño, Irene se disfraza de Maga y cura al Príncipe, ya "muy mal herido, herido de amor, herido, herido, muerto de amor". Ambos se prometen en matrimonio bajo el brillo natural e inocente del sol y la luna.</p>
+                            <p>Guayuvira y Angico se lanzan a buscar la verdad del corazón, un tesoro escondido en medio de la selva. En su trajinar tropezaran con desafios que detonan temores, dudas y ansiedad, pero en cada situacion aparecen la templanza y el coraje para superar las adversidades y recibir la asistencia de seres protectores. Al final comprenderán que en su interior estaban muchas de las respuestas necesarias para continuar su camino.</p>
                         </div>
                     </article>
     
                     <article>
                         <div>
-                            <img src="/assets/img/portada-funcion-p2.jpg" alt="Obra">
+                            <img src="/assets/img/Matecito-2-williams-sery.jpeg" alt="Obra">
                         </div>
                         <div class="info-obras">
-                            <h6>País | Provincia</h6>
-                            <h4>Título 3</h4>
-                            <h6>Nombre de Grupos</h6>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                            <h6>Argentina | Misiones</h6>
+                            <h4>Matecito</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Grupo BASE</h6>
+                            </div>
+                            <p>"Matecito" es una producción teatral para toda la familia. La obra narra la historia de un mensú (actor) trabajador de la yerba mate, que en su vejez, comparte la leyenda guaraní de la yerba mate y la protección de la diosa Caá yari. Durante su encuentro con un niño (títere) amante del tereré, la infusión fría de mate, se entrelazan historias y tradiciones que celebran la cultura y la naturaleza. Ofrece una experiencia enriquecedora y emocionante que celebra la herencia cultural y la conexión con la tierra.</p>
                         </div>
                     </article>
     
                     <article>
                         <div>
-                            <img src="/assets/img/portada-funcion-p2.jpg" alt="Obra">
+                            <img src="/assets/img/Un-Juego-Fui.jpg" alt="Obra">
                         </div>
                         <div class="info-obras">
-                            <h6>País | Provincia</h6>
-                            <h4>Título 4</h4>
-                            <h6>Nombre de Grupos</h6>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                            <h6>Argentina | Santa Fé</h6>
+                            <h4>Un Juego Fui</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Hasta Las Manos</h6>
+                            </div>
+                            <p>J y M juegan, hacen jueguitos con el mundo, una pelota, una batalla en los confines del pasado, los caballitos, una charla con el cielo, el barrilete, el mapa de un cósmico viaje, un papel pintado, la voz de los sueños, su canción, un baúl, el universo, la vida. J y M juegan y después de jugar juegan de nuevo, de un juego a otro, otro y otro más, pero, “hay que parar!” no es posible jugar más, porque Deber, porque Obliga, porque Dinero y Tiempo cantan “Hasta acá!” a paso redoblado de una marcha militar. Y si la vida es juego… ¿Qué hay después de jugar? ¿Es posible el juego eterno? ¿Dónde encontrar las plumas del “Monstruo Imposible” que hagan nacer las alas y el sobrevuelo de su secreto?. ¡Punto y coma zapatilla sin suela el que no lo imagina… no vuela!</p>
                         </div>
                     </article>
-    
+
                     <article>
                         <div>
-                            <img src="/assets/img/portada-funcion-p2.jpg" alt="Obra">
+                            <img src="/assets/img/SAKADOS-AL-NATURAL.jpg" alt="Obra">
                         </div>
                         <div class="info-obras">
-                            <h6>País | Provincia</h6>
-                            <h4>Título 5</h4>
-                            <h6>Nombre de Grupos</h6>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                            <h6>Argentina | Misiones</h6>
+                            <h4>SAKADOS AL NATURAL</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>SAKADOS DEL TACHO</h6>
+                            </div>
+                            <p>Serie de escenas disparatadas que ocurren en misiones respecto de su fauna salvaje y su fauna urbana local y visitante... títeres realizados reutilizando envases plásticos de descarte cotidiano.</p>
                         </div>
                     </article>
-    
+
                     <article>
                         <div>
-                            <img src="/assets/img/portada-funcion-p2.jpg" alt="Obra">
+                            <img src="/assets/img/MG_8389-Mónica.JPG" alt="Obra">
                         </div>
                         <div class="info-obras">
-                            <h6>País | Provincia</h6>
-                            <h4>Título 6</h4>
-                            <h6>Nombre de Grupos</h6>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                            <h6>Argentina | Córdoba</h6>
+                            <h4>Cami y el Dragón</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Teatro Piedra libre + La Chichina títeres</h6>
+                            </div>
+                            <p>Cami y el dragón" es la adaptación libre para teatro de títeres del cuento “Aprendiz de dragón”, de la escritora Liliana Bodoc, referente de la épica fantástica argentina. Esta obra propone un universo en el que se liga la realidad con la fantasía, que fomenta el desarrollo de la imaginación, la comunicación y la diversión en el público. “Cami y el Dragón” es una historia simple, sensible y divertida. Sus personajes principales pertenecen a mundos diferentes, atemporales, donde la magia y la realidad conviven naturalmente. El conflicto de la obra se resuelve en el mundo de la literatura, donde el libro se transforma en el objeto indispensable para resolver situaciones y encontrar respuestas. Cami vive con su abuela, juega en soledad, le gusta leer y posee un universo imaginario que se desarrolla naturalmente a través de su relación con un dragón que no puede volar, creándose un vínculo de comprensión, protección, solidaridad, confianza y amor El personaje de Cami en el cuento “Aprendiz de dragón” es un niño, en esta versión decidimos no dar información explicita al espectador en relación a su identidad de género, tanto en su vestuario, como en sus juegos o formas de hablar estereotipadas y que presuponen que características son de los niños o de las niñas.</p>
                         </div>
                     </article>
+
+                    <article>
+                        <div>
+                            <img src="/assets/img/titeres-lupa.jpg" alt="Obra">
+                        </div>
+                        <div class="info-obras">
+                            <h6>Argentina | Tandil</h6>
+                            <h4>Martino goma espuma</h4>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i><h6>Lupa, Compañía de muñecos</h6>
+                            </div>
+                            <p>Martino tiene ocho años, una mamá llena de música, un amigo invisible y un enojo más grande que la luna llena. Es que le acaban de dar una noticia: tiene que pasar las vacaciones en la casa de su papá. 1  Y eso es lo que lo enoja, porque su papá vive lejos, en una casa muy extraña y porque -aunque es su papá- lo conoce poquito. Pero -como pasa muchas veces- las cosas más emocionantes suceden en los lugares a donde no queremos ir. En medio de plantas exóticas y rodeado de personajes sorprendentes, Martino va a vivir una aventura que cambiará su vida para siempre. La obra tiene una novedosa y sorprendente propuesta que mezcla los títeres y la actuación de actores con animaciones multimedia. A través del humor, esta apasionante historia nos hace entender la importancia del trabajo con las emociones. Y fundamentalmente aquellas como la ira, que no se suelen tratar en los espectáculos pensados para las infancias.</p>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </div>
@@ -162,21 +289,37 @@
                     <div class="sub-sedes-info">
                         <article class="lib">
                             <h4>Puerto Libertad</h4>
-                            <p>Av. Tatatata 1234</p>
+                            <!-- <p>Av. Tatatata 1234</p> -->
                         </article>
                         <article class="wan">
                             <h4>Wanda</h4>
-                            <p>Av. Tatatata 1234</p>
+                            <!-- <p>Av. Tatatata 1234</p> -->
                         </article>
                         <article class="rico">
                             <h4>Puerto Rico</h4>
-                            <p>Av. Tatatata 1234</p>
+                            <!-- <p>Av. Tatatata 1234</p> -->
+                        </article>
+                        <article class="">
+                            <h4>Montecarlo</h4>
+                            <!-- <p>Av. Tatatata 1234</p> -->
+                        </article>
+                        <article class="">
+                            <h4>Puerto Esperanza</h4>
+                            <!-- <p>Av. Tatatata 1234</p> -->
+                        </article>
+                        <article class="">
+                            <h4>Garuhapé</h4>
+                            <!-- <p>Av. Tatatata 1234</p> -->
+                        </article>
+                        <article class="">
+                            <h4>Montecarlo</h4>
+                            <!-- <p>Av. Tatatata 1234</p> -->
                         </article>
                     </div>                    
                 </div>
             </div>
             <div>
-                <img src="assets/img/misiones-solo.svg" alt="Sedes del festival">
+                <img src="assets/img/misiones-2025.svg" alt="Sedes del festival">
             </div>
         </div>
     </section>
@@ -210,20 +353,13 @@
         </div>
     </section>
 
-    <!-- Mapa -->
-    <!-- <section id="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1461.4530666629596!2d-54.60949837337362!3d-26.411057614940265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f772009df4de73%3A0x38de65868810db01!2sCIRCULO%20MEDICO%20ALTO%20PARANA!5e1!3m2!1ses!2sar!4v1734555892121!5m2!1ses!2sar" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </section> -->
-
-
 
     <footer>
         <div class="d-flex">
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                                                <a class="px-3 py-2" href="form-team.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
-
+                        <a class="px-3 py-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
                     </p>
                 </div>
             </div>

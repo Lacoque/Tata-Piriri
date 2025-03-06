@@ -4,13 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Festival de Títeres</title>
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="/css/css/bootstrap-grid.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-    <!-- <link rel="stylesheet" href="/css/css/bootstrap-grid.css.map"> -->
-    <!-- <link rel="stylesheet" href="/css/css/bootstrap-grid.min.css"> -->
 </head>
 <body>
+
+    <!-- Modal formulario en bootstrap -->
+    <!-- El botón que dispara el evento está escrito más abajo. Por una recomendación de Bootstrap, se define dejar el modal en la parte superior del archivo. -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" id="modal-formulario">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sumate!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contact-form" action="" name="contact" method="POST" autocomplete="on" data-netlify="true">
+                        <p><label><input type="text" name="name" placeholder="Nombre" required /></label></p>
+                        <p><label><input type="email" name="email" placeholder="Correo electrónico" required /></label></p>
+                        <p><label><textarea name="message" placeholder="Mensaje" required></textarea></label></p>
+                        
+                        <p><button type="submit" id="enviar">Enviar</button></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>Pronto te respondemos, gracias por querer sumarte!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="top"></section>
 
@@ -40,7 +60,6 @@
         <nav id="navegador">
             <ul>
                 <li><a href="index.html"><img src="/assets/img/iso-solo.svg" alt="tata logo"></a></li>
-                <!-- <li><a href="index.html">Inicio</a></li> -->
                 <li><a href="index.html#info-programacion">Programación</a></li>
                 <li><a href="index.html#info-entradas">Entradas</a></li>
                 <li><a href="obras-y-sedes.html#obras">Obras</a></li>
@@ -70,7 +89,6 @@
                     </a>
                     <div id="entrada">
                         <i class="fa-regular fa-note-sticky px-3"></i>
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" style="padding: 0rem .5rem;" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#D9D9D9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7a2 2 0 0 1 2-2"/></svg> -->
                         <a href="#info-entradas">
                             Entradas</a>
                     </div>
@@ -146,12 +164,6 @@
                             </div>
                             <div class="w-100"></div>
                         </div>
-                        <!-- <div class="d-flex justify-content-center compar-entradas">
-                            <a href="https://wa.me/543751362949?text=Me%20gustaría%20consultar%20por%20las%20entradas..." class="btn mt-4 d-flex justify-content-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7a2 2 0 0 1 2-2"/></svg> Comprar entradas</a>
-                        </div>
-                        <div class="text-center d-flex justify-content-center aclaracion-wpp">
-                            <p>Al hacer click te llevamos a Whatsapp</p>
-                        </div> -->
                     </div>
                 </div>
             </div>			
@@ -178,8 +190,7 @@
             <div class="item-footer">
                 <div>
                     <p class="px-1">Estamos creciendo todos los años un poco más, <strong>escribinos</strong> si querés sumarte al festival.<br>
-                                                <a class="px-3 py-2" href="form-team.html"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
-
+                        <a class="px-3 py-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-regular fa-envelope px-1"></i>Comunicate</a>
                     </p>
                 </div>
             </div>
@@ -189,7 +200,6 @@
                     <a class="px-1 mb-1" href="/nosotros.html">Quienes somos</a>
                     <a class="px-1 mb-1" href="/nosotros.html#otros-festivales">Más festivales</a>
                     <a class="px-1 mb-1" href="/index.html">Inicio</a>
-                    <!-- <p class="px-1 mb-1">Por el momento, las entradas virtuales las vendemos por Whatsapp.</p> -->
                 </div>
             </div>
         </div>
