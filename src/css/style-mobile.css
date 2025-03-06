@@ -214,6 +214,7 @@
 
     #obras div.slider article div {
         width: 100%;
+        gap: .5rem;
     }
 
     #obras div article div img {
@@ -403,7 +404,11 @@
     }
 
     a.sumate-equipo {
-        box-shadow: 0px 5px 5px var(--marron-oscuro);
+        padding: 0rem;
+        overflow: hidden;
+    }
+    a.sumate-equipo h5 {
+        padding: .3rem .5rem;
     }
 }
 

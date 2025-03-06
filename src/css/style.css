@@ -1134,6 +1134,7 @@ iframe#mapa {
 #obras div.slider article div {
 	height: auto;
 	width: 50vw;
+	gap: .5rem;
 }
 
 #obras div article div img {
@@ -1165,6 +1166,10 @@ iframe#mapa {
 	padding-top: 1rem;
 	overflow: auto;
 	font-size: smaller;
+}
+
+.info-obras i {
+	color: var(--bordo);
 }
 
 div article .info-obras h4,
