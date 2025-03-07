@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
       scrollTween = gsap.to(articulos, {
-        xPercent: -100 * (articulos.length - 0.70),
+        xPercent: -100 * (articulos.length - 0.63),
         ease: "none",
         scrollTrigger: {
           trigger: ".slider",

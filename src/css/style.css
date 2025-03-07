@@ -1122,17 +1122,25 @@ div article .info-obras p {
 
 .numero-obra {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 
 .numero-obra p {
-	align-self: center;
+	display: flex;
+	gap: .25rem;
+	align-items: center;
 	font-size: smaller;
-	font-weight: 900;
-	text-transform: uppercase;
+	padding: 0rem .0rem 0rem .5rem;
 	color: var(--gris) !important;
-	padding: .2rem .5rem;
 	border-radius: 5px;
+	background-color: #24242470;
+	height: fit-content;
+}
+
+.numero-obra p span {
+	height: 100%;
+	padding: .5rem 1rem;
 	background-color: var(--purpura);
 }
 
