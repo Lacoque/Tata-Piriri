@@ -425,6 +425,7 @@
     .numero-obra p {
         color: var(--purpura) !important;
         border: 1px solid var(--purpura);
+        background: transparent;
     }
     .numero-obra p span {
         color: var(--gris) !important;
