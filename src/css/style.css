@@ -1133,20 +1133,22 @@ div article .info-obras p {
 
 .numero-obra p {
 	display: flex;
+	height: fit-content;
 	gap: .25rem;
 	align-items: center;
 	font-size: smaller;
 	padding: 0rem .0rem 0rem .5rem;
-	color: var(--gris) !important;
+	
+	color: var(--purpura) !important;
+	border: 1px solid var(--purpura);
 	border-radius: 5px;
-	background-color: #24242470;
-	height: fit-content;
 }
 
 .numero-obra p span {
 	height: 100%;
 	padding: .5rem 1rem;
 	background-color: var(--purpura);
+	color: var(--gris) !important;
 }
 
 .misiones-mobile img:nth-child(2){
@@ -1696,7 +1698,7 @@ div#modal-formulario form#contact-form textarea	{
 
 .cx-web {
 	display: flex;
-	padding: 1.85rem 0rem 2.5rem;
+	padding: 1.85rem 0rem 3.5rem;
 	gap: .5rem;
 	align-items: center;
 	justify-content: center;
