@@ -776,6 +776,11 @@ footer #int img {
 	border: 1px solid #5f1c3e;
 	background-color: #5f1c3e;
 }
+.item-footer:nth-child(2) > div {
+	color: var(--gris);
+}
+
+
 @media (hover:hover) {
 	.item-footer p a:hover {
 		border: 1px solid var(--amarillo);
@@ -1687,4 +1692,25 @@ div#modal-formulario form#contact-form label,
 div#modal-formulario form#contact-form input,
 div#modal-formulario form#contact-form textarea	{
 	width: 100%;
+}
+
+.cx-web {
+	display: flex;
+	padding: 1.85rem 0rem 2.5rem;
+	gap: .5rem;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(#4C2237, #291725);
+	background-color: #291725;
+}
+.cx-web h6,
+.cx-web i {
+	color: var(--gris);
+	font-weight: 500;
+	margin: 0rem;
+}
+.cx-web a {
+	text-decoration: none;
+	padding: 0rem;
+	background-color: transparent;
 }
