@@ -18,7 +18,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="contact-form" action="" name="contact" method="POST" autocomplete="on" data-netlify="true">
+                        <form id="contact-form" action="/" name="contact" method="POST" autocomplete="on" data-netlify="true">
                             <p><label><input type="text" name="name" placeholder="Nombre" required /></label></p>
                             <p><label><input type="email" name="email" placeholder="Correo electrónico" required /></label></p>
                             <p><label><textarea name="message" placeholder="Mensaje" required></textarea></label></p>
@@ -200,6 +200,30 @@
 
     <script src="https://unpkg.com/split-type"></script>
     <script type="module" src="./src/js/main.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+          e.preventDefault(); 
+      
+          const form = e.target;
+          const data = new FormData(form);
+          data.append('form-name', 'contact'); 
+      
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data).toString()
+          })
+          .then(() => {
+          
+            window.location.reload();
+          })
+          .catch(error => {
+           
+            alert('Hubo un error. Por favor, intenta de nuevo.');
+            console.error(error);
+          });
+        });
+      </script>
 
 </body>
 </html>
