@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://tatapiriri.com.ar/sitemap.xml
