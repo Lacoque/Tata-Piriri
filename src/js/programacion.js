@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para renderizar un día
     const renderDay = (day, data) => {
       const dayContainer = document.createElement('div');
-      dayContainer.className = 'day-container';
+      dayContainer.className = 'day-container';;
   
       // Título del día
       const title = document.createElement('h2');

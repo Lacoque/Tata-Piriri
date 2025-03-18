@@ -1732,3 +1732,44 @@ div#modal-formulario form#contact-form input,
 div#modal-formulario form#contact-form textarea	{
 	width: 100%;
 }
+/* PROGRAMACION */
+/* styles.css */
+.slider-container {
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 20px 0;
+  }
+  
+  .day-container {
+	display: inline-block; /* Alinea horizontalmente */
+	width: 300px; /* Ancho de cada slide */
+	margin-right: 20px;
+	background: white;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	padding: 15px;
+	vertical-align: top;
+  }
+  
+  .day-container h2 {
+	margin-top: 0;
+	border-bottom: 2px solid #eee;
+	padding-bottom: 10px;
+  }
+  
+  table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 15px;
+  }
+  
+  th, td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+  }
+  
+  .hidden {
+	display: none;
+  }
