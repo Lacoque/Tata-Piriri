@@ -1,4 +1,12 @@
 @media (max-width:960px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    #info-entradas {
+        padding: 1rem 0rem 0rem;
+    }
+
     #info-entradas div:has(.col-12.text-center){
         padding-right: 0rem;
         padding-left: 0rem;
@@ -206,6 +214,7 @@
 
     #obras div.slider article div {
         width: 100%;
+        gap: .5rem;
     }
 
     #obras div article div img {
@@ -344,8 +353,9 @@
     /* Formulario */
     div#form-contacto {
         width: 95%;
-        padding: 1.3rem .3rem .7rem;
+        padding: 1.3rem 1.25rem .7rem;
         margin: 0rem;
+        gap: 3rem;
     }
 
     div#form-contacto > div:first-of-type {
@@ -358,6 +368,7 @@
         grid-template-columns: 1fr;
     }
 
+  
     #info-programacion .controls #allDaysContainer .day-container{
         width: 200vw;
         align-items: start;
@@ -366,6 +377,60 @@
         position: sticky;
         left: 1rem;
         margin: .5rem 1rem 2rem;
+
+    div#form-contacto p label.mas-datos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    div#form-contacto p label input {
+        border-radius: 5px;
+    }
+
+    #nosotros-tarjetas {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        padding: 0rem .5rem;
+        margin: 0rem;
+        gap: 1rem .5rem;
+    }
+
+    #nosotros-tarjetas > article {
+        overflow: hidden;
+    }
+
+    #nosotros-tarjetas img {
+        height: 25vh;
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    #quienes-somos h2 {
+        margin: 1.5rem;
+    }
+
+    .gente {
+        width: auto;
+        margin: 1rem;
+    }
+
+    a.sumate-equipo {
+        padding: 0rem;
+        overflow: hidden;
+    }
+    a.sumate-equipo h5 {
+        padding: .3rem .5rem;
+    }
+
+    .misiones-mobile img:nth-child(1){
+        display: none;
+    }
+    .misiones-mobile img:nth-child(2){
+        display: block;
+    }
+
+    .numero-obra {
+        flex-direction: column;
+        align-items: start;
     }
 }
 

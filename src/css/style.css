@@ -45,31 +45,7 @@ a {
     --marron-oscuro: #311C08;
 }
 
-/* ROBOTO FUENTE */
-/* @font-face {
-    font-family: 'Roboto-Regular';
-    src: url('/fonts/Roboto-Regular.ttf');
-}
-@font-face {
-    font-family: 'Roboto-Medium';
-    src: url('/fonts/Roboto-Medium.ttf');
-}
-@font-face {
-    font-family: 'Roboto-Bold';
-    src: url('/fonts/Roboto-Bold.ttf');
-}
-@font-face {
-    font-family: 'Roboto-Light';
-    src: url('/fonts/Roboto-Light.ttf');
-}
-@font-face {
-    font-family: 'Roboto-Black';
-    src: url('/fonts/Roboto-Black.ttf');
-}
-@font-face {
-    font-family: 'Roboto-Thin';
-    src: url('/fonts/Roboto-Thin.ttf');
-} */
+
 /* LATO FUENTE */
 @font-face {
 	font-family: 'Lato-Light';
@@ -108,12 +84,7 @@ a {
     margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-/* #inicio .accion h4 {
-    font-family: 'Roboto-Black';
-    color: var(--gris);
-    margin: 1rem auto 3rem;
-    font-size: 1.15rem;
-} */
+
 #inicio .accion h2#edicion {
 	font-family: 'Lato-Black';
     color: var(--gris);
@@ -150,7 +121,6 @@ a {
 a#programacion {
     position: relative;
     overflow: hidden;
-    /* border: 1px solid var(--purpura); */
     color: var(--purpura);
     display: inline-block;
     padding: .5rem 2rem;
@@ -212,7 +182,6 @@ a#programacion:hover span:last-child {
 }
 
 div#entrada {
-    /* padding: 0rem 0rem 0rem 1rem; */
     border-radius: 5px; 
     display: flex;
     align-items: center;
@@ -313,8 +282,6 @@ section#inicio div#entrada a {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--gris); */
-    /* background-color: #6b371a; */
 	background: linear-gradient( 20deg, var(--marron), #632e12);
     color: var(--gris);
 }
@@ -349,7 +316,6 @@ section#inicio div#entrada a {
 	position: relative;
 	font-size: .845rem;
 	margin: 0;
-	/* visibility: hidden; */
 	opacity: 0;
 	bottom: -40px;
 	transition: all 500ms;
@@ -407,22 +373,11 @@ section#inicio div#entrada a {
     border-radius: 10px;
     background-color: var(--amarillo);
     padding: 2rem;
-    /* box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 2px 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
 }
 
 
 
 /* Entradas */
-
-/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap'); */
-
-/* :root {
-	font-size: 20px;
-	--dark-blue: #1f2029;
-	--white-gr: #c4c3ca;
-	--yellow: #ffeba7;
-	--yellow-2: #f8ab37;
-} */
 
 #info-entradas body{
 	color: var(--white-gr);
@@ -431,7 +386,6 @@ section#inicio div#entrada a {
 }
 #info-entradas h1 {
 	font-family: 'Lato-Regular';
-	/* font-weight: 700; */
 	color: var(--white-gr);
 	font-size: 36px;
 }
@@ -441,7 +395,6 @@ section#inicio div#entrada a {
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .char {
-	/* transform: translateY(115px); */
 	transition: transform .5;
 }
 #info-entradas p {
@@ -592,8 +545,6 @@ section#inicio div#entrada a {
 }
 .checkbox-ticket + label .price span{
 	font-family: 'Lato-Regular';
-	/* font-size: 26px; */
-	/* line-height: 1; */
 	letter-spacing: 4px;
 }
 .checkbox-ticket + label .uil {
@@ -777,7 +728,6 @@ section#inicio div#entrada a {
 	box-shadow: 0px 0px 20px #1f2029;
 	background: var(--marron);
 	background: radial-gradient(circle, var(--marron), var(--marron-oscuro));
-	/* background: radial-gradient(circle, var(--amarillo-op-70), var(--bordo)) */
 }
 
 .entradas-tickets label img:first-of-type {
@@ -859,6 +809,9 @@ footer #int img {
 .item-footer {
 	width: 100%;
 }
+.item-footer:first-of-type a {
+	cursor: pointer;
+}
 .item-footer > div:first-of-type{
 	display: flex;
 	flex-direction: column;
@@ -868,10 +821,14 @@ footer #int img {
 }
 .item-footer p a {
 	line-height: 2.65rem;
-	/* border: 2px solid #d9d9d92c; */
 	border: 1px solid #5f1c3e;
 	background-color: #5f1c3e;
 }
+.item-footer:nth-child(2) > div {
+	color: var(--gris);
+}
+
+
 @media (hover:hover) {
 	.item-footer p a:hover {
 		border: 1px solid var(--amarillo);
@@ -975,7 +932,6 @@ footer .logos-footer {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* height: 100vh; */
 	padding: 4rem 0rem;
 	background-color: var(--amarillo);
 	color: var(--gris);
@@ -991,7 +947,6 @@ footer .logos-footer {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* height: 100vh; */
 	padding: 4rem 0rem 2rem;
 	background-color: var(--marron-oscuro);
 	color: var(--gris);
@@ -1023,7 +978,6 @@ footer .logos-footer {
 }
 
 .festivales a:nth-of-type(2) img {
-	/* height: 20svh; */
 	width: 30svh;
 	object-fit: contain;
 }
@@ -1033,7 +987,6 @@ footer .logos-footer {
 	padding: .2rem 1rem;
 	color: var(--gris);
 	text-align: center;
-	/* background-color: var(--bordo); */
 }
 
 @media (hover:hover) {
@@ -1079,7 +1032,6 @@ footer .logos-footer {
     
 	padding: 1rem 1.85rem;
 
-	/* border: 1px solid var(--bordo); */
 	border-radius: 10px;
 	background-color: #6d1955;
 }
@@ -1091,7 +1043,6 @@ footer .logos-footer {
 .sedes-info h1{
 	font-weight: 200;
 	color: var(--amarillo);
-	/* border-bottom: 1px solid var(--amarillo); */
 	padding-bottom: .3rem;
 	margin-bottom: .3rem;
 }
@@ -1102,19 +1053,11 @@ footer .logos-footer {
 	font-size: .8rem;
 }
 
-/* .sub-sedes-info{
-	padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-	justify-content: space-between;
-} */
-
 .sub-sedes-info {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: auto;
 	grid-gap: .25rem;
-	grid-auto-rows: minmax(60px, auto);
 }
 
 iframe#mapa {
@@ -1152,7 +1095,6 @@ iframe#mapa {
 	width: 95vw;
 	flex-direction: column;
 	align-items: center;
-	/* box-shadow: 1px 10px 30px #00000071; */
 }
 
 #obras div.slider {
@@ -1161,7 +1103,6 @@ iframe#mapa {
     overflow: hidden;
     height: max-content;
 	width: auto;
-	/* width: 100%; */
 
     scrollbar-width: none;
 	scroll-behavior: smooth;
@@ -1169,10 +1110,10 @@ iframe#mapa {
 
 #obras div.slider article {
 	width: 100vw;
+	height: 75vh;
     display: flex;
     flex-direction: row;
     flex: 0 0 100%;
-    /* gap: 0; */
     justify-content: start;
     border-radius: 10px;
     overflow: hidden;
@@ -1180,7 +1121,8 @@ iframe#mapa {
 
 #obras div.slider article div {
 	height: auto;
-	width: 50vw;
+	width: 100%;
+	gap: .5rem;
 }
 
 #obras div article div img {
@@ -1211,7 +1153,10 @@ iframe#mapa {
 .info-obras p {
 	padding-top: 1rem;
 	overflow: auto;
-	font-size: smaller;
+}
+
+.info-obras i {
+	color: var(--bordo);
 }
 
 div article .info-obras h4,
@@ -1226,6 +1171,36 @@ div article .info-obras p {
 }
 #obras div article h6{
 	text-transform: uppercase;
+}
+
+.numero-obra {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.numero-obra p {
+	display: flex;
+	height: fit-content;
+	gap: .25rem;
+	align-items: center;
+	font-size: smaller;
+	padding: 0rem .0rem 0rem .5rem;
+	
+	color: var(--purpura) !important;
+	border: 1px solid var(--purpura);
+	border-radius: 5px;
+}
+
+.numero-obra p span {
+	height: 100%;
+	padding: .5rem 1rem;
+	background-color: var(--purpura);
+	color: var(--gris) !important;
+}
+
+.misiones-mobile img:nth-child(2){
+	display: none;
 }
 
 /* FIN OBRAS */
@@ -1249,7 +1224,6 @@ div article .info-obras p {
 	border-radius: 10px;
 	border: 1px solid var(--gris);
 	padding-bottom: 1.5rem;
-	/* padding: 1.5rem 1rem; */
 	color: var(--bordo);
 	text-align: center;
 	transition: all .3s;
@@ -1301,7 +1275,6 @@ div article .info-obras p {
 
 .gente {
 	display: flex;
-	/* flex-direction: column; */
 	width: 40vw;
 	gap: .5rem;
 	align-items: center;
@@ -1364,9 +1337,7 @@ a.sumate-equipo {
 }
 
 div#form-contacto {
-	/* width: 90%; */
 	display: grid;
-	/* gap: 2rem; */
 	grid-template-columns: 1fr;
 	padding: 1.3rem 3rem .7rem;
 	margin: 0rem 8rem;
@@ -1531,7 +1502,6 @@ p.archivos {
 	cursor: pointer;
 	padding: .5rem;
 	border-radius: 10px;
-	/* aspect-ratio: 1/1; */
 	transition: all .3s;
 }
 @media (hover:hover) {
@@ -1540,11 +1510,6 @@ p.archivos {
 		background-color: var(--gris);
 		color: var(--marron-oscuro);
 	}
-}
-
-div#form-contacto p i input[type="file"]::file-selector-button {
-	/* background-color: #000;
-	visibility: hidden; */
 }
 
 #form-contacto .custom-file-container .input-visible,
@@ -1573,7 +1538,6 @@ div#form-contacto p i input[type="file"]::file-selector-button {
 @media (hover:hover) {
 	#form-contacto .custom-file-container .input-visible:hover{
 		background-color: var(--gris);
-		/* box-shadow: 0px 6px 6px #0000006c; */
 		color: var(--marron);
 		outline: 1px solid var(--gris);
 		transform: scale(1.05);
@@ -1778,4 +1742,25 @@ div#modal-formulario form#contact-form label,
 div#modal-formulario form#contact-form input,
 div#modal-formulario form#contact-form textarea	{
 	width: 100%;
+}
+
+.cx-web {
+	display: flex;
+	padding: 1.85rem 0rem 3.5rem;
+	gap: .5rem;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(#4C2237, #291725);
+	background-color: #291725;
+}
+.cx-web h6,
+.cx-web i {
+	color: var(--gris);
+	font-weight: 500;
+	margin: 0rem;
+}
+.cx-web a {
+	text-decoration: none;
+	padding: 0rem;
+	background-color: transparent;
 }
