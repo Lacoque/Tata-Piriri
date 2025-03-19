@@ -144,6 +144,9 @@ a {
     gap: 2rem;
 }
 
+
+
+
 a#programacion {
     position: relative;
     overflow: hidden;
@@ -245,22 +248,66 @@ section#inicio div#entrada a {
 }
 
 
+/* Inicio Programación con el documento de Google Sheests*/
+
 #info-programacion{
     display: flex;
 	flex-direction: column;
-	/* gap: 2rem; */
 	padding: 5rem 0rem;
     justify-content: center;
     align-items: center;
-	height: 90vh;
     background-color: var(--purpura);
     color: var(--gris);
 }
+
 #info-programacion h2{
 	margin: 0;
 	font-family: 'Lato-Light';
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
+
+#info-programacion .controls {
+	height: auto;
+	width: 100%;
+	padding: 3rem 0rem;
+	overflow: auto;
+	scrollbar-color: var(--amarillo-op-70) #d9d9d918;
+}
+
+#info-programacion .controls #allDaysContainer {
+	width: fit-content;
+	margin: 0rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+}
+
+#info-programacion .controls #allDaysContainer .day-container {
+	width: 70vw;
+	width: calc(75vw - 5px);
+	padding: 1rem;
+	border-radius: 10px;
+	background-color: #6d1955;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+#info-programacion .controls #allDaysContainer .day-container h2 {
+	font-weight: 600;
+	font-size: 1.085rem;
+	text-transform: uppercase;
+	margin: .5rem auto 2rem;
+}
+
+#info-programacion .controls #allDaysContainer .day-container table {
+	padding-bottom: 2rem;
+	border-collapse: separate;
+	border-spacing: 2rem 0rem;
+}
+
+/* Fin Programación con el documento de Google Sheests*/
+
+
 
 #info-entradas{
     display: flex;

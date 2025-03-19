@@ -357,6 +357,16 @@
     div#form-contacto p:nth-child(2) label:first-of-type {
         grid-template-columns: 1fr;
     }
+
+    #info-programacion .controls #allDaysContainer .day-container{
+        width: 200vw;
+        align-items: start;
+    }
+    #info-programacion .controls #allDaysContainer .day-container h2 {
+        position: sticky;
+        left: 1rem;
+        margin: .5rem 1rem 2rem;
+    }
 }
 
 
