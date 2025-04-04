@@ -368,6 +368,16 @@
         grid-template-columns: 1fr;
     }
 
+    #info-programacion .controls #allDaysContainer .day-container{
+        width: 200vw;
+        align-items: start;
+    }
+    #info-programacion .controls #allDaysContainer .day-container h2 {
+        position: sticky;
+        left: 1rem;
+        margin: .5rem 1rem 2rem;
+    }
+
     div#form-contacto p label.mas-datos {
         grid-template-columns: 1fr 1fr;
     }
