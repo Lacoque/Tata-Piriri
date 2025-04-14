@@ -102,6 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
+
+
+
   function handleResize() {
     if (window.innerWidth >= 960) {
       initSlider();
@@ -377,6 +381,17 @@ const form = document.getElementById('contact-form');
     });
   });
 
-  
 });
 
+
+
+  // Desplazamiento inicial hacia la izquierda de las tarjetas de Obras
+  const desplazamietoSlider = document.querySelector('.slider-container');
+  desplazamietoSlider.classList.add('slider-offset');
+  
+  desplazamietoSlider.addEventListener('scroll', function() {
+    if(this.scrollLeft = 60){
+      desplazamietoSlider.classList.remove('slider-offset');
+      console.log("Se deslpaza")
+    }
+  }, { once: true });
