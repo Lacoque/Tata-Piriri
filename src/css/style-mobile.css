@@ -442,8 +442,14 @@
         overlay: auto;
     }
 
+    .colaboradores {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 2rem;
+    }
+
     .colaboradores img {
-        max-height: 90px;
+        max-width: 90px;
+        max-height: 70px;
     }
 }
 
