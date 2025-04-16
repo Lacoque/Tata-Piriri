@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allDaysContainer = document.getElementById('allDaysContainer');
     const errorMessage = document.getElementById('errorMessage');
-    console.log('Elemento errorMessage:', errorMessage);
+    
   
     // Lista de días a cargar
     const days = ['Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
