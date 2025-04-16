@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById('errorMessage');
   
     // Lista de días a cargar
-    const days = ['Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+    const days = ['Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
   
     // Cargar todos los días al iniciar
     const loadAllDays = async () => {
