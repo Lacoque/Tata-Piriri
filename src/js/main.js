@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-   //formulario
+   //formulario convocatoria
  
 if (window.location.pathname.includes("form.html")) {
   import('file-upload-with-preview')
