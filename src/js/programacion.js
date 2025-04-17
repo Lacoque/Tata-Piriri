@@ -1,18 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Evento DOMContentLoaded disparado. Verificando elementos del DOM...');
+
+    // Referencias a los elementos del DOM
     const allDaysContainer = document.getElementById('allDaysContainer');
     const errorMessage = document.getElementById('errorMessage');
 
     // Validación inicial de elementos
     if (!allDaysContainer) {
-        console.error('El elemento allDaysContainer no existe en el DOM');
+        console.error('El elemento allDaysContainer no existe en el DOM. Verifica que el ID esté correctamente definido en el HTML.');
         return;
     }
     if (!errorMessage) {
-        console.error('El elemento errorMessage no existe en el DOM');
+        console.error('El elemento errorMessage no existe en el DOM. Verifica que el ID esté correctamente definido en el HTML.');
         return;
     }
 
-    console.log('Estado inicial del DOM:', {
+    console.log('Elementos del DOM encontrados:', {
         allDaysContainer: allDaysContainer ? 'Encontrado' : 'No encontrado',
         errorMessage: errorMessage ? 'Encontrado' : 'No encontrado'
     });
@@ -23,20 +26,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar todos los días al iniciar
     const loadAllDays = async () => {
         try {
-            console.log('Antes de manipular errorMessage:', { errorMessage });
-            console.log('Limpiando contenido de allDaysContainer:', { allDaysContainer });
+            console.log('Iniciando carga de días...');
 
+            // Manipulación de errorMessage
+            console.log('Manipulando errorMessage:', { errorMessage });
             errorMessage.classList.add('hidden');
-            allDaysContainer.innerHTML = ''; // Limpiar contenido anterior
+
+            // Limpiar contenido anterior
+            console.log('Limpiando contenido de allDaysContainer:', { allDaysContainer });
+            allDaysContainer.innerHTML = '';
 
             // Cargar cada día en paralelo
+            console.log('Cargando datos para los días:', days);
             const dayPromises = days.map(day => fetchData(day));
             const results = await Promise.all(dayPromises);
 
             // Renderizar cada día
+            console.log('Renderizando datos para los días...');
             results.forEach(({ day, data }) => {
                 if (data && data.values) {
                     renderDay(day, data.values);
+                } else {
+                    console.warn(`No se encontraron datos para el día: ${day}`);
                 }
             });
 
@@ -55,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener datos de un día
     const fetchData = async (day) => {
         try {
+            console.log(`Obteniendo datos para el día: ${day}`);
             const response = await fetch(`https://backend-del-tata.contenidx.workers.dev/sheet-data?day=${day}`);
             if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
             const data = await response.json();
@@ -80,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Crear tabla
         if (data.length === 0) {
+            console.warn(`No hay datos para renderizar en la tabla para el día: ${day}`);
             dayContainer.innerHTML += '<p>No hay eventos</p>';
         } else {
             const table = document.createElement('table');
@@ -100,5 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Iniciar carga
+    console.log('Iniciando carga de días...');
     loadAllDays();
 });
