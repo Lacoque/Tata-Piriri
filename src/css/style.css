@@ -1765,7 +1765,7 @@ div#modal-formulario form#contact-form textarea	{
 	background-color: transparent;
 }
 
-#quienes-colaboramos{
+#quienes-colaboramos {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
