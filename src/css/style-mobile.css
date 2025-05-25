@@ -237,7 +237,7 @@
     }
 
     #sedes img {
-        height: 30vw;
+        height: calc(30vw + 20vw);
     }
 
     .sedes-info {
@@ -424,12 +424,12 @@
         padding: .3rem .5rem;
     }
 
-    .misiones-mobile img:nth-child(1){
+    /* .misiones-mobile img:nth-child(1){
         display: none;
     }
     .misiones-mobile img:nth-child(2){
         display: block;
-    }
+    } */
 
     .numero-obra {
         flex-direction: column;
