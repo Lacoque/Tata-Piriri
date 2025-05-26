@@ -372,7 +372,8 @@
     }
 
     #info-programacion .controls #allDaysContainer .day-container{
-        width: 200vw;
+        /* width: 200vw; */
+        width: max-content;
         align-items: start;
     }
     #info-programacion .controls #allDaysContainer .day-container h2 {
