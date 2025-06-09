@@ -1,12 +1,3 @@
-// === Función que faltaba ===
-async function getAccessToken() {
-  const token = localStorage.getItem('access_token'); // Cambia por el nombre que uses
-  if (!token) {
-    throw new Error("No se encontró el token de acceso");
-  }
-  return token;
-}
-
 document.getElementById('form').addEventListener('submit', async (e) => {
     e.preventDefault();
     try {
