@@ -30,7 +30,8 @@ import 'file-upload-with-preview/dist/style.css';
   }
   
   const imgBgFile = 'url("/assets/img/marca-tata-piriri.png")';
-  const upload = new FileUploadWithPreview('file-upload', {
+  // const upload = new FileUploadWithPreview('file-upload', {
+    window.upload = new FileUploadWithPreview('file-upload', {
     multiple: true,
     text: {
       chooseFile: "Seleccioná el archivo",
