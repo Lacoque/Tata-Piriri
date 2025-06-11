@@ -156,10 +156,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // token  desde el backend
-async function getAccessToken() {
-  const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
-    method: 'GET',
-  });
+// async function getAccessToken() {
+//   const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
+//     method: 'GET',
+//   });
+//   if (!response.ok) {
+//     const errorDetails = await response.text();
+//     console.error('Error al obtener el token de acceso:', errorDetails);
+//     throw new Error(`Error al obtener el token de acceso: ${response.status} ${response.statusText}`);
+//   }
+//   const data = await response.json();
+//   return data.accessToken;
+// }
+
+// async function uploadFilesToGoogleDrive(files, accessToken) {
+//   const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
+//   console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
+//   const fileUrls = [];
+//   for (const file of files) {
+//     const formData = new FormData();
+//     formData.append('metadata', new Blob([JSON.stringify({
+//       name: file.name,
+//       parents: [GOOGLE_DRIVE_FOLDER_ID],
+//     })], { type: 'application/json' }));
+//     formData.append('file', file);
+//     const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+//       method: 'POST',
+//       headers: { Authorization: `Bearer ${accessToken}` },
+//       body: formData,
+//     });
+//     if (!response.ok) {
+//       const errorDetails = await response.text();
+//       throw new Error(`Error al subir el archivo ${file.name}: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
+//     }
+//     const data = await response.json();
+//     fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
+//   }
+//   console.log('URLs de los archivos subidos:', fileUrls);
+//   return fileUrls;
+// }
+// main.js
+
+export async function getAccessToken() {
+  const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token'); 
   if (!response.ok) {
     const errorDetails = await response.text();
     console.error('Error al obtener el token de acceso:', errorDetails);
@@ -169,10 +208,10 @@ async function getAccessToken() {
   return data.accessToken;
 }
 
-async function uploadFilesToGoogleDrive(files, accessToken) {
+export async function uploadFilesToGoogleDrive(files, accessToken) {
   const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
-  console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
   const fileUrls = [];
+
   for (const file of files) {
     const formData = new FormData();
     formData.append('metadata', new Blob([JSON.stringify({
@@ -180,22 +219,25 @@ async function uploadFilesToGoogleDrive(files, accessToken) {
       parents: [GOOGLE_DRIVE_FOLDER_ID],
     })], { type: 'application/json' }));
     formData.append('file', file);
+
     const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
       method: 'POST',
       headers: { Authorization: `Bearer ${accessToken}` },
       body: formData,
     });
+
     if (!response.ok) {
       const errorDetails = await response.text();
       throw new Error(`Error al subir el archivo ${file.name}: ${response.status} ${response.statusText}. Detalles: ${errorDetails}`);
     }
+
     const data = await response.json();
     fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
   }
+
   console.log('URLs de los archivos subidos:', fileUrls);
   return fileUrls;
 }
-
 // Envía el correo electrónico
 async function sendEmail(formData) {
   const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
