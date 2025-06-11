@@ -195,7 +195,7 @@ fileUrls.push(`https://drive.google.com/file/d/${data.id}/view`);
 console.log('URLs de los archivos subidos:', fileUrls);
 return fileUrls;
 }
-main.js
+
 
 
 // Envía el correo electrónico
