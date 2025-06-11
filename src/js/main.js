@@ -156,7 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // token  desde el backend
- async function getAccessToken() {
+//  async function getAccessToken() {
+  window.getAccessToken = async function () {
 const response = await fetch('https://backend-del-tata.contenidx.workers.dev/get-access-token', {
 method: 'GET',
 });
@@ -169,7 +170,8 @@ throw new Error(`Error al obtener el token de acceso: ${response.status} ${respo
 return data.accessToken;
 }
 
-async function uploadFilesToGoogleDrive(files, accessToken) {
+// async function uploadFilesToGoogleDrive(files, accessToken) {
+  window.uploadFilesToGoogleDrive = async function (files, accessToken) {
 const GOOGLE_DRIVE_FOLDER_ID = "1YOMFe6BxHD3tdvSLOxy5s5ztulIjMuwf";
 console.log('ID de la carpeta de Google Drive:', GOOGLE_DRIVE_FOLDER_ID);
 const fileUrls = [];
@@ -199,7 +201,8 @@ return fileUrls;
 
 
 // Envía el correo electrónico
-async function sendEmail(formData) {
+// async function sendEmail(formData) {
+  window.sendEmail = async function (formData) {
   const EMAILJS_PUBLIC_KEY = 'rJxAhBYzAk7XIFXk6';
   const EMAILJS_SERVICE_ID = 'service_a3g0l17';
   const EMAILJS_TEMPLATE_ID = 'template_x4mo2hj';
