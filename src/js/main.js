@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import * as bootstrap from 'bootstrap';
 
 // import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -267,5 +268,9 @@ const form = document.getElementById('contact-form');
       console.error('Error:', error);
     });
   });
+
+
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 });
