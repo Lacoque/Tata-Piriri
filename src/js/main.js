@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
                 mensaje = "Me gustaría consultar por las Entradas"
         }
-        open(`https://wa.me/5493764671536?text=${encodeURIComponent(mensaje)}`);
+        open(`https://wa.me/5493751668811?text=${encodeURIComponent(mensaje)}`);
     };
 
 
