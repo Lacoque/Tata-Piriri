@@ -103,10 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
-
-
-
   function handleResize() {
     if (window.innerWidth >= 960) {
       initSlider();
