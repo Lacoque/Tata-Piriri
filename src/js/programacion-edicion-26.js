@@ -1,4 +1,6 @@
 import Papa from 'papaparse';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 async function obtenerDatosCSV(url) {
     try {
@@ -26,23 +28,52 @@ async function obtenerDatosCSV(url) {
     }
 }
 
+// Clona los elementos del template de Obras y los rellena con los datos del CSV "Datos_Tata_2026"
 async function renderizarProgramacion() {
     const url = import.meta.env.VITE_URL_PROGRAMACION;
     const programacion = await obtenerDatosCSV(url);
 
-    const container = document.querySelector('#programacion-grid');
+    const container = document.querySelector('#obras-grid');
+    const template = document.querySelector('#template-obra');
 
-    container.innerHTML = programacion.map(item => `
-            <article class="evento-card">
-            <img src="${item.ruta_imagen}" alt="${item.obra}">
-            <div class="info">
-                <h3>${item.obra}</h3>
-                <p class="grupo"><strong>${item.grupo}</strong> (${item.origen})</p>
-                <p class="descripcion">${item.descripcion}</p>
-                <div class="footer-card">
-                <span>🕒 ${item.duracion}</span>
-                </div>
-            </div>
-            </article>
-        `).join('');
+    container.innerHTML = '';
+    programacion.forEach(item => {
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('.js-imagen').src = item.ruta_imagen;
+        clone.querySelector('.js-imagen').alt = item.obra;
+        clone.querySelector('.js-titulo').textContent = item.obra;
+        clone.querySelector('.js-origen').textContent = item.origen;
+        clone.querySelector('.js-grupo').textContent = item.grupo;
+        clone.querySelector('.js-duracion').textContent = item.duracion;
+        clone.querySelector('.js-descripcion').textContent = item.descripcion;
+
+        container.appendChild(clone);
+    });
+    if (window.innerWidth >= 960) {
+        iniciarSlider();
     }
+}
+renderizarProgramacion()
+
+function iniciarSlider() {
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    const container = document.querySelector('#obras-grid');
+    const articulos = gsap.utils.toArray('.obra-card');
+
+    if (articulos.length > 0) {
+        let totalWidht = container.scrollWidth - window.innerWidth;
+        scrollTween = gsap.to(container, {
+            x: () => -totalWidht,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#obras",
+                pin: true,
+                scrub: 1,
+                start: "top 10%",
+                end: () => "+=" + container.scrollWidth,
+                invalidateOnRefresh: true,
+                // markers: true,
+            },
+        });
+    }
+}

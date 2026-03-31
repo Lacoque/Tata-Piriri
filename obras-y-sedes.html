@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./src/js/programacion-edicion-26.js" defer></script>
+
+
     <title>Obras y Sedes | Festival de Títeres</title>
     <link rel="canonical" href="https://tatapiriri.com.ar/obras-y-sedes#obras">
     <link rel="shortcut icon" href="/assets/img/favicon.svg" type="image/x-icon">
@@ -48,7 +51,7 @@
             <div>
                 <a href="index.html#info-programacion" class="nav-item-mobile-menu"><i class="fa-solid fa-clock"></i> Programación</a>
                 <a href="index.html#info-entradas" class="nav-item-mobile-menu"><i class="fa-solid fa-note-sticky"></i> Entradas</a>
-                <a href="obras-y-sedes.html" class="nav-item-mobile-menu"><i class="fa-solid fa-star"></i> Obras</a>
+                <a href="obras-y-sedes.html#obras" class="nav-item-mobile-menu"><i class="fa-solid fa-star"></i> Obras</a>
                 <a href="sedes.html" class="nav-item-mobile-menu"><i class="fa-solid fa-location-dot"></i> Sedes</a>
                 <a href="nosotros.html" class="nav-item-mobile-menu"><i class="fa-solid fa-circle-user"></i> Equipo</a>
                 <a href="form.html#top" class="nav-item-mobile-menu"><i class="fa-solid fa-address-card"></i> Convocatoria</a>
@@ -79,85 +82,34 @@
         </nav>
     </section>
 
-
-    <section id="sedes">
-        <div class="sedes-general">
-            <div class="sedes-info">
-                <div id="aca-los-ves">
-                    <h5>Acá los podés ver</h5>
-                    <h1>Sede principal</h1>
+    <section id="obras" class="envoltorio-slider">
+        <!-- Genera un elemento template para iterar con la informacion del CSV -->
+        <div id="obras-grid" class="contenedor-slider">
+            <template id="template-obra">
+                <article class="obra-card">
                     <div>
-                        <h4>Eldorado</h4>
-                        <p>Calle Paraguay 1542 (KM 9)</p>
+                        <img class="js-imagen" src="" alt="">
                     </div>
-                    <p class="pt-2">Desde sus inicios, el festival se desarrolla principalmente en la Sala del Círculo Médico de Eldorado (KM 9). Con el tiempo, para abarcar toda la ciudad se incorporaron al Teatro del Pueblo (KM 2) y al Salón Eibl (KM 11).</p>
-                </div>
-                <div>
-                    <h1>Sub sedes</h1>
-                    <div class="sub-sedes-info">
-                        <article class="lib">
-                            <h4>Puerto Libertad</h4>
-                            <!-- <p>Av. Tatatata 1234</p> -->
-                        </article>
-                        <article class="wan">
-                            <h4>Wanda</h4>
-                            <!-- <p>Av. Tatatata 1234</p> -->
-                        </article>
-                        <article class="rico">
-                            <h4>Puerto Rico</h4>
-                            <!-- <p>Av. Tatatata 1234</p> -->
-                        </article>
-                        <article class="">
-                            <h4>Montecarlo</h4>
-                            <!-- <p>Av. Tatatata 1234</p> -->
-                        </article>
-                        <article class="">
-                            <h4>Puerto Esperanza</h4>
-                            <!-- <p>Av. Tatatata 1234</p> -->
-                        </article>
-                        <!-- <article class="">
-                            <h4>Garuhapé</h4>
-                            <p>Av. Tatatata 1234</p>
-                        </article> -->
-                    </div>                    
-                </div>
-            </div>
-            <div class="misiones-mobile">
-                <img src="assets/img/misiones-2025.svg" alt="Sedes del festival">
-                <!-- <img src="assets/img/misiones-2025.svg" alt="Sedes del festival"> -->
-            </div>
+                    <div class="info-obras">
+                        <div class="datos">
+                            <div class="numero-obra">
+                                <h6 class="js-origen"></h6>
+                            </div>
+                            <div class="titulo-duracion">
+                                <h4 class="js-titulo"></h4>
+                                <p class="js-duracion"></p>
+                            </div>
+                            <div class="d-flex gap-1 align-items-center">
+                                <i class="fa-solid fa-star fa-xs"></i>
+                                <h6 class="js-grupo"></h6>
+                            </div>
+                        </div>
+                        <p class="js-descripcion"></p>
+                    </div>
+                </article>
+            </template>
         </div>
     </section>
-
-    <section>
-        <div class="mapas-teatros">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="circulo-medico-tab" data-bs-toggle="tab" data-bs-target="#circulo-medico" type="button" role="tab" aria-controls="circulo-medico" aria-selected="true">Sala del Círculo Médico</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="teatro-del-pueblo-tab" data-bs-toggle="tab" data-bs-target="#teatro-del-pueblo" type="button" role="tab" aria-controls="teatro-del-pueblo" aria-selected="false">Teatro Del Pueblo</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="salon-eibl-tab" data-bs-toggle="tab" data-bs-target="#salon-eibl" type="button" role="tab" aria-controls="salon-eibl" aria-selected="false">Salón Eibl</button>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="circulo-medico" role="tabpanel" aria-labelledby="circulo-medico-tab">
-                    <div>
-                        <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=CIRCULO%20MEDICO%20ALTO%20PARANA%20C.%20Paraguay%201542,%20N3380%20Eldorado,%20Misiones+(Sala%20del%20Circulo%20M%C3%A9dico)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="teatro-del-pueblo" role="tabpanel" aria-labelledby="teatro-del-pueblo-tab">
-                    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Club%20de%20Teatro%20del%20Pueblo,%20km%202,%20Eldorado,%20Misiones,%20Argentina+(Teatro%20del%20Pueblo)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                </div>
-                <div class="tab-pane fade" id="salon-eibl" role="tabpanel" aria-labelledby="salon-eibl-tab">
-                    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Sal%C3%B3n%20Cultural%20Eibl+(Sal%C3%B3n%20Eibl)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <footer>
         <div class="d-flex">
