@@ -10,6 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import '../css/style.css';
 import '../css/style-mobile.css';
+import '../css/pally.css';
 
 import { FileUploadWithPreview } from 'file-upload-with-preview';
 import 'file-upload-with-preview/dist/style.css';

@@ -5,7 +5,8 @@ html{
 }
 
 body {
-    font-family: 'Lato-Regular' !important;
+    /* font-family: 'Lato-Regular' !important; */
+    font-family: 'Pally-Regular' !important;
 	margin: 0;
 }
 
@@ -49,24 +50,59 @@ a {
 /* LATO FUENTE */
 @font-face {
 	font-family: 'Lato-Light';
-	src: url('/assets/fonts/Lato-Light.ttf');
+	src: url('/assets/fonts/Lato/Lato-Light.ttf');
 }
 @font-face {
 	font-family: 'Lato-Thin';
-	src: url('/assets/fonts/Lato-Thin.ttf');
+	src: url('/assets/fonts/Lato/Lato-Thin.ttf');
 }
 @font-face {
 	font-family: 'Lato-Regular';
-	src: url('/assets/fonts/Lato-Regular.ttf');
+	src: url('/assets/fonts/Lato/Lato-Regular.ttf');
 }
 @font-face {
 	font-family: 'Lato-Bold';
-	src: url('/assets/fonts/Lato-Bold.ttf');
+	src: url('/assets/fonts/Lato/Lato-Bold.ttf');
 }
 @font-face {
 	font-family: 'Lato-Black';
-	src: url('/assets/fonts/Lato-Black.ttf');
+	src: url('/assets/fonts/Lato/Lato-Black.ttf');
 }
+
+/* PALLY FUENTE */
+@font-face {
+  font-family: 'Pally-Regular';
+  src: url('/assets/fonts/Pally/Pally-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Pally/Pally-Regular.woff') format('woff'),
+       url('/assets/fonts/Pally/Pally-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pally-Medium';
+  src: url('/assets/fonts/Pally/Pally-Medium.woff2') format('woff2'),
+       url('/assets/fonts/Pally/Pally-Medium.woff') format('woff'),
+       url('/assets/fonts/Pally/Pally-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pally-Bold';
+  src: url('/assets/fonts/Pally/Pally-Bold.woff2') format('woff2'),
+       url('/assets/fonts/Pally/Pally-Bold.woff') format('woff'),
+       url('/assets/fonts/Pally/Pally-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+
+
+
+
+
 
 #inicio {
 	align-items: center;
@@ -83,14 +119,14 @@ a {
 }
 
 #inicio .accion h2 {
-    font-family: 'Lato-Light';
+    font-family: 'Pally-Regular';
     color: var(--gris);
     margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 #inicio .accion h2#edicion {
-	font-family: 'Lato-Black';
+	font-family: 'Pally-Bold';
     color: var(--gris);
     margin: .3rem auto 3rem;
     font-size: 1.15rem;
@@ -102,7 +138,7 @@ a {
 }
 #inicio a {
     color: var(--gris);
-    font-family: 'Lato-Regular';
+    font-family: 'Pally-Regular';
     font-size: .95rem;
     text-transform: uppercase;
     text-decoration: none;
@@ -211,7 +247,7 @@ section#inicio div#entrada a {
 }
 
 #int h4{
-    font-family: 'Lato-Light';
+    font-family: 'Pally-Regular';
     color: var(--gris);
     font-size: .95rem;
 }
@@ -239,7 +275,7 @@ section#inicio div#entrada a {
 
 #info-programacion h2{
 	margin: 0;
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -335,7 +371,7 @@ section#inicio div#entrada a {
 }
 
 .card-horizontal h5 {
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	letter-spacing: .03rem;
 }
 
@@ -393,12 +429,12 @@ section#inicio div#entrada a {
 	overflow-x: hidden;
 }
 #info-entradas h1 {
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	color: var(--white-gr);
 	font-size: 36px;
 }
 #info-entradas h2 {
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -522,7 +558,7 @@ section#inicio div#entrada a {
 	transform: translateY(-10px);
 }
 .checkbox-ticket + label .duration{
-	font-family: 'Lato-Bold', sans-serif;
+	font-family: 'Pally-Medium', sans-serif;
 	font-size: 1.2rem;
 	line-height: 1.25rem;
 	text-transform: uppercase;
@@ -535,20 +571,20 @@ section#inicio div#entrada a {
 	border-radius: 5px;
 	background-color: #fff;
 	color: var(--purpura);
-	font-family: 'Lato-Black';
+	font-family: 'Pally-Bold';
 }
 .checkbox-ticket + label:last-child span.duration{
 	line-height: 1.85rem;
 }
 .checkbox-ticket + label .duration span:first-of-type{
-	font-family: 'Lato-Black';
+	font-family: 'Pally-Bold';
     border: 2.2px solid var(--marron);
     padding: .2rem .4rem;
     line-height: 2rem;
     border-radius: 5px;
 }
 .checkbox-ticket + label:hover .duration span:first-of-type{
-	font-family: 'Lato-Black';
+	font-family: 'Pally-Bold';
     border: 2.2px solid #f4f4f47c;
     padding: .2rem .4rem;
 	line-height: 2rem;
@@ -558,7 +594,7 @@ section#inicio div#entrada a {
     border: 2.2px solid #f4f4f47c;
 }
 .checkbox-ticket + label .price{
-	font-family: 'Lato-Black', sans-serif;
+	font-family: 'Pally-Bold', sans-serif;
 	font-size: 40px;
 	line-height: 1;
 	letter-spacing: -3.5px;
@@ -589,7 +625,7 @@ section#inicio div#entrada a {
 	color: var(--amarillo);
 }
 .checkbox-ticket + label .price span{
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	letter-spacing: 4px;
 }
 .checkbox-ticket + label .uil {
@@ -600,7 +636,7 @@ section#inicio div#entrada a {
 	transition: all 250ms linear;
 }
 .checkbox-ticket + label .time {
-	font-family: 'Lato-Light', sans-serif;
+	font-family: 'Pally-Regular', sans-serif;
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 1;
@@ -722,7 +758,7 @@ section#inicio div#entrada a {
 	border-radius: 4px;
 	height: 48px;
 	font-size: 16px;
-	font-family: 'Lato-Regular', sans-serif;
+	font-family: 'Pally-Regular', sans-serif;
 	font-weight: 700;
     transition: all 200ms linear;
 	padding: 0 35px;
@@ -834,11 +870,11 @@ footer > div:first-of-type{
 }
 
 footer p {
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	color: #9f597b;
 }
 footer a {
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	color: #9f597b;
 	text-decoration: none;
 	background-color: transparent;
@@ -988,7 +1024,7 @@ footer .logos-footer {
 	color: var(--gris);
 }
 #quienes-somos h2 {
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1004,7 +1040,7 @@ footer .logos-footer {
 }
 #otros-festivales h2 {
 	margin-top: 0;
-	font-family: 'Lato-Thin';
+	font-family: 'Pally-Regular';
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -1140,7 +1176,7 @@ iframe#mapa {
 }
 
 #obras h2 {
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	margin: 1.5rem auto;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1191,7 +1227,7 @@ div article .info-obras p {
 }
 
 #obras div article h6:first-of-type{
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 	font-size: .75rem;
 }
 
@@ -1390,7 +1426,7 @@ a.sumate-equipo {
 #form h2 {
 	text-align: start;
 	width: 100%;
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 	font-size: 1.65rem;
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -1429,7 +1465,7 @@ div#form-contacto p label.mas-datos {
 div#form-contacto p label input,
 div#form-contacto p label textarea,
 div#form-contacto p label select {
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	font-size: .75rem;
 	height: auto;
 	/* height: 5svh; */
@@ -1503,7 +1539,7 @@ form button[type="submit"] {
 	box-shadow: none;
 	border: none;
 	
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 	font-size: 1rem;
 	color: var(--gris);
 	background-color: var(--purpura);
@@ -1518,7 +1554,7 @@ form button[type="submit"] {
 	box-shadow: none;
 	border: none;
 	
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 	font-size: 1rem;
 	color: var(--gris);
 	background-color: var(--purpura);
@@ -1536,13 +1572,13 @@ form button[type="submit"] {
 
 
 #form-contacto label select#seleccion-publico option:first-child {
-	font-family: 'Lato-Regular';
+	font-family: 'Pally-Regular';
 	color: var(--marron-oscuro);
 	background-color: var(--gris);
 	font-size: .65rem;
 }
 #form-contacto label select#seleccion-publico option {
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 	font-size: .8rem;
 }
 
@@ -1835,7 +1871,7 @@ div#modal-formulario form#contact-form textarea	{
 	color: var(--gris);
 }
 #quienes-colaboramos h2 {
-	font-family: 'Lato-Light';
+	font-family: 'Pally-Regular';
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1927,7 +1963,7 @@ div#modal-formulario form#contact-form textarea	{
 
 .evento-card .precio {
 	padding: .8rem;
-	font-family: 'Lato-Bold';
+	font-family: 'Pally-Medium';
 }
 
 #info-entradas .entradas-tickets > div article:not(:last-child) .info p.notificacion {
