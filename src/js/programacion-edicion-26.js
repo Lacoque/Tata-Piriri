@@ -75,15 +75,39 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     renderizarProgramacion()
 
+    // function iniciarSlider() {
+    //     ScrollTrigger.getAll().forEach(t => t.kill());
+    //     const container = document.querySelector('#obras-grid');
+    //     const articulos = gsap.utils.toArray('.obra-card');
+
+    //     if (articulos.length > 0) {
+    //         scrollTween = gsap.to(container, {
+    //             x: () => -(container.scrollWidth - window.innerWidth),
+    //             ease: "none",
+    //             scrollTrigger: {
+    //                 trigger: "#obras",
+    //                 start: "top top",
+    //                 pin: true,
+    //                 scrub: 1,
+    //                 invalidateOnRefresh: true,
+    //                 anticipatePin: 1,
+    //                 end: () => "+=" + (container.scrollWidth + window.innerWidth),
+    //                 // markers: true,
+    //             },
+    //         });
+    //     }
+    // }
+
     function iniciarSlider() {
         ScrollTrigger.getAll().forEach(t => t.kill());
+        
         const container = document.querySelector('#obras-grid');
-        const articulos = gsap.utils.toArray('.obra-card');
-
-        if (articulos.length > 0) {
-            // let totalWidht = container.scrollWidth - window.innerWidth;
-            scrollTween = gsap.to(container, {
-                x: () => -(container.scrollWidth - window.innerWidth),
+        const offset = 150;
+        
+        if(container) {
+            const getAmount = () => -(container.scrollWidth - window.innerWidth + offset);
+            gsap.to(container, {
+                x: getAmount,
                 ease: "none",
                 scrollTrigger: {
                     trigger: "#obras",
@@ -92,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrub: 1,
                     invalidateOnRefresh: true,
                     anticipatePin: 1,
-                    end: () => "+=" + (container.scrollWidth - window.innerWidth),
-                    markers: true,
+                    end: () => "+=" + Math.abs(getAmount()),
+                    // markers: true,
                 },
             });
         }
