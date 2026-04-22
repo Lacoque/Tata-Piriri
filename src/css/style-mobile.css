@@ -221,7 +221,7 @@
     }
 
     #obras div article div img {
-        height: max-content;
+        height: 300px;
         width: 100%;
     }
 
@@ -451,6 +451,18 @@
     .colaboradores img {
         max-width: 90px;
         max-height: 70px;
+    }
+
+    .obra-card {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .obra-card div .datos > div.titulo-duracion {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: start;
     }
 }
 

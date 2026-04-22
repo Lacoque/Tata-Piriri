@@ -104,8 +104,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function handleResize() {
-    if (window.innerWidth >= 960) {
+  // function handleResize() {
+  //   if (window.innerWidth >= 960) {
+  //     initSlider();
+  //   } else {
+  //     if (scrollTween) {
+  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //       scrollTween.kill();
+  //       scrollTween = null;
+  //     }
+  //   }
+  // }
+
+  // if (window.innerWidth >= 960) {
+  //   initSlider();
+  // }
+
+
+
+
+    function handleResize() {
+    if (handleResize) {
       initSlider();
     } else {
       if (scrollTween) {
@@ -116,9 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (window.innerWidth >= 960) {
+  if (handleResize) {
     initSlider();
   }
+
+
+
+
 
   // Redimensionamiento optimizado con debounce
   let resizeTimeout;
