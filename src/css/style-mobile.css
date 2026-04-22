@@ -194,7 +194,9 @@
     }
 
     #obras {
+        margin-top: 3rem;
         padding: 5rem 0rem 0rem;
+        overflow: scroll;
     }
 
     #obras .slider-container {
