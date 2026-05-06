@@ -195,9 +195,16 @@
 
     #obras {
         margin-top: 3rem;
-        padding: 5rem 0rem 0rem;
-        overflow: scroll;
+        padding: 5rem 1rem 0rem;
+        overflow-x: scroll;
+        height: 100%;
     }
+
+    #obras-grid {
+        gap: 2rem;
+    }
+
+
 
     #obras .slider-container {
         padding: 0rem .5rem;
@@ -465,6 +472,10 @@
         flex-direction: column;
         gap: .5rem;
         align-items: start;
+    }
+
+    .obra-card div .datos > div.titulo-duracion p {
+        font-size: 12px;
     }
 }
 
