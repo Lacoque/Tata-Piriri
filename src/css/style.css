@@ -248,7 +248,7 @@ section#inicio div#entrada a {
 
 #int h4{
     font-family: 'Pally-Regular';
-    color: var(--gris);
+    color: #854565;
     font-size: .95rem;
 }
 
@@ -1240,7 +1240,7 @@ div article .info-obras p {
 	flex-wrap: nowrap;
 	width: 100%;
 	margin: 0rem 1rem;
-	padding: 0rem 3rem 0rem 0rem;
+	padding: 0rem 4rem 0rem 0rem;
 	gap: 4rem;
 }
 

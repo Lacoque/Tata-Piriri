@@ -84,48 +84,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let scrollTween;
   function initSlider() {
-    const articulos = gsap.utils.toArray(".slider article");
 
-    if (articulos.length > 0) {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    let matchMedia = gsap.matchMedia();
+    matchMedia.add("(min-width: 960px)", () => {
+      const articulos = gsap.utils.toArray(".slider article");
 
-      scrollTween = gsap.to(articulos, {
-        xPercent: -100 * (articulos.length - 0.63),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".slider",
-          pin: true,
-          scrub: 1,
-          start: "top 20%",
-          end: "+=3000",
-          // markers: true,
-        },
-      });
-    }
-  }
-
-  function handleResize() {
-    if (window.innerWidth >= 960) {
-      initSlider();
-    } else {
-      if (scrollTween) {
+      if (articulos.length > 0) {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        scrollTween.kill();
-        scrollTween = null;
+
+        scrollTween = gsap.to(articulos, {
+          xPercent: -100 * (articulos.length - 0.63),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".slider",
+            pin: true,
+            scrub: 1,
+            start: "top 20%",
+            end: "+=3000",
+            // markers: true,
+          },
+        });
       }
-    }
-  }
+    });
+  };
 
-  if (window.innerWidth >= 960) {
-    initSlider();
-  }
+  // function handleResize() {
+  //   if (window.innerWidth >= 960) {
+  //     initSlider();
+  //   } else {
+  //     if (scrollTween) {
+  //       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //       scrollTween.kill();
+  //       scrollTween = null;
+  //     }
+  //   }
+  // }
 
-  // Redimensionamiento optimizado con debounce
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(handleResize, 100);
-  });
+  // if (window.innerWidth >= 960) {
+  //   initSlider();
+  // }
+
+  // // Redimensionamiento optimizado con debounce
+  // let resizeTimeout;
+  // window.addEventListener("resize", () => {
+  //   clearTimeout(resizeTimeout);
+  //   resizeTimeout = setTimeout(handleResize, 100);
+  // });
   
 
 
