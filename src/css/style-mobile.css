@@ -194,10 +194,11 @@
     }
 
     #obras {
-        margin-top: 3rem;
+        margin: 3rem 0rem 2rem;
         padding: 5rem 1rem 0rem;
         overflow-x: scroll;
         height: 100%;
+        box-sizing: border-box;
     }
 
     #obras-grid {
@@ -380,6 +381,10 @@
         grid-template-columns: 1fr;
     }
 
+    #info-programacion {
+        padding: 2rem 1rem;
+    }
+
     #info-programacion .controls #allDaysContainer .day-container{
         /* width: 200vw; */
         width: max-content;
@@ -389,6 +394,11 @@
         position: sticky;
         left: 1rem;
         margin: .5rem 1rem 2rem;
+    }
+
+    div#entradas {
+        padding: 1rem;
+        gap: 1rem;
     }
 
     div#form-contacto p label.mas-datos {

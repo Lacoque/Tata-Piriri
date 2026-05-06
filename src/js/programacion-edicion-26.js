@@ -1,6 +1,7 @@
 import Papa from 'papaparse';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { offset } from '@popperjs/core';
 
 
 
@@ -75,55 +76,34 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     renderizarProgramacion()
 
-    // function iniciarSlider() {
-    //     ScrollTrigger.getAll().forEach(t => t.kill());
-    //     const container = document.querySelector('#obras-grid');
-    //     const articulos = gsap.utils.toArray('.obra-card');
-
-    //     if (articulos.length > 0) {
-    //         scrollTween = gsap.to(container, {
-    //             x: () => -(container.scrollWidth - window.innerWidth),
-    //             ease: "none",
-    //             scrollTrigger: {
-    //                 trigger: "#obras",
-    //                 start: "top top",
-    //                 pin: true,
-    //                 scrub: 1,
-    //                 invalidateOnRefresh: true,
-    //                 anticipatePin: 1,
-    //                 end: () => "+=" + (container.scrollWidth + window.innerWidth),
-    //                 // markers: true,
-    //             },
-    //         });
-    //     }
-    // }
-
     function iniciarSlider() {
-        ScrollTrigger.getAll().forEach(t => t.kill());
-        
-        const container = document.querySelector('#obras-grid');
-        const offset = 150;
-        
-        if(container) {
-            const getAmount = () => -(container.scrollWidth - window.innerWidth + offset);
-            gsap.to(container, {
-                x: getAmount,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#obras",
-                    start: "top top",
-                    pin: true,
-                    scrub: 1,
-                    invalidateOnRefresh: true,
-                    anticipatePin: 1,
-                    end: () => "+=" + Math.abs(getAmount()),
-                    // markers: true,
-                },
-            });
-        }
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 960px)", () => {
+            
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            
+            const container = document.querySelector('#obras-grid');
+            
+            if(container) {
+                const margin = window.innerWidth * 0.1;
+                const getAmount = () => {
+                    return -(container.scrollWidth - window.innerWidth + margin);
+                };
+                gsap.to(container, {
+                    x: getAmount,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#obras",
+                        start: "top top",
+                        pin: true,
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                        anticipatePin: 1,
+                        end: () => "+=" + Math.abs(getAmount()),
+                        // markers: true,
+                    },
+                });
+            }
+        });
     }
-
-
-
-
 });
