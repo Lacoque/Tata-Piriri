@@ -67,7 +67,7 @@
     }
     
     section#inicio img {
-        height: 40vh;
+        height: 20vh;
     }
 
     section#int > div:first-of-type {
@@ -194,8 +194,18 @@
     }
 
     #obras {
-        padding: 5rem 0rem 0rem;
+        margin: 3rem 0rem 2rem;
+        padding: 5rem 1rem 0rem;
+        overflow-x: scroll;
+        height: 100%;
+        box-sizing: border-box;
     }
+
+    #obras-grid {
+        gap: 2rem;
+    }
+
+
 
     #obras .slider-container {
         padding: 0rem .5rem;
@@ -221,7 +231,7 @@
     }
 
     #obras div article div img {
-        height: max-content;
+        height: 300px;
         width: 100%;
     }
 
@@ -371,6 +381,10 @@
         grid-template-columns: 1fr;
     }
 
+    #info-programacion {
+        padding: 2rem 1rem;
+    }
+
     #info-programacion .controls #allDaysContainer .day-container{
         /* width: 200vw; */
         width: max-content;
@@ -380,6 +394,11 @@
         position: sticky;
         left: 1rem;
         margin: .5rem 1rem 2rem;
+    }
+
+    div#entradas {
+        padding: 1rem;
+        gap: 1rem;
     }
 
     div#form-contacto p label.mas-datos {
@@ -451,6 +470,22 @@
     .colaboradores img {
         max-width: 90px;
         max-height: 70px;
+    }
+
+    .obra-card {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .obra-card div .datos > div.titulo-duracion {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: start;
+    }
+
+    .obra-card div .datos > div.titulo-duracion p {
+        font-size: 12px;
     }
 }
 

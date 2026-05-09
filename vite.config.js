@@ -10,7 +10,7 @@ export default defineConfig({
         main: path.resolve(__dirname, 'index.html'), // Punto de entrada principal
         form: path.resolve(__dirname, 'form.html'),
         nosotros: path.resolve(__dirname, 'nosotros.html'),
-        // obrasedes: path.resolve(__dirname, 'obras-y-sedes.html'),
+        obrasedes: path.resolve(__dirname, 'obras-y-sedes.html'),
         sedes: path.resolve(__dirname, 'sedes.html'),
       },
       // external: ['@fortawesome/fontawesome-svg-core'],
