@@ -12,6 +12,8 @@ body {
 
 h2 {
     font-size: 2.85rem;
+	font-family: 'Pally-Bold';
+
 }
 h3 {
     font-size: 2rem;
@@ -119,7 +121,7 @@ a {
 }
 
 #inicio .accion h2 {
-    font-family: 'Pally-Regular';
+    font-family: 'Pally-Bold';
     color: var(--gris);
     margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -273,9 +275,9 @@ section#inicio div#entrada a {
     color: var(--gris);
 }
 
-#info-programacion h2{
+#info-programacion h2 {
 	margin: 0;
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -306,7 +308,7 @@ section#inicio div#entrada a {
 	flex-direction: column;
 }
 #info-programacion .controls #allDaysContainer .day-container h2 {
-	font-weight: 600;
+    font-family: 'Pally-Bold';
 	font-size: 1.085rem;
 	text-transform: uppercase;
 	margin: .5rem auto 2rem;
@@ -434,7 +436,7 @@ section#inicio div#entrada a {
 	font-size: 36px;
 }
 #info-entradas h2 {
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
 	margin: 0;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1024,7 +1026,7 @@ footer .logos-footer {
 	color: var(--gris);
 }
 #quienes-somos h2 {
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1040,7 +1042,7 @@ footer .logos-footer {
 }
 #otros-festivales h2 {
 	margin-top: 0;
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -1176,7 +1178,7 @@ iframe#mapa {
 }
 
 #obras h2 {
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
 	margin: 1.5rem auto;
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -1426,7 +1428,7 @@ a.sumate-equipo {
 #form h2 {
 	text-align: start;
 	width: 100%;
-	font-family: 'Pally-Medium';
+	font-family: 'Pally-Bold';
 	font-size: 1.65rem;
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -1871,7 +1873,7 @@ div#modal-formulario form#contact-form textarea	{
 	color: var(--gris);
 }
 #quienes-colaboramos h2 {
-	font-family: 'Pally-Regular';
+	font-family: 'Pally-Bold';
 	margin: 1.5rem auto;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -2081,4 +2083,40 @@ body #cronograma::-webkit-scrollbar-thumb {
 	#info-entradas .entradas-tickets > div .info:hover p.notificacion {
 		opacity: 1;
 	}
+}
+
+
+
+
+.float {
+    position: fixed;
+    display: flex;
+    width: 70px;
+    height: 70px;
+    bottom: 40px;
+    right: 20px;
+    place-content: center;
+    z-index: 100;
+    flex-wrap: wrap;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px !important;
+    backdrop-filter: blur(4px);
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none !important;
+    /* mix-blend-mode: difference; */
+}
+
+.float-2 {
+    position: fixed;
+    display: flex;
+    bottom: 110px;
+    right: 20px;
+    place-content: center;
+    z-index: 100;
+    flex-wrap: wrap;
+    color: #fff;
+    text-align: center;
+    text-decoration: none !important;
 }
