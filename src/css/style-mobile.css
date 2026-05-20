@@ -487,6 +487,14 @@
     .obra-card div .datos > div.titulo-duracion p {
         font-size: 12px;
     }
+
+    @media (hover: hover) {
+    .float:hover {
+        background-color: #25d366;
+        color: #fff;
+        }
+    }
+
 }
 
 
