@@ -70,7 +70,7 @@ function comunicarWhatsApp(ticketId) {
         default:
             mensaje = "Me gustaría consultar por las Anticipadas"
     }
-    open(`https://wa.me/5493751668811?text=${encodeURIComponent(mensaje)}`, '_blank');
+    open(`https://wa.me/5493751635662?text=${encodeURIComponent(mensaje)}`, '_blank');
 };
 
 renderizarEntradas();
