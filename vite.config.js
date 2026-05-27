@@ -12,6 +12,7 @@ export default defineConfig({
         nosotros: path.resolve(__dirname, 'nosotros.html'),
         obrasedes: path.resolve(__dirname, 'obras-y-sedes.html'),
         sedes: path.resolve(__dirname, 'sedes.html'),
+        links: path.resolve(__dirname, 'links.html'),
       },
       // external: ['@fortawesome/fontawesome-svg-core'],
     },
