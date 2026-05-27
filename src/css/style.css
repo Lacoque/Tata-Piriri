@@ -2120,3 +2120,63 @@ body #cronograma::-webkit-scrollbar-thumb {
     text-align: center;
     text-decoration: none !important;
 }
+
+section.links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--purpura);
+	height: 100vh;
+}
+
+section.links div > ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1.35rem;
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+
+section.links div > ul a {
+	text-decoration: none;
+	font-size: 1.35rem;
+	font-family: 'Pally-Bold';
+	background-color: #6e1d57;
+}
+
+section.links > div.links-logo {
+	width: 50px;
+	height: fit-content;
+	display: flex;
+}
+
+section.links > div {
+	color: var(--gris);
+}
+
+section.links > div > p {
+	font-family: 'Pally-Regular';
+}
+
+section.links > div > h4,
+section.links > div > h5 {
+	font-family: 'Pally-Bold';
+}
+
+section.links > div:last-of-type {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+section.links > div span {
+	text-transform: uppercase;
+	font-size: .75rem;
+	color: var(--amarillo);
+}
